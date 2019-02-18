@@ -1,0 +1,27 @@
+body {
+  //background: var(--main-bg-color);
+  background-image: url('https://cdn.vox-cdn.com/thumbor/gcLdEduI29mEc9RhG7_l9GDaZb4=/0x0:844x844/1200x800/filters:focal(355x355:489x489)/cdn.vox-cdn.com/uploads/chorus_image/image/54896147/bud_and_marilyns.0.jpg');// no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  padding: 32px;
+}
+#map-container {
+  height: 300px; 
+  width: 500px; 
+  border: 1px solid var(--main-txt-color); 
+  margin: 0 auto;
+}
+#currentuser {
+  border: 1px solid var(--main-txt-color); 
+  background: var(--highlight-bg-color);
+  margin: 40px 0;
+}
+#currentorder {
+  border: 1px solid var(--main-txt-color); 
+  background: var(--highlight-bg-color);
+  margin: 40px 0;
+}
+

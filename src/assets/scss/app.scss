@@ -1,0 +1,12 @@
+@import '_root';
+@import '_functional';
+@import 'text';
+@import 'layout';
+@import 'menu';
+@import 'header';
+@import 'modal';
+@import 'stealth';
+
+#app {
+  text-align: center;
+}
