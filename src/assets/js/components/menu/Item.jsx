@@ -6,7 +6,7 @@ import { DFMenuItem,
          DFButton,
          DFItem }               from '../../elements/library'
 import ItemDetailComponent      from '../../components/menu/ItemDetail.jsx'
-
+import IncrementComponent       from '../../components/widgets/Increment.jsx'
 import APP_CONFIG               from '../../config'
 
 const itemOrderDefault = {
@@ -27,8 +27,7 @@ const itemQuantityOptions   = [
   { value: 6, label: '6' },
   { value: 7, label: '7' },
   { value: 8, label: '8' },
-  { value: 9, label: '9' },
-  { value: 10, label: '10' }
+  { value: 9, label: '9' }
 ]
 
 const orderItem = (pid, name, price, options, quantity = 1) => {
@@ -114,6 +113,7 @@ class MenuItemComponent extends PureComponent {
       return <div className="menu-item-selection">
         <div className="menu-item-quantity">
           <DFButton 
+            cancel
             onClick = { () => this.props.removeOrderItem(pid) }
           >Delete from order</DFButton>
         </div>
@@ -123,11 +123,16 @@ class MenuItemComponent extends PureComponent {
 
     return <div className="menu-item-selection">
       <div className="menu-item-quantity">
-        <Select
+        <IncrementComponent
+          value     = { selectedQuantity }
+          limit     = { itemQuantityOptions.length }
+          onChange  = { val => this.onSelectQuantity(val) }
+        />
+        {/* <Select
           value     = { selectedQuantity }
           onChange  = { opt => this.onSelectQuantity(opt.value) }
           options   = { itemQuantityOptions }
-        />
+        /> */}
       </div>
       <DFButton 
         onClick = { () => this.showConfirmationModal() }

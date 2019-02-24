@@ -1,5 +1,6 @@
 import { ACTIONS }  from '../constants'
 import { fetch }    from 'whatwg-fetch'
+import { notify }   from './appActions'
 
 const postHeaders = {
     'Accept': 'application/json',
@@ -83,6 +84,11 @@ export function placeOrder (order) {
         .then((response) => response.json())
         .then((response) => {
             dispatch(orderPlaced(response))
+            dispatch(notify('Order Placed Successfully', 'success'))
+
+        })
+        .catch((err) => {
+            dispatch(notify('Order Could Not be Placed', 'error'))
         })
     }
 }

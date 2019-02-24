@@ -3,9 +3,9 @@ import { connect }                          from 'react-redux'
 
 import { DFPageContainer, 
          DFContainer,
+         DFBlock,
          DFInputsField,
-         DFButton,
-         DFPageTitle }                      from '../elements/library'
+         DFButton }                         from '../elements/library'
 import { editUser }                         from '../store/actions/appActions'
 
 import ShowUserComponent                    from '../components/user/ShowUser.jsx'
@@ -26,7 +26,7 @@ class AccountContainer extends PureComponent {
     const editUser         = this.props.app && this.props.app.editUser
     const showUser         = this.props.user && this.props.user._id && !editUser
 
-    return (<DFPageContainer>
+    return (<DFPageContainer className="account-page">
       { showRegistration  ? 
         <RegistrationComponent /> 
         : null 
@@ -37,15 +37,15 @@ class AccountContainer extends PureComponent {
       { showUser          ? 
         <ShowUserComponent 
           latlon         = { this.props.user.latlon } 
-          maptext        = "Accoiunt Location"
+          maptext        = "Account Location"
         /> : null 
       }
       { showUser        ?
-        <DFContainer>
-          <DFInputsField>
-            <DFButton onClick={ () => this.props.editUser() }>Edit Account</DFButton>
-          </DFInputsField>
-        </DFContainer> : null
+        <DFBlock className="margin-v-l">
+        <DFInputsField>
+          <DFButton onClick={ () => this.props.editUser() }>Edit Account</DFButton>
+        </DFInputsField> 
+        </DFBlock> : null
       }
     </DFPageContainer>)
   }

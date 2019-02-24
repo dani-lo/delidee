@@ -42,11 +42,21 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('dist'))
 app.use(express.static('media'))
 
-app.get('/shop', (req, res) => {
-  res.sendFile(path.join(__dirname + '/shop.html'))
+app.get('/', (req, res) => {
+  res.redirect('/siamcafe')
 })
 
-app.get('/', (req, res) => {
+const routes = [
+  '/:shopId',
+  '/:shopId/shop',
+  '/:shopId/shop-order/:orderId',
+  '/:shopId/orders',
+  '/:shopId/account',
+  '/:shopId/menu',
+  '/:shopId/checkout'
+]
+
+app.get(routes, (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'))
 })
 
@@ -56,4 +66,4 @@ setupDelifastApi(app)
 
 /* APP START */
 
-app.listen(port, () => console.log(`Delifast app listening on port ${port}!`))
+app.listen(port, () => console.log(`DeliDee app listening on port ${port}!`))

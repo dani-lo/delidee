@@ -1,27 +1,28 @@
-import React            from 'react'
-import { DFContainer }  from '../../elements/library'
+import React, { Fragment }    from 'react'
+import { DFContainer }        from '../../elements/library'
 
-const itemOptions = (options) => {
+const ItemOptions = ({options}) => {
   
   const multiOption = options && options[1]
 
-  return <DFContainer> {
+  return <Fragment> {
     
     Object.keys(options).map(k => {
       const opt     = options[k]
       const option  = []
 
-      if (opt.comment) {
-        option.push(<div><span>comment: { opt.comment }</span></div>) 
-      }
       if (opt.with && opt.with.label) {
-        option.push(<div><span>with: { opt.with.label }</span></div>) 
+        option.push(<p>with: { opt.with.label }</p>) 
       }
       if (opt.cook && opt.cook.label) {
-        option.push(<div><span>cook: { opt.cook.label }</span></div>) 
+        option.push(<p>cook: { opt.cook.label }</p>) 
       }
       if (opt.side && opt.side.label) {
-        option.push(<div><span>side: { opt.side.label }</span></div>) 
+        option.push(<p>side: { opt.side.label }</p>) 
+      }
+
+      if (opt.comment) {
+        option.push(<div className="item-option-comment"><h4>your comment</h4><p>{ opt.comment }</p></div>) 
       }
 
       if (option.length) {
@@ -35,9 +36,7 @@ const itemOptions = (options) => {
       return null
       
     })
-  } </DFContainer>
+  } </Fragment>
 }
 
-export  {
-  itemOptions
-}
+export  default ItemOptions

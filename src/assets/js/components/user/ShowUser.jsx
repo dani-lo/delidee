@@ -1,4 +1,4 @@
-import React, { PureComponent }     from 'react'
+import React, { Fragment }          from 'react'
 import _                            from 'lodash'
 import { connect }                  from "react-redux"
 
@@ -6,9 +6,12 @@ import { DFContainer,
          DFSubTitle,
          DFButton,
          DFInputsField,
-         DFItem }                   from '../../elements/library'
-         
+         DFItem, 
+         DFBlock}                   from '../../elements/library'
+
 import MapComponent                 from '../map/Map.jsx'
+
+import { User }                     from '../../helper'
 
 const ShowUserComponent = (props) => {
 
@@ -33,23 +36,19 @@ const ShowUserComponent = (props) => {
 
     const latlon          = props.latlon || userSource.latlon
 
-    return <DFContainer>
-      <DFSubTitle>{ userName }</DFSubTitle>
-      <DFContainer>
-        <DFItem>{ firstName }</DFItem>
-        { secondName ? <DFItem>{ secondName }</DFItem> : null }
-        <DFItem>{ addressLineOne }</DFItem>
-        { addressLineTwo ? <DFItem>{ addressLineTwo }</DFItem> : null }
-        <DFItem>{ tel }</DFItem>
-      </DFContainer>
-      <DFContainer>
-        <MapComponent 
-          latlon    = { latlon }
-          maptext   = { props.maptext }
-          editable  = { props.editable }
-        />
-      </DFContainer>
-    </DFContainer> 
+    return <Fragment>
+        <DFBlock className="margin-v-l">
+          <User data={ userSource } />
+        </DFBlock>
+        <DFBlock  className="margin-v-l">
+          <MapComponent 
+            mapinst   = " "
+            latlon    = { latlon }
+            maptext   = { props.maptext }
+            editable  = { props.editable }
+          />
+        </DFBlock>
+    </Fragment> 
   }
 
   return null
@@ -61,7 +60,5 @@ const mapStateToProps = (state) => {
         orders: state.orders
     }
 }
-
-//const mapDispatchToProps = dispatch => ({onUserEdit: (userData) => dispatch(editUser(userData))})
 
 export default connect(mapStateToProps, null)(ShowUserComponent)

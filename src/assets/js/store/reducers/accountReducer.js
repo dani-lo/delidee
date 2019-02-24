@@ -33,8 +33,7 @@ export default function accountReducer (state = defaultState, action) {
       return Object.assign({}, state,  { loggedin: false, error: null } )
     
     case ACTIONS.USER_REGISTERED :
-      console.log('registered reduc', action.payload.data)
-      console.log(Object.assign({}, state, action.payload.data, {error: null} ))
+
       return Object.assign({}, state, action.payload.data, {error: null} )
 
     case ACTIONS.USER_UPDATED :
@@ -44,6 +43,10 @@ export default function accountReducer (state = defaultState, action) {
     case ACTIONS.ADDRESS_EDIT :
 
       return Object.assign({}, state, action.payload.data, {error: null}) 
+
+    case ACTIONS.USER_DESTROY :
+
+      return Object.assign({}, defaultState) 
 
     default :
       return state

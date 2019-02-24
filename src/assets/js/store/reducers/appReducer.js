@@ -3,6 +3,7 @@ import { ACTIONS }  from '../constants'
 const defaultState = {  
   editUser: false,
   shopmode: false,
+  confirm: null,
   flash: {
     message: null,
     className: null
@@ -18,6 +19,19 @@ export default function appReducer (state = defaultState, action) {
     case ACTIONS.FLASH_MESSAGE :
 
       return Object.assign({}, state, { flash: action.payload })
+
+    case ACTIONS.UNFLASH_MESSAGE :
+
+      const noFlash = {
+        message: null,
+        className: null
+      }
+
+      return Object.assign({}, state, { flash: noFlash })
+    
+    case ACTIONS.CONFIRM : 
+      
+      return Object.assign({}, state, { confirm: action.payload})
 
     case ACTIONS.IS_LOADING :
       return Object.assign({}, state, { loading: {status: true }})

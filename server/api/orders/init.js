@@ -22,7 +22,7 @@ const ordersApiSetup = (app) => {
     if (!req.session.uid) {
       return res.status(401).send({
         status: '401',
-        msg: 'Please log in with your user name',
+        msg: 'unrecognised user',
         data: null
       })
     }
@@ -32,7 +32,7 @@ const ordersApiSetup = (app) => {
     if (uid !== req.session.uid) {
       return res.status(401).send({
         status: '401',
-        msg: 'Unrecognised usere',
+        msg: 'unrecognised user',
         data: null
       })
     }
@@ -42,15 +42,15 @@ const ordersApiSetup = (app) => {
     order.fetchAllUser(uid).then((dbRes) => {
   
       res.status(200).send({
-        status: 'success',
+        status: '200',
         msg: 'orders found',
         data: dbRes.map(order => unpackOrder(order))
       })
     }).catch((dbErr) => {
  
-      return res.status(201).send({
-        status: '400',
-        msg: 'Mongo error - orders could not be found ' + dbErr.message,
+      return res.status(500).send({
+        status: '500',
+        msg: 'error, orders not found ' + dbErr.message,
         data: null
       })
     })
@@ -62,31 +62,31 @@ const ordersApiSetup = (app) => {
     const uid = req.session.uid 
 
     if (!uid) {
-      return res.status(201).send({
+      return res.status(401).send({
         status: '401',
-        msg: 'Please log in with your user name'
+        msg: 'unrecognised user'
       })
     }
 
-    const result = validators.validatePostOrder(req)
+    // const result = validators.validatePostOrder(req)
 
-    if (result.status === 'error') {
-      return res.status(400).send(result)
-    }
+    // if (result.status === 'error') {
+    //   return res.status(400).send(result)
+    // }
 
     const order = new Order(req.body)
 
     order.add(req.body).then((dbRes) => {
       res.status(200).send({
-        status: 'success',
+        status: '200',
         msg: 'order added successfully',
         data: Object.assign({}, unpackOrder(dbRes))
       })
     }).catch((dbErr) => {
 
-      return res.status(201).send({
-        status: '400',
-        msg: 'Mongo error - order could not be added - ' + dbErr.message
+      return res.status(500).send({
+        status: '500',
+        msg: 'error - order could not be added - ' + dbErr.message
       })
     })
   })

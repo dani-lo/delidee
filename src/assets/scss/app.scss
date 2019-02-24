@@ -1,12 +1,15 @@
 @import '_root';
 @import '_functional';
-@import 'text';
-@import 'layout';
-@import 'menu';
-@import 'header';
-@import 'modal';
-@import 'stealth';
 
-#app {
-  text-align: center;
-}
+@import 'account';
+@import 'header';
+@import 'flash';
+@import 'form';
+@import 'layout';
+@import 'map';
+@import 'menu';
+@import 'modal';
+@import 'order';
+@import 'shop';
+@import 'text';
+@import 'widget';

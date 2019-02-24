@@ -10,28 +10,22 @@ import { DFPageContainer,
          DFButton,
          DFSectionTitle,
          DFSubTitle,
-         DFItem,
-         DFPageTitle }              from '../elements/library'
+         DFIcon}                    from '../elements/library'
 
-import { placeOrder, 
-         userOrders, 
-         setOrderMeta,
-         changeOrderMeta, 
-         undoChangeOrderMeta }      from '../store/actions/ordersActions'
+import { userOrders }               from '../store/actions/ordersActions'
 
 import { showOrder, 
+         confirm,
          hideOrder }                from '../store/actions/appActions'
 
-import ShowUserComponent            from '../components/user/ShowUser.jsx'
 import ViewOrderComponent           from '../components/order/ViewOrder.jsx'
-import OrderMetaComponent           from '../components/order/Meta.jsx'
-import { itemOptions }              from '../components/order/util.jsx'
 
 import { validUser,
-         orderTotal,
          orderStatusClass,
-         displayStatus }            from '../helper'
+         orderStatusColor,
+         orderStatusContent }       from '../helper'
 
+const confirmSubmission = 'Place Order?'
 
 class OrdersContainer extends PureComponent {
   constructor (props) {
@@ -46,104 +40,21 @@ class OrdersContainer extends PureComponent {
     }
   }
 
-  submitOrder () {
-    const user          = this.props.user 
-    const currentOrder  = this.props.orders.current
-
-    const order = {
-        uid       : user._id,
-        meta      : currentOrder.meta,
-        total     : orderTotal(this.props.orders.current.items),
-        items     : currentOrder.items,
-        comment   : currentOrder.comment
-      }
-
-    this.props.finaliseOrder(order)
-  }
-
-  
-
-  userDelivery () {
-    if (!this.props.user || (this.props.orders && this.props.orders.current && this.props.orders.current.changeMeta)) {
-      return null
-    }
-    let userName, secondName, addressLineOne, addressLineTwo, tel, latlon
-
-    if (_.get(this.props.orders, 'current.meta.metaData')) {
-      userName        = this.props.orders.current.meta.metaData.userName
-      secondName      = this.props.orders.current.meta.metaData.secondName
-      addressLineOne  = this.props.orders.current.meta.metaData.addressLineOne
-      addressLineTwo  = this.props.orders.current.meta.metaData.addressLineTwo
-      tel             = this.props.orders.current.meta.metaData.tel
-      latlon          = this.props.orders.current.meta.metaData.latlon
-    } else if (this.props.user) {
-      userName        = this.props.user.userName
-      secondName      = this.props.user.secondName
-      addressLineOne  = this.props.user.addressLineOne
-      addressLineTwo  = this.props.user.addressLineTwo
-      tel             = this.props.user.tel
-      latlon          = this.props.user.latlon
-    }
-
-    return <DFContainer>
-      <DFSubTitle>Delivering to</DFSubTitle>
-      <ShowUserComponent 
-        latlon          = { latlon }
-        maptext         = "Delivery Location"
-        editable        = { false }
-        override        = { true }
-      />
-      <DFButton
-        onClick={ () =>  this.props.changeOrderMeta() }
-      >
-        Change Delivery Information
-      </DFButton>
-    </DFContainer>
-  }
-
-  renderCurrentOrder () {
-    if (this.props.user && this.props.orders.current && this.props.orders.current.items && this.props.orders.current.items.length) {
-
-      return <DFContainer>
-            <DFSectionTitle>Current Order</DFSectionTitle>
-            <DFContainer>
-              {
-                this.props.orders.current.items.map(item => {
-
-                  return <div key={`item-order-${ item.pid }`}>
-                    <DFItem>{ item.name } x { item.quantity }</DFItem>
-                    <p>subtotal { item.price * item.quantity }</p>
-                    { itemOptions(item.options) }
-                  </div>
-                })
-              }
-              <h4>total { orderTotal(this.props.orders.current.items) }</h4>
-            </DFContainer>
-            { this.userDelivery() }
-          <DFContainer>
-            <DFButton
-              onClick={ () => this.submitOrder() }
-            >
-              Submit Order
-            </DFButton>
-        </DFContainer>
-      </DFContainer>
-    }
-  }
-
   renderHistoryOrders () {
-    
 
     if (this.props.orders.history && this.props.orders.history.length)  {
 
       const historical = this.props.orders.history.map((order) => {
 
-        const created = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
-        const status  = displayStatus(order.status)
+        const created       = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
+        const statusContent = orderStatusContent(order.status)
 
-        return  <DFContainer className={`order order-${ orderStatusClass(order) }`}>
-          <DFItem>{ created }</DFItem>
-          <DFItem className="low-case">{ status }</DFItem>
+        return  <DFContainer className={`margin-v-m order client-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
+          <DFIcon className={ `order-status ${ statusContent.icon }`} status={ order.status } />
+          <DFSectionTitle>
+            { created }
+          </DFSectionTitle>
+          <p className="low-case">{ statusContent.txt }</p>
           <DFButton onClick={() => this.props.viewOrder(order._id)}>View Order</DFButton>
         </DFContainer>
       })
@@ -155,9 +66,7 @@ class OrdersContainer extends PureComponent {
     }
 
     return null
-  }
-
-  
+  } 
 
   renderNoHistory () {
     const noHistory = !this.props.orders.history || this.props.orders.history.length === 0 || !this.props.user._id
@@ -181,23 +90,12 @@ class OrdersContainer extends PureComponent {
       })
     }
   }
-
-  onCustomMeta (userMeta) {
-
-    if (validUser(userMeta)) {
-      this.props.setOrderMeta({
-        metaData: userMeta,
-        metaType: 'CUSTOM'
-      })
-    }
-  }
   
   onCancelMeta () {
     return this.props.undoChangeOrderMeta()
   }
 
   render () {
-    const changeMeta      = this.props.orders.current && this.props.orders.current.changeMeta
     const viewOrder       = this.props.app.showOrder && this.props.orders.history && this.props.orders.history.length
     
     const viewOrderModal  = viewOrder ? <ViewOrderComponent
@@ -205,17 +103,8 @@ class OrdersContainer extends PureComponent {
       onCancel= { () => this.props.hideOrder() }
     /> : null
 
-    const changeMetaModal = changeMeta ? <OrderMetaComponent 
-      user      = { this.props.user }
-      orders    = { this.props.orders }
-      onConfirm = { (userMeta) => this.onCustomMeta(userMeta) }
-      onCancel  = { () => this.onCancelMeta() }
-    /> : null
-
-    return <DFPageContainer>
+    return <DFPageContainer className="orders-page">
       { viewOrderModal }
-      { changeMetaModal }
-      { viewOrderModal ? null : this.renderCurrentOrder()}
       { this.renderHistoryOrders() }
       { this.renderNoHistory() }
     </DFPageContainer>
@@ -232,11 +121,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({ 
-  finaliseOrder       : (orderData) => dispatch(placeOrder(orderData)),
   getOrders           : (uid) => dispatch(userOrders(uid)),
-  setOrderMeta        : (userMeta) => dispatch(setOrderMeta(userMeta)),
-  changeOrderMeta     : () => dispatch(changeOrderMeta()),
-  undoChangeOrderMeta : () => dispatch(undoChangeOrderMeta()),
   viewOrder           : (orderId) => dispatch(showOrder(orderId)),
   hideOrder           : () => dispatch(hideOrder())
 })

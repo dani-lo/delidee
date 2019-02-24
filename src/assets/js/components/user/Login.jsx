@@ -1,8 +1,9 @@
-import React, { PureComponent }   from 'react'
+import React, { PureComponent }     from 'react'
 
-import { DFContainer, DFButton, DFInput }   from '../../elements/library'
-import { connect }                          from 'react-redux'
-import { postLogin }                        from '../../store/actions/accountActions'
+import { DFContainer, DFButton, 
+         DFInput, DFInputsField }   from '../../elements/library'
+import { connect }                  from 'react-redux'
+import { postLogin }                from '../../store/actions/accountActions'
 
 class LoginComponent extends PureComponent {
   constructor (props) {
@@ -23,19 +24,20 @@ class LoginComponent extends PureComponent {
 
   render () {
 
-    return (<div className='delifast-view delifast-login'>
-      <DFContainer>
-        <DFInput.Txt value={ this.state.userName } onChange={ (e) => this.setState({userName: e.target.value})} />
-      </DFContainer>
-      <DFContainer>
+    return (<DFContainer>
+      <DFInputsField className="flex-parent">
+        <DFInput.Txt 
+          placeholder = "Username or Email" 
+          value       = { this.state.userName } 
+          onChange    = { (e) => this.setState({userName: e.target.value})} 
+        />
         <DFButton
-          active={ this.userName !== null ? 1 : 0 }
-          onClick={ () => this.submitLogin() }
-        >
-        Submit Login
-        </DFButton>
-      </DFContainer>
-    </div>)
+          active    = { this.userName !== null ? 1 : 0 }
+          onClick   = { () => this.submitLogin() }
+          solid
+        >Login</DFButton>
+        </DFInputsField>
+      </DFContainer>)
   }
 }
 

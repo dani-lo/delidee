@@ -1,0 +1,42 @@
+.increment-widget {
+  display: flex;
+    width: 100px;
+    height: 40px;
+    background: var( --highlight-bg-color);
+
+  div {
+    flex: 1;
+    height: 100%;
+    
+    &.inc-less {
+      
+      border-left: 1px solid var(   --main-border-color);;
+    }
+    &.inc-more {
+      border-right: 1px solid var(   --main-border-color);
+    }
+    &.inc-button {
+      background: var(--solid-bg-color);
+      cursor: pointer;
+      &:hover {
+        color: var( --highlight-bg-color);
+        background: var(--sub-bg-color );
+      }
+      &.unactive {
+        cursor: default;
+        pointer-events: none;
+        color: var(--disabled-txt-color );
+        background: var(--disabled-bg-color );
+      }
+    }
+  }
+
+  span.inc-display-outer {
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+  }
+}

@@ -1,12 +1,25 @@
-import React, { PureComponent }   from 'react'
-import { withRouter }             from 'react-router-dom'
+import React, { PureComponent }     from 'react'
+import { withRouter }               from 'react-router-dom'
 
-import { connect }                          from 'react-redux'
+import { connect }                  from 'react-redux'
 
-import { DFContainer, DFButton, DFInput }   from '../../elements/library'
-import { fetchCurrentUser }                 from '../../store/actions/accountActions'
+import APP_CONFIG                   from '../../config'
 
-import LoginComponent                       from './Login.jsx'
+import { DFContainer, DFButton, 
+         DFIcon, DFBlock, 
+         DFSubTitle }               from '../../elements/library'
+import { fetchCurrentUser }         from '../../store/actions/accountActions'
+
+import LoginComponent               from './Login.jsx'
+
+const currentShop       = APP_CONFIG.SHOP_ID
+const GoToAccountButton =  withRouter(({ history }) => (
+  <DFIcon 
+    clickable 
+    className="fas fa-user" 
+    onClick={() => history.push(`/${ currentShop }/account`) } 
+  />
+))
 
 class CurrentuserComponent extends PureComponent {
 
@@ -19,21 +32,12 @@ class CurrentuserComponent extends PureComponent {
     const { user } = this.props
 
     if (user && user._id) {
-      return <DFContainer id="currentuser"><p>You are Signed In as {`${ user.userName}`}</p></DFContainer>
+      return <DFContainer>
+        <GoToAccountButton />
+      </DFContainer>
     }
- 
-    const GoToAccountButton =  withRouter(({ history }) => (
-      <DFButton onClick={() => history.push('/account') }>go to registration</DFButton>
-    ))
 
-    return (<DFContainer id="currentuser">
-      <h3>You need to register</h3>
-      <p>(we only neeed your email and address details for delivery)</p>  
-      <GoToAccountButton />
-      <h3>Or Login</h3>
-      <LoginComponent />
-    </DFContainer>)
-    
+    return <LoginComponent />
   }
 }
 

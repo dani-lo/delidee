@@ -1,0 +1,43 @@
+.user-item {
+  p {
+    display: flex;
+    text-transform: capitalize;
+    line-height: 1.3em;
+
+    span {
+      flex: 1;
+      &.udata {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.account-page {
+  width: 600px;
+
+  .map-wrap {
+    height: 400px;
+  }
+  .user-item {
+
+    p {
+      font-size: 1em;
+      border-bottom: 1px dotted var(--main-border-color);
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    .account-page {
+      width: 95%;
+      margin: 0 auto;
+
+      .map-wrap {
+        height: 300px;
+      }
+    }
+  }
+  
+}

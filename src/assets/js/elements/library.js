@@ -1,30 +1,54 @@
-import styled from 'styled-components'
+import styled               from 'styled-components'
+import { orderStatusColor } from '../helper'
 
 const DFButton = styled.button`
-  background: transparent;
-  border: 2px solid var(--main-txt-color);  
-  color: 2px solid var(--main-txt-color);
-  background: var(--highlight-bg-color);
-  margin: 0em 0.5em;
-  padding: 0.6em 1em;
+  
   cursor: pointer;
-  font-size: 0.9em;
-  text-transform: lowercase;
+  text-transform: lowercase; 
+  border-radius: 3px;
+  
+  border: 1px solid var(--main-border-color);
+  background: var(--main-bg-color);
+  color: var(--sub-bg-color);
   &:hover {
     background: var(--sub-bg-color);
+    color: var(--white-txt-color);
+    
   }
-
+  font-size: 1em;
+  ${props => props.solid && `
+    background: var(--brand-color );
+  `}
+  ${props => props.cancel && `
+    background: var(--error-color);
+    color: var(--white-txt-color);
+  `}
+  ${props => props.confirm && `color: var(--white-txt-color);background: var(--success-color);`}
   ${props => props.unactive && `
-    background: var(--highlight-bg-color);
-    color: #c3c3c3;
+    background: var(--disabled-bg-color);
+    color: var(--disabled-txt-color);
     cursor: none;
     pointer-events: none;
   `}
 `
 
+const DFIcon = styled.i`
+  color: var(--brand-color);
+  font-size: 2rem;
+  display: inline-block;
+
+  ${props => props.clickable && `
+    cursor: pointer;
+    &:hover {
+      color: var(--main-txt-color);
+    }
+  `}
+  ${props => (props.status) && `color: ${orderStatusColor(props.status)}` }
+`
+
 const DFLabel = styled.label`
   display: block;
-  padding: 10px 0;
+
   color: var(--main-txt-color);
   ${props => props.required && `
     color: var(--required-txt);
@@ -32,57 +56,70 @@ const DFLabel = styled.label`
   ${props => props.filled && `
     color: var(--main-txt-color);
   `}
+  ${props => props.small && `
+    font-size: 1rem;
+  `}
+      
 `
 
 const DFContainer = styled.div`
-
+  
 `
 
 const DFPageContainer = styled.div`
-  text-align: center;
-  padding: 8px;
+  width: 75%;
+  margin: 0 auto;
 `
 
 const DFMenuItem = styled.div`
-  text-align: left;
-  padding: 12px;
-  background: var(--sub-bg-color);
-  margin: 4px;
-  
+  background: var(--highlight-bg-color);
   display: inline-block;
-  width: 400px;
-  height: 400px;
-  float: left;
+
   ${props => props.ordered && `
-    background: var(--highlight-bg-color);
+    background: var(--main-bg-color);
   `}
 `
 
 const DFInputsField = styled.div`
-  
+  ${props => props.txtfield && `
+    display: flex;
+  `}
+  ${props => props.flexitem && `
+      flex: 1;
+    `}
 `
 
 const DFSelect = styled.div`
-  border-radius: 6px;
+
   ${props => props.required && `
-    border: 1px solid var(--required-bg);
+    background: var(--required-bg);
   `}
   ${props => props.filled && `
-    border: none;
+    background: none;
   `}
+  position: relative;
+  z-index: 123;
+  @media only screen and (max-width: 800px) {
+    width: 260px;
+  }
 `
 
 const DFInput = {
   Txt: styled.input`
-    border: 1px solid #ddd;
-    padding: 4px 24px;
-    font-size: 15px;
-    background: var(--highlight-bg-color);
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-border-color);
+    min-width: 320px;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--main-txt-color);
+    @media only screen and (max-width: 800px) {
+      min-width: 240px;
+    }
     ${props => props.required && `
       background: var(--required-bg);
     `}
     ${props => props.filled && `
-      background: var(--highlight-bg-color);
+      background: var(--white-bg-color);
     `}
   `
 }
@@ -91,15 +128,37 @@ const DFError = styled.p`
 `
 
 const DFPageTitle = styled.h1`
+  text-align: center;
+  font-weight: normal;
 `
 
-const DFSectionTitle = styled.h3`
+const DFSectionTitle = styled.h4`
+  font-size: 1rem;
+  border-bottom: 1px dotted var(--main-border-color);
 `
 
 const DFSubTitle = styled.h3`
+  font-size: 1.2rem;
 `
 
 const DFItem = styled.p`
+   ${props => (props.status) && `color: var(--white-txt-color);background: ${orderStatusColor(props.status)}` }
+
+`
+const DFBlock = styled.div`
+  ${props => props.floated && `
+      float: left;
+      width: 47%;
+    `}
+  ${props => props.flexrow && `
+      display: flex;
+    `}
+  ${props => props.flexitem && `
+      flex: 1;
+    `}
+  ${props => props.clear && `
+      clear: left;
+    `}
 `
 
 export {
@@ -115,6 +174,8 @@ export {
   DFSubTitle,
   DFItem,
   DFSelect,
-  DFInputsField
+  DFInputsField,
+  DFBlock,
+  DFIcon
 }
 

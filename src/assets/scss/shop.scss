@@ -1,0 +1,21 @@
+.shop-page {
+  width: 95%!important;
+  margin: 0 auto;
+
+  .order {
+    padding: 24px;
+    width: auto;
+  }
+  button {
+    padding: 18px 48px;
+    font-size: 1.6em;
+    display: inline-block;
+    background: #eee;
+  }
+  .map-wrap {
+    height: 500px;
+  }
+  .order-status-actions {
+    background: var(--sub-bg-color);
+  }
+}

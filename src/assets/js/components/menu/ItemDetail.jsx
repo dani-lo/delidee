@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react'
 import Select                   from 'react-select'
 
-import ModalComponent           from '../../components/app/Modal.jsx'
+import ModalComponent           from '../../components/widgets/Modal.jsx'
 
 import { DFSubTitle,
          DFInput,
          DFContainer,
          DFSelect,
          DFInputsField,
+         DFBlock,
          DFLabel}                from '../../elements/library'
 
 class ItemDetailComponent extends PureComponent {
@@ -18,7 +19,11 @@ class ItemDetailComponent extends PureComponent {
     const qty   = this.props.qty
 
     let cState = {
-      items: {}
+      items: {},
+      focus: {
+        i: null,
+        t: null
+      }
     }
 
     Array.apply(null, { length: qty }).map((x, i) => {
@@ -37,33 +42,31 @@ class ItemDetailComponent extends PureComponent {
     const newStateItems   = Object.assign({}, this.state.items)
     newStateItems[i].with = option.value && option.value !== 0 ? option : null
 
-    this.setState({items: newStateItems})
+    this.setState(Object.assign({}, this.state, {items: newStateItems}))
   }
 
   onChooseCook (i, option) {
     const newStateItems   = Object.assign({}, this.state.items)
     newStateItems[i].cook = option.value && option.value !== 0 ? option : null
 
-    this.setState({items: newStateItems})
+    this.setState(Object.assign({}, this.state, {items: newStateItems}))
   }
 
   onChooseSide (i, option) {
     const newStateItems   = Object.assign({}, this.state.items)
     newStateItems[i].side = option.value && option.value !== 0 ? option : null
 
-    this.setState({items: newStateItems})
+    this.setState(Object.assign({}, this.state, {items: newStateItems}))
   }
 
   onComment (i, comment) {
     const newStateItems       = Object.assign({}, this.state.items)
     newStateItems[i].comment  = comment
 
-    this.setState({items: newStateItems})
+    this.setState(Object.assign({}, this.state, {items: newStateItems}))
   }
 
   buildUserOptions () {
-    
-    const pid     = this.props.item 
     const name    = this.props.name
     const qty     = this.props.qty
     const options = this.props.options
@@ -80,11 +83,15 @@ class ItemDetailComponent extends PureComponent {
 
         ingredients.unshift({ label: 'Please Select', value: 0 })
 
-        selectWith = <DFSelect required= { 1 } filled={ this.state.items[i].with ? 1 : 0 }>
+        selectWith = <DFSelect  className={ this.selectClassname(i, 'with') } required= { 1 } filled={ this.state.items[i].with ? 1 : 0 }>
           <Select 
-            value     = { this.state.items[i].with ? this.state.items[i].with : ingredients[0] }
-            onChange  = { opt => this.onChooseWith(i, opt) }
-            options   = { ingredients }
+            classNamePrefix="dfselect"
+            required
+            value       = { this.state.items[i].with ? this.state.items[i].with : ingredients[0] }
+            onChange    = { opt => this.onChooseWith(i, opt) }
+            onMenuOpen  = { () => this.setState(Object.assign({}, this.state, {focus: {i: i, t: 'with'}})) }
+            onMenuClose = { () => this.setState(Object.assign({}, this.state, {focus: {i: null, t: null}})) }
+            options     = { ingredients }
           />
         </DFSelect>
       }
@@ -96,11 +103,15 @@ class ItemDetailComponent extends PureComponent {
 
         cookStyles.unshift({ label: 'Please Select', value: 0 })
 
-        selectCook = <DFSelect>
+        selectCook = <DFSelect className={ this.selectClassname(i, 'cook') }>
             <Select 
-            value     = { this.state.items[i].cook ? this.state.items[i].cook : cookStyles[0] }
-            onChange  = { opt => this.onChooseCook(i, opt) }
-            options   = { cookStyles }
+              classNamePrefix="dfselect"
+              required
+              value       = { this.state.items[i].cook ? this.state.items[i].cook : cookStyles[0] }
+              onChange    = { opt => this.onChooseCook(i, opt) }
+              onMenuOpen  = { () => this.setState(Object.assign({}, this.state, {focus: {i: i, t: 'cook'}})) }
+              onMenuClose = { () => this.setState(Object.assign({}, this.state, {focus: {i: null, t: null}})) }
+              options     = { cookStyles }
           />
         </DFSelect>
       }
@@ -112,34 +123,41 @@ class ItemDetailComponent extends PureComponent {
 
         sides.unshift({ label: 'Please Select', value: 0 })
 
-        selectSide = <DFSelect required= { 1 } filled={ this.state.items[i].side ? 1 : 0 }>
+        selectSide = <DFSelect  className={ this.selectClassname(i, 'side') } required= { 1 } filled={ this.state.items[i].side ? 1 : 0 }>
           <Select 
-            value     = { this.state.items[i].side ? this.state.items[i].side : sides[0] }
-            onChange  = { opt => this.onChooseSide(i, opt) }
-            options   = { sides }
+            classNamePrefix="dfselect"
+            required
+            value       = { this.state.items[i].side ? this.state.items[i].side : sides[0] }
+            onChange    = { opt => this.onChooseSide(i, opt) }
+            onMenuOpen  = { () => this.setState(Object.assign({}, this.state, {focus: {i: i, t: 'side'}})) }
+            onMenuClose = { () => this.setState(Object.assign({}, this.state, {focus: {i: null, t: null}})) }
+            options     = { sides }
           />
         </DFSelect>
       }
 
-      return <DFContainer key={'menu-detail-' + i}>
-            <DFSubTitle>{ name }</DFSubTitle>
-            {selectWith ? <DFInputsField>
-              <DFLabel>Choose Ingredient</DFLabel>
-              { selectWith }
-            </DFInputsField> : null}
-            {selectSide ? <DFInputsField>
-              <DFLabel>Choose Side</DFLabel>
-              { selectSide }
-            </DFInputsField> : null}
-            {selectCook ? <DFInputsField>
-              <DFLabel>Choose Cooking Style</DFLabel>
-              { selectCook }
-            </DFInputsField> : null}
-            <DFInputsField>
-              <DFLabel>Comments or Special Requests?</DFLabel>
-              <DFInput.Txt value={ this.state.items[i].comment } onChange={ (e) => this.onComment(i, e.target.value) } />
-            </DFInputsField>
-          </DFContainer>
+      return <DFContainer className="menu-detail-item" key={'menu-detail-' + i}>
+        <DFSubTitle className="txt-captalise">{ name }</DFSubTitle>
+        <DFBlock flexrow>
+          {selectWith ? <DFInputsField flexitem>
+            <DFLabel small className="padding-v-s">Choose Ingredient</DFLabel>
+            { selectWith }
+          </DFInputsField> : null}
+          {selectSide ? <DFInputsField flexitem>
+            <DFLabel small className="padding-v-s">Choose Side</DFLabel>
+            { selectSide }
+          </DFInputsField> : null}
+          {selectCook ? <DFInputsField flexitem>
+            <DFLabel small className="padding-v-s">Choose Cooking Style</DFLabel>
+            { selectCook }
+          </DFInputsField> : null}
+          
+        </DFBlock>
+        <DFInputsField>
+          <DFLabel small className="padding-v-s">Comments or Special Requests?</DFLabel>
+          <DFInput.Txt value={ this.state.items[i].comment } onChange={ (e) => this.onComment(i, e.target.value) } />
+        </DFInputsField>
+      </DFContainer>
 
     })
 
@@ -168,18 +186,34 @@ class ItemDetailComponent extends PureComponent {
       })
     }
 
+    // if (options.cook) {
+    //   Array.apply(null, { length: qty }).map((x, i) => {
+    //     if (this.state.items[i].cook === null) {
+    //       active = false 
+    //     }
+    //   })
+    // }
     return active
   }
 
+  selectClassname (i, t) {
+    if (this.state.focus.i === i && this.state.focus.t !== t) {
+      return 'h padding-s'
+    }
+
+    return 'nh padding-s'
+  }
+
   render () {
-    
     return <ModalComponent
           className = "modal"
           unactive  = { !this.isActive() }
           cancel    = { () => this.props.onCancel() } 
           confirm   = { () => this.props.onConfirm(Object.assign({}, this.state.items)) }
         >
-      {  this.buildUserOptions() }
+        <DFContainer>
+          {  this.buildUserOptions() }
+        </DFContainer>
     </ModalComponent>
   }
 }

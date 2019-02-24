@@ -21,24 +21,59 @@ const shopApiSetup = (app) => {
         }).catch((dbRes) => {
           return res.status(500).send({
             status: '500',
-            msg: 'Error updaing order - ' + dbRes.message
+            msg: 'error updating order - ' + dbRes.message
           })
         })
       } else {
         return res.status(401).send({
           status: '401',
-          msg: 'YOu are not authorized to update this resource - ' + dbRes.message
+          msg: 'you are not authorized to update this resource'
         })
       }
     }).catch((dbRes) => {
 
       return res.status(401).send({
         status: '401',
-        msg: 'YOu are not authorized to update this resource - '  + dbRes.message
+        msg: 'you are not authorized to update this resource'
       })
     })
   })
 
+   
+  app.post('/api/shop/new-orders', (req, res) => {
+
+    const user = new User(req.body)
+
+    user.validateShop().then((dbRes) => {
+      if (dbRes.token) {
+        const order = new Order()
+
+        order.fetchNew().then((dbRes) => {
+          return res.status(200).send({
+            status: '200',
+            msg: 'ok',
+            data: dbRes
+          })
+        }).catch((dbRes) => {
+          return res.status(500).send({
+            status: '500',
+            msg: 'error fetching new orders - ' + dbRes.message
+          })
+        })
+      } else {
+        return res.status(401).send({
+          status: '401',
+          msg: 'you are not authorized to update this resource'
+        })
+      }
+    }).catch((dbErr) => {
+
+      return res.status(401).send({
+        status: '401',
+        msg: 'you are not authorized to update this resource'
+      })
+    })
+  })
 
   app.post('/api/shop/orders', (req, res) => {
 
@@ -63,14 +98,14 @@ const shopApiSetup = (app) => {
       } else {
         return res.status(401).send({
           status: '401',
-          msg: 'YOu are not authorized to view this resource - ' + dbRes.message
+          msg: 'you are not authorized to view this resource - ' 
         })
       }
-    }).catch((dbErr) => {
+    }).catch((err) => {
 
       return res.status(401).send({
         status: '401',
-        msg: 'YOu are not authorized to view this resource - '  + dbErr.message
+        msg: 'you are not authorized to view this resource - ' 
       })
     })
   })

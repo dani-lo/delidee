@@ -1,6 +1,7 @@
-import { ACTIONS }  from '../constants'
-import { fetch }    from 'whatwg-fetch'
-
+import { ACTIONS }      from '../constants'
+import { fetch }        from 'whatwg-fetch'
+import APP_CONFIG       from '../../config'
+ 
 const postHeaders = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -15,7 +16,7 @@ export function menuLoaded(data) {
 
 
 export function fetchMenu () {
-    const endpoint = '/api/menu'
+    const endpoint = '/api/menu/' + APP_CONFIG.SHOP_ID
 
     return (dispatch) => {
         fetch(endpoint)

@@ -78,11 +78,16 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      template: 'index.html'
-    }),
     extractPlugin
   ],
 }
 
 module.exports = config
+
+// plugins: [
+//     new CleanWebpackPlugin(['dist']),
+//     new HtmlWebpackPlugin({
+//       template: 'index.html'
+//     }),
+//     extractPlugin
+//   ],

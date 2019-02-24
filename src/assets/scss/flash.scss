@@ -1,0 +1,40 @@
+.app-flash {
+  position: fixed;
+  z-index: 14;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  .flash-container {
+    width: 480px;
+    margin: 0 auto;
+    background: var(--highlight-bg-color);
+    border-radius: 4px;
+    border: 2px solid var(--sub-bg-color);
+
+    &.warning {
+      background: var(--warning-color);
+      p {
+        color:  var(--highlight-bg-color);
+      }
+    }
+    &.success {
+      background: var(--success-color);
+      p {
+        color:  var(--highlight-bg-color);
+      }
+    }
+    &.error {
+      background: var(--error-color);
+      p {
+        color:  var(--highlight-bg-color);
+      }
+    }
+  }
+  p {
+    text-align: center;
+    padding: 24px;
+    font-size: 1.3em;
+    
+  }
+}

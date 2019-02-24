@@ -2,6 +2,7 @@ import { ACTIONS }      from '../constants'
 import { fetch }        from 'whatwg-fetch'
 import { uneditUser}    from './appActions'
 import { shopToken }    from '../../helper'
+import { notify }       from './appActions'
 
 const postHeaders = {
     'Accept': 'application/json',
@@ -43,6 +44,17 @@ function userUpdated (data) {
     }
 }
 
+export function destroyUser () {
+    const endpoint = '/api/user/logout'
+
+    fetch(endpoint)
+    
+    return {
+        type    : ACTIONS.USER_DESTROY,
+        payload : null
+    }
+}
+
 export function fetchCurrentUser () {
     const endpoint = '/api/user/current'
 
@@ -52,6 +64,7 @@ export function fetchCurrentUser () {
         .then((response) => {
             dispatch(currentUserLoaded(response))
         })
+        
     }
 }
 
@@ -67,11 +80,19 @@ export function postLogin (userName) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
-            console.log(response)
             if (response.data && response.data.token) {
                 shopToken(response.data.token)
             }
-            dispatch(userLoggedin(response))
+
+            if (response.status && response.status === 'error') {
+                dispatch(notify('Error Loggin In', 'error'))
+            } else {
+                dispatch(userLoggedin(response))
+            }
+            
+        })
+        .catch((err) => {
+            dispatch(notify('Error Loggin In', 'error'))
         })
     }
 }

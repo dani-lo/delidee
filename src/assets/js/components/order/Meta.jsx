@@ -1,9 +1,12 @@
 import React, { PureComponent }             from 'react'
 
-import { DFContainer, DFButton, 
+import { DFContainer, 
+         DFSectionTitle,
+         DFItem,
+         DFInputsField, DFBlock,
          DFInput, DFLabel }                 from '../../elements/library'
 
-import ModalComponent                       from '../../components/app/Modal.jsx'
+import ModalComponent                       from '../../components/widgets/Modal.jsx'
 import MapComponent                         from '../map/Map.jsx'
 
 import { isFilled }                         from '../../helper'
@@ -47,57 +50,64 @@ class OrderMetaComponent extends PureComponent {
   }
  
   isActive (field) {
-    console.log('is active', this.isFilled('firstName') && this.isFilled('addressLineOne'))
     return this.isFilled('firstName') && this.isFilled('addressLineOne')
   }
 
   buildMetaForm () {
     
-    return (<div className='delifast-view delifast-registration'>
-      <h2>Order Delivery Details</h2>
-      <h3>Just for this order, your account address will not change</h3>
-      <DFContainer>
-        <DFLabel 
-          required={ 1 } 
-          filled={ this.isFilled('firstName') ? 1 : 0}>Name</DFLabel>
-        <DFInput.Txt 
-          required={ 1 } 
-          filled={ this.isFilled('firstName') ? 1 : 0 }
-          value={ this.state.firstName } 
-          onChange={ (e) => this.setState({firstName: e.target.value})} />
-      </DFContainer>
-      <DFContainer>
-        <DFLabel>Surname</DFLabel>
-        <DFInput.Txt value={ this.state.secondName } onChange={ (e) => this.setState({secondName: e.target.value})} />
-      </DFContainer>
-       <DFContainer>
-        <DFLabel 
-          required={ 1 } 
-          filled={ this.isFilled('addressLineOne') ? 1 : 0 }>Address Line 1</DFLabel>
-        <DFInput.Txt 
-          required={ 1 } 
-          filled={ this.isFilled('addressLineOne') ? 1 : 0 }
-          value={ this.state.addressLineOne } 
-          onChange={ (e) => this.setState({addressLineOne: e.target.value})} />
-      </DFContainer>
-       <DFContainer>
-        <DFLabel>Address Line 2</DFLabel>
-        <DFInput.Txt value={ this.state.addressLineTwo } onChange={ (e) => this.setState({addressLineTwo: e.target.value})} />
-      </DFContainer>
-      <DFContainer>
-        <DFLabel>Telephone</DFLabel>
-        <DFInput.Txt value={ this.state.tel } onChange={ (e) => this.setState({tel: e.target.value})} />
-      </DFContainer>
-      <DFContainer>
-        <DFLabel required={ 1 }>Your address for delivery</DFLabel>
-        <MapComponent 
-          unactive    = { !this.isActive() }
-          editable    = { true }
-          maptext     = { "Delivery Location" }
-          onSetLatlon = {latlong => this.setState({latlon: {lat: latlong[0], lon: latlong[1]}}) } 
-        />
-      </DFContainer>
-    </div>)
+    return (<DFContainer>
+      <DFSectionTitle>Order Delivery Details</DFSectionTitle>
+      <DFItem>Just for this order, your account address will not change</DFItem>
+      <DFBlock>
+        <DFBlock>
+          <DFInputsField className="padding-v-s">
+            <DFLabel 
+              className="padding-v-s"
+              small
+              required={ 1 } 
+              filled={ this.isFilled('firstName') ? 1 : 0}>Name</DFLabel>
+            <DFInput.Txt 
+              required={ 1 } 
+              filled={ this.isFilled('firstName') ? 1 : 0 }
+              value={ this.state.firstName } 
+              onChange={ (e) => this.setState({firstName: e.target.value})} />
+          </DFInputsField>
+          <DFInputsField  className="padding-v-s">
+            <DFLabel   className="padding-v-s" small>Surname</DFLabel>
+            <DFInput.Txt value={ this.state.secondName } onChange={ (e) => this.setState({secondName: e.target.value})} />
+          </DFInputsField>
+          <DFInputsField  className="padding-v-s">
+            <DFLabel 
+              className="padding-v-s"
+              small
+              required={ 1 } 
+              filled={ this.isFilled('addressLineOne') ? 1 : 0 }>Address Line 1</DFLabel>
+            <DFInput.Txt 
+              required={ 1 } 
+              filled={ this.isFilled('addressLineOne') ? 1 : 0 }
+              value={ this.state.addressLineOne } 
+              onChange={ (e) => this.setState({addressLineOne: e.target.value})} />
+          </DFInputsField>
+          <DFInputsField  className="padding-v-s">
+            <DFLabel   className="padding-v-s" small>Address Line 2</DFLabel>
+            <DFInput.Txt value={ this.state.addressLineTwo } onChange={ (e) => this.setState({addressLineTwo: e.target.value})} />
+          </DFInputsField>
+          <DFInputsField  className="padding-v-s">
+            <DFLabel   className="padding-v-s" small>Telephone</DFLabel>
+            <DFInput.Txt value={ this.state.tel } onChange={ (e) => this.setState({tel: e.target.value})} />
+          </DFInputsField>
+        </DFBlock>
+        <DFBlock   className="margin-top-l">
+            <MapComponent 
+              mapinst     = "Click to set this order delivery location"
+              unactive    = { !this.isActive() }
+              editable    = { true }
+              maptext     = { "Delivery Location" }
+              onSetLatlon = {latlong => this.setState({latlon: {lat: latlong[0], lon: latlong[1]}}) } 
+            />
+        </DFBlock>
+      </DFBlock>
+    </DFContainer>)
   }
 
   render () {

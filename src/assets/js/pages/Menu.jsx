@@ -6,13 +6,14 @@ import MenuItemComponent          from '../components/menu/Item.jsx'
 
 import { DFPageContainer,
          DFContainer,
-         DFPageTitle ,
          DFSectionTitle,
          DFSubTitle,
-         DFItem }                 from '../elements/library'
+         DFItem, 
+         DFButton}                 from '../elements/library'
 
 import { addItem, removeItem }    from '../store/actions/ordersActions'
 import { fetchMenu }              from '../store/actions/menuActions'
+import { notify }                 from '../store/actions/appActions'
 
 class MenuContainer extends PureComponent {
   constructor (props) {
@@ -31,10 +32,43 @@ class MenuContainer extends PureComponent {
     const currentOrder = this.props.orders.current 
     const sections = Object.keys(this.props.menu)
     
+    /*
+    const csvRows = [
+      'product,price,choose ingredient, choose cooking, choose side'
+    ]
+    const newMenu = Object.assign({}, this.props.menu)
+    */
+   
     sections.map((section, s) => {
+      /*
+      this.props.menu[section].items.map((item, i) => {
+        newMenu[section].items[i].name = item.name.toLowerCase()
+        let row = []
 
+        row.push(item.name.replace(/\,/g, ' '))
+        row.push(item.price)
+
+        if (item.options && item.options.with) {
+          row.push(item.options.with.join(' - '))
+        } else {
+          row.push('')
+        }
+        if (item.options && item.options.cook) {
+          row.push(item.options.cook.join(' - '))
+        } else {
+          row.push('')
+        }
+        if (item.options && item.options.side) {
+          row.push(item.options.side.join(' - '))
+        } else {
+          row.push('')
+        }
+
+        csvRows.push(row)
+      })
+      */
       elements.push(<DFContainer key={`menu-section-${ s }`}>
-        <DFSectionTitle className="left-align">{ this.props.menu[section].title.en }</DFSectionTitle>
+        <DFSectionTitle className="left-align menu-section">{ this.props.menu[section].title.en }</DFSectionTitle>
         <div className="menu-section">
           {
             this.props.menu[section].items.map((item, i) => {
@@ -53,12 +87,18 @@ class MenuContainer extends PureComponent {
       </DFContainer>)
     })
     
+    /*
+    const csvMenu = csvRows.join('\r\n')
+    console.log(csvMenu)
+    console.log(JSON.stringify(newMenu))
+    */
+
     return elements
   }
 
   render () {
-    console.log(this.props)
-    return  (<DFPageContainer>
+    
+    return  (<DFPageContainer className="menu-page">
       {
         this.props.menu  ?  this.renderMenu() : <p>Loading</p>
       }
@@ -70,14 +110,20 @@ const mapStateToProps = (state) => {
     return {
         menu  : state.menu,
         orders : state.orders,
-        user: state.user
+        user: state.user,
+        app: state.app
     }
 }
 
 const mapDispatchToProps = dispatch => ({
   getMenu         : () => dispatch(fetchMenu()),
   addOrderItem    : (item) => dispatch(addItem(item)),
-  removeOrderItem : (pid) => dispatch(removeItem(pid))
+  removeOrderItem : (pid) => dispatch(removeItem(pid)),
+  notify          : (txt, className) => dispatch(notify(txt, className))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)
+
+/* <DFButton onClick={ () => this.props.notify('foo da bar', 'warning') }>good job bob</DFButton>
+      <DFButton onClick={ () => this.props.notify('foo da bar', 'success') }>good job bob</DFButton>
+      <DFButton onClick={ () => this.props.notify('foo da bar', 'error') }>good job bob</DFButton> */

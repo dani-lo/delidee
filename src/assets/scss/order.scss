@@ -1,0 +1,57 @@
+.order {
+  border: 4px solid var(--main-border-color);
+  padding: 1rem;
+  width: 85%;
+  position: relative;
+  background: var(--highlight-bg-color);
+  //&.client-order {
+  i {
+    position: absolute;
+    right: 24px;
+    top: 80px;
+    font-size: 4em;
+  }
+  // }
+  &.order-new {
+    background: var(--brand-color)!important;
+    color: var(--white-txt-color)!important;
+
+    i {
+      color: var(--white-txt-color)!important;
+    }
+  }
+  
+}
+.order-item {
+    border: 1px dotted #ddd;
+    text-transform: capitalize;
+    background: var(--disabled-bg-color);
+
+    p.item-name {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    p.item-price {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+}
+
+body .orders-page {
+  width: 900px;
+  .map-wrap {
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    .orders-page {
+      width: 95%;
+      margin: 0 auto;
+      .map-wrap {
+        height: 300px;
+      }
+    }
+  }
+}

@@ -2,44 +2,40 @@ import React, { PureComponent }             from 'react'
 import moment                               from 'moment'
 import { DFContainer, 
          DFSubTitle,
+         DFBlock,
          DFSectionTitle,
+         DFIcon,
          DFItem }                           from '../../elements/library'
 
-import ModalComponent                       from '../../components/app/Modal.jsx'
+import ModalComponent                       from '../../components/widgets/Modal.jsx'
 import MapComponent                         from '../map/Map.jsx'
-import { itemOptions }                      from './util.jsx'
 
 import { displayStatus,
+         orderStatusContent,
+         Item,
+         User,
          orderTotal}                        from '../../helper'
 
 const DATE_FORMAT = 'MMMM Do YYYY, h:mm:ss a'
 
 const ViewOrderComponent = (props) => {
-  let firstName, secondName, addressLineOne, addressLineTwo, latlon, tel, comment, status, when
+  let latlon, comment, status, when
 
   const meta = props.order.meta && props.order.meta.metaData ? props.order.meta.metaData : {}
 
-  firstName       = meta.firstName
-  secondName      = meta.secondName
-  addressLineOne  = meta.addressLineOne
-  addressLineTwo  = meta.addressLineTwo
-  tel             = meta.tel
   latlon          = meta.latlon
   status          = props.order.status
   comment         = props.order.comment
   when            = moment(props.order.createdAt)
   
-  const orderItems = []
+  const orderItems    = []
+  const statusContent = orderStatusContent(status)
 
   props.order.items.map(item => {
-    orderItems.push(<DFContainer>
-        <div key={`item-order-${ item.pid }`}>
-          <DFItem>{ item.name } x { item.quantity }</DFItem>
-          <p>{ item.price }</p>
-          { item.options ? itemOptions(item.options) : null }
-        </div> 
-      </DFContainer>)
+    orderItems.push(<Item data={item} />)
   })
+
+  
 
   return <ModalComponent
           className = "modal"
@@ -47,23 +43,26 @@ const ViewOrderComponent = (props) => {
           info  
         >
     <DFContainer>
-      <DFSectionTitle>{ when.format(DATE_FORMAT) }</DFSectionTitle>
-      <DFSubTitle>{ displayStatus(status) }</DFSubTitle>
-      <DFSubTitle>Order Items</DFSubTitle>
-      { orderItems }
-      <DFSubTitle>Your Comments</DFSubTitle>
-      <p>{ comment && comment.length ? comment : 'None' }</p>
-      <DFSubTitle>Delivery Information</DFSubTitle>
-      <p>{ firstName }</p>
-      <p>{ secondName }</p>
-      <p>{ addressLineOne }</p>
-      <p>{ addressLineTwo }</p>
-      <p>{ tel }</p>
-      <MapComponent 
-        latlon          = { latlon }
-        maptext         = { "Delivery Location" }
-        editable        = { false }
-      />
+      <DFSubTitle>{ when.format(DATE_FORMAT) }</DFSubTitle>
+      <DFItem className="padding-l" status={ status }>{ statusContent.txt }</DFItem>
+      <DFBlock>
+        <DFBlock>
+          <DFSectionTitle>Order Items</DFSectionTitle>
+          { orderItems }
+          <DFSectionTitle>Your Comments</DFSectionTitle>
+          <p>{ comment && comment.length ? comment : 'None' }</p>    
+        </DFBlock>
+        <DFBlock>
+          <DFSectionTitle>Delivery Information</DFSectionTitle>
+          <User data={ meta } />
+          <MapComponent 
+            mapinst         = " "
+            latlon          = { latlon }
+            maptext         = { "Delivery Location" }
+            editable        = { false }
+          />
+        </DFBlock>
+      </DFBlock>
     </DFContainer>
   </ModalComponent>
 }

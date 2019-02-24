@@ -6,7 +6,7 @@ class Order extends DelifastApi {
 
   constructor (orderData) {
     super(orderData)
-    console.log(orderData)
+
     this.model      = new OrderModel(orderData)
     this.orderData  = orderData
   }
@@ -23,14 +23,14 @@ class Order extends DelifastApi {
     return OrderModel.find({'archived': false})
   }
 
+  fetchNew () {
+    return OrderModel.find({'status': 'NEW'})
+  }
+
   updateStatus (orderid) {
-    console.log('UPDATE!!!!!')
     
     const conditions  = { _id : mongoose.Types.ObjectId(orderid) }
     const options     = { $set: {status: this.orderData.status} }
-
-    console.log(conditions)
-    console.log(options)
 
     return OrderModel.updateOne(conditions, options)
   }

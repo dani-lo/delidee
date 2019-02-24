@@ -18,6 +18,11 @@ const unpackUser = (dbRes) =>  {
 
 const usersApiSetup = (app) => {
 
+  app.get('/api/user/logout', (req, res) => {
+
+    req.session.destroy()
+  })
+
    /* ---------------------- */
   
   app.get('/api/user/current', (req, res) => {
@@ -32,20 +37,20 @@ const usersApiSetup = (app) => {
 
         if (dbRes && dbRes._id) {
           res.status(200).send({
-            status: 'success',
-            msg: '',
+            status: '200',
+            msg: 'ok',
             data: unpackUser(dbRes)
           })
         } else {
-          return res.status(201).send({
-            status: 'ok',
+          return res.status(200).send({
+            status: '200',
             msg: 'no logged in user',
             data: null
           })
         }
         
     }).catch((dbErr) => {
-      res.status(500).send({
+      res.status(400).send({
         status: 'error',
         msg: 'Database Error',
         data: {...dbErr}

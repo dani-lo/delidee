@@ -1,12 +1,26 @@
 :root {
-  --main-bg-color       : #efefef;
-  --sub-bg-color        : #ccc;
-  --highlight-bg-color  : #fff;
-  --main-txt-color      : #666; 
-  --alt-txt-color       : #999; 
-  --sub-txt-color       : #944141;
-  --required-txt        :  #b67907;
-  --required-bg         : #f3e2c3;
-  --confirm-bg          : #1b5e20;
-  --cancel-bg           : #b71c1c;
+  --main-bg-color           : #fff;
+  --sub-bg-color            : #31303a;
+  --highlight-bg-color      : #fff;
+  --solid-bg-color          : #eee;
+
+  --main-border-color       : #ddd;
+
+  --brand-color             : #f4511c;
+  --main-txt-color          : #444; 
+  --alt-txt-color           : #666; 
+  --sub-txt-color           : #944141;
+  --white-txt-color         : #fff;
+
+  --disabled-bg-color       : #efefef;
+  --disabled-txt-color      : #666;
+
+  --required-bg             : #eccd9d;
+  --required-txt            : #d85025;
+
+  --success-color           : #1b5e20;
+  --error-color             : #b71c1c;
+  --warning-color           : #e4840b;
+
+  --box-shadow              : 0 0.15rem 0.125rem 0 rgba(0,0,0,0.05);
 }

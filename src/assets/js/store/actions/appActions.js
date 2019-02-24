@@ -10,19 +10,32 @@ export function appHasErrored(bool) {
 export function appIsLoading(bool) {
     return {
         type: ACTIONS.IS_LOADING,
-        isLoading: bool
+        payload: bool
     }
 }
 
-export function appFlashMessage (message, className) {
-
-  return {
-    type: ACTIONS.FLASH_MESSAGE,
-    payload: {
-      message,
-      className
+export function confirm (type) {
+    return {
+        type: ACTIONS.CONFIRM,
+        payload: type
     }
-  }
+    
+}
+
+export function notify (message, className) {
+    return {
+        type: ACTIONS.FLASH_MESSAGE,
+        payload: {
+            message,
+            className
+        }
+    }
+}
+
+export function unNotify () {
+    return {
+        type: ACTIONS.UNFLASH_MESSAGE
+    }
 }
 
 export function editUser () {

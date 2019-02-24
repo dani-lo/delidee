@@ -1,10 +1,10 @@
-import React, { PureComponent }               from 'react'
+import React, { PureComponent, Fragment }     from 'react'
 import { connect }                            from 'react-redux'
 import _                                      from 'lodash'
 import moment                                 from 'moment'
 import { withRouter }                         from "react-router-dom"
 
-import {DFPageContainer, 
+import { DFPageContainer, 
          DFContainer,
          DFSectionTitle,
          DFSubTitle,
@@ -17,17 +17,32 @@ import { shopToken,
          DATE_FORMAT,
          ORDER_STATUS,
          orderStatusClass,
-         orderTotal, }                        from '../helper'
+         orderStatusColor,
+         orderTotal }                         from '../helper'
+
 import APP_CONFIG                             from '../config'
+
 import { shopOrders, 
          orderStatus, 
          archiveOrder }                       from '../store/actions/shopActions'
 
-import { itemOptions }                        from '../components/order/util.jsx'
+import { confirm }                            from '../store/actions/appActions'
+
+import ItemOptions                            from '../components/order/ItemOptions.jsx'
 import MapComponent                           from '../components/map/Map.jsx'
+import PlayerComponent                        from '../components/widgets/Player.jsx'
+import ConfirmComponent                       from '../components/widgets/Confirm.jsx'
+
+const currentShop = APP_CONFIG.SHOP_ID
+
+const confirmation = {
+  started: 'Confirm Start Order',
+  delivered: 'Confirm Order Delivery',
+  failed: 'Confirm Failed Order'
+}
 
 const GoToShopButton =  withRouter(({ history }) => (
-  <DFButton onClick={() => history.push('/shop') }>Back</DFButton>
+  <DFButton onClick={() => history.push(`/${ currentShop }/shop`) }>&lt; Back</DFButton>
 ))
 
 class ShopOrderContainer extends PureComponent {
@@ -37,7 +52,7 @@ class ShopOrderContainer extends PureComponent {
 
   renderOrder (orderId) {
     const token   = shopToken()
-    console.log(token)
+
     if (!this.props.shop.orders || !this.props.shop.orders.length) {
       return null
     }
@@ -62,17 +77,28 @@ class ShopOrderContainer extends PureComponent {
           <div key={`item-order-${ item.pid }`}>
             <DFItem>{ item.name } x { item.quantity }</DFItem>
             <p>{ item.price }</p>
-            { item.options ? itemOptions(item.options) : null }
+            { item.options ? <ItemOptions options= {item.options} /> : null }
           </div> 
         </DFContainer>)
     })
     
-    return  <DFContainer className={`order order-${ orderStatusClass(order) }`}>
-      <DFContainer className="order-status-actions">
-        <DFButton onClick={() => this.props.orderStatus(order._id, ORDER_STATUS.STARTED, token)}>Start</DFButton>
-        <DFButton onClick={() => this.props.orderStatus(order._id, ORDER_STATUS.DELIVERED, token)}>Delivered</DFButton>
-        <DFButton onClick={() => this.props.orderStatus(order._id, ORDER_STATUS.FAILED, token)}>Failed</DFButton>
-      </DFContainer>
+    // const confirmation = {
+    //   started: () => this.props.orderStatus(order._id, ORDER_STATUS.STARTED, token),
+    //   delivered: () => this.props.orderStatus(order._id, ORDER_STATUS.DELIVERED, token),
+    //   failed: () => this.props.orderStatus(order._id, ORDER_STATUS.FAILED, token)
+    // }
+  
+    return  <DFContainer className={`order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
+      <PlayerComponent />
+      <div className="order-status-actions padding-l">
+        { order.status === ORDER_STATUS.NEW ? <DFButton onClick={ () => this.props.confirm(confirmation.started) }>Start</DFButton> : null }
+        { order.status === ORDER_STATUS.STARTED ? 
+          <Fragment>
+            <DFButton onClick={ () => this.props.confirm(confirmation.delivered) } className="margin-right-xl">Delivered</DFButton>
+            <DFButton onClick={ () => this.props.confirm(confirmation.failed) }>Failed</DFButton>
+          </Fragment>
+        : null }
+      </div>
       <DFSectionTitle>{ when }</DFSectionTitle>
       <DFSubTitle>{ displayStatus(status) }</DFSubTitle>
       <DFSubTitle>Order Items</DFSubTitle>
@@ -89,18 +115,60 @@ class ShopOrderContainer extends PureComponent {
         latlon          = { latlon }
         maptext         = { "Delivery Location" }
         editable        = { false }
+        mapinst         = "Order Location"
       />
     </DFContainer>
   }
 
+  onConfirm (id, status, token) {
+    
+    this.props.orderStatus(id, status, token)
+    this.props.confirm(null)
+  }
+
   render () {
     const orderId = _.get(this.props, 'match.params.orderId', null)
-    console.log('RENDER!')
-    return (<DFPageContainer className="shop-container">
+    const token   = shopToken()
+
+    const getConfirmationModal = (appConfirm) => {
+ 
+      switch (appConfirm) {
+        case confirmation.started :
+
+          return <ConfirmComponent  
+            onCancel  = { () => this.props.confirm(null) }
+            onConfirm = { () => this.onConfirm(orderId, ORDER_STATUS.STARTED, token) }
+            text      = { confirmation.started}
+          />
+        case confirmation.delivered :
+
+          return <ConfirmComponent
+            onCancel  = { () => this.props.confirm(null) }
+            onConfirm = { () => this.onConfirm(orderId, ORDER_STATUS.DELIVERED, token) }
+            text      = { confirmation.delivered}
+          />
+        case confirmation.failed :
+
+          return <ConfirmComponent
+            onCancel  = { () => this.props.confirm(null) }
+            onConfirm = { () => this.onConfirm(order._id, ORDER_STATUS.FAILED, token) }
+            text      = { confirmation.failed}
+          />
+        default :
+          return null
+      }
+    }
+
+    const confirmModal = getConfirmationModal(this.props.app.confirm)
+
+    return (<DFPageContainer className="shop-page">
+      <DFContainer className="margin-v-xl">
       <GoToShopButton />
-      <DFPageContainer>
+      { confirmModal }
+      </DFContainer>
+      <DFContainer>
         { this.renderOrder(orderId) }
-      </DFPageContainer>
+      </DFContainer>
     </DFPageContainer>)
   }
 }
@@ -113,9 +181,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  shopOrders  : () => dispatch(shopOrders()),
-  orderStatus  : (oid, status, token) => dispatch(orderStatus(oid, status, token)),
-  archiveOrder : (oid) => dispatch(archiveOrder(oid, status))
+  shopOrders    : () => dispatch(shopOrders()),
+  orderStatus   : (oid, status, token) => dispatch(orderStatus(oid, status, token)),
+  archiveOrder  : (oid) => dispatch(archiveOrder(oid, status)),
+  confirm       : (txt) => dispatch(confirm(txt))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopOrderContainer)
