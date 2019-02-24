@@ -36,9 +36,9 @@ import ConfirmComponent                       from '../components/widgets/Confir
 const currentShop = APP_CONFIG.SHOP_ID
 
 const confirmation = {
-  started: 'Confirm Start Order',
-  delivered: 'Confirm Order Delivery',
-  failed: 'Confirm Failed Order'
+  started   : 'Confirm Start Order',
+  delivered : 'Confirm Order Delivery',
+  failed    : 'Confirm Failed Order'
 }
 
 const GoToShopButton =  withRouter(({ history }) => (
@@ -121,7 +121,6 @@ class ShopOrderContainer extends PureComponent {
   }
 
   onConfirm (id, status, token) {
-    
     this.props.orderStatus(id, status, token)
     this.props.confirm(null)
   }

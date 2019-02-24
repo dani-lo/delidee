@@ -10,7 +10,7 @@ const hasNewOrder = (orders) => {
   if (!orders) {
     return false
   }
-
+  
   const existing = orders.find(o => o.status === ORDER_STATUS.NEW)
 
   return !!existing
