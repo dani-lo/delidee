@@ -20,16 +20,17 @@ class ConfirmComponent extends PureComponent {
     return <ModalComponent
           bare
           confirmation
+          text = { this.props.text || null }
         >
       <DFContainer>
-        
         <DFInputsField>
+          {!this.props.nocancel ? 
           <DFButton cancel onClick={ () => {
             this.props.onCancel()
-          } }>cancel</DFButton>
+          } }>cancel</DFButton> : null }
           <DFButton confirm onClick={ () => {
             this.props.onConfirm()
-           } }>confirm</DFButton>
+           } }>ok</DFButton>
         </DFInputsField>
       </DFContainer>
     </ModalComponent>

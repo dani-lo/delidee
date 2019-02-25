@@ -11,7 +11,7 @@ import { confirm,
 
 import ConfirmComponent           from './Confirm.jsx'
 
-const confirmStart = 'Start Management'
+const confirmStart = 'System OK'
 
 class PlayerComponent extends PureComponent {
 
@@ -47,9 +47,9 @@ class PlayerComponent extends PureComponent {
 
   render () {
     const confirmComponent = this.props.app.confirm  &&this.props.app.confirm === confirmStart ? <ConfirmComponent
-      onCancel  = { () => this.props.confirm(null) }
       onConfirm = { () => this.props.confirm(null) }
       text      = { confirmStart}
+      nocancel
     /> : null
 
     return <span>

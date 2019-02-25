@@ -34,6 +34,14 @@ export function shopOrder (oid) {
     }
 }
 
+
+function shopError (msg) {
+    return {
+        type    : ACTIONS.SHOP_ERROR,
+        payload : msg
+    }
+}
+
 export function shopOrders (token) {
 
     const endpoint      = '/api/shop/orders'
@@ -47,7 +55,13 @@ export function shopOrders (token) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
-            dispatch(shopOrdersFetched(response))
+            if (response && response.msg === 'ok') {
+                dispatch(shopOrdersFetched(response))
+            }
+            dispatch(shopError('Error Fetching Orders!'))
+        })
+        .catch((err) => {
+            dispatch(shopError('Error Fetching Orders!'))
         })
     }
 }
@@ -65,7 +79,13 @@ export function orderStatus(oid, status, token) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
-            dispatch(shopStatusUpdated(response))
+            if (response && response.msg === 'ok') {
+                dispatch(shopStatusUpdated(response))
+            }
+            dispatch(shopError('Error Fetching Orders!'))
+        })
+        .catch((err) => {
+            dispatch(shopError('Error Fetching Orders!'))
         })
     }
 }
@@ -83,7 +103,15 @@ export function pollNewOrders (token) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
-            dispatch(shopNewOrdersPolled(response))
+            if (response && response.msg === 'ok') {
+                dispatch(shopNewOrdersPolled(response))
+            }
+
+            dispatch(shopError('Error Fetching New Orders!'))
+            
+        })
+        .catch((err) => {
+            dispatch(shopError('Error Fetching New Orders!'))
         })
     }
 }

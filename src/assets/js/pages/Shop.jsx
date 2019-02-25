@@ -36,6 +36,7 @@ import APP_CONFIG                           from '../config'
 import { shopOrders, 
          pollNewOrders }                    from '../store/actions/shopActions'
 
+
 const currentShop = APP_CONFIG.SHOP_ID
 
 class GoToOrderComponent extends PureComponent{
@@ -131,12 +132,11 @@ class ShopContainer extends PureComponent {
   }
 
   renderOrders () {
-    if (this.props.shop.hasNew) {
+    if (this.props.shop.hasNew || this.props.shop.shoperror) {
       startShopAlert()
     } else {
       stopShopAlert()
     }
-
     
     if (this.props.shop.orders && this.props.shop.orders.length)  {
       const grouped = _.groupBy(this.props.shop.orders, 'status')
@@ -193,8 +193,14 @@ class ShopContainer extends PureComponent {
   
   }
   render () {
+    let errorDisplay = false
+
+    if (this.props.shop.shoperror) {
+      errorDisplay = true 
+    }
 
     return (<DFPageContainer className="shop-page">
+      { errorDisplay ? <div className="app-error"><p>ERROR</p></div> : null }
       <PlayerComponent />
       <DFPageTitle>Shop Area</DFPageTitle>
         { this.renderOrders() }

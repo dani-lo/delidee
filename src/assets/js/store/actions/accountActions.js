@@ -44,11 +44,18 @@ function userUpdated (data) {
     }
 }
 
+export function startUser () {
+    return {
+        type    : ACTIONS.USER_STARTED,
+        payload : null
+    }
+}
+
 export function destroyUser () {
     const endpoint = '/api/user/logout'
 
     fetch(endpoint)
-    
+
     return {
         type    : ACTIONS.USER_DESTROY,
         payload : null

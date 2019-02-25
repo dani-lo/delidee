@@ -43,7 +43,7 @@ const shopApiSetup = (app) => {
   app.post('/api/shop/new-orders', (req, res) => {
 
     const user = new User(req.body)
-
+    
     user.validateShop().then((dbRes) => {
       if (dbRes.token) {
         const order = new Order()

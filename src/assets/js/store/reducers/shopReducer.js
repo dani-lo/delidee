@@ -3,14 +3,15 @@ import { ORDER_STATUS}  from '../../helper'
 
 const shopDefault = {
   orders: null,
-  hasNew: false
+  hasNew: false,
+  shoperror: false
 }
 
 const hasNewOrder = (orders) => {
   if (!orders) {
     return false
   }
-  
+
   const existing = orders.find(o => o.status === ORDER_STATUS.NEW)
 
   return !!existing
@@ -21,6 +22,15 @@ export default function shopReducer (state = shopDefault, action) {
   let hasNew
 
   switch (action.type) {
+    
+    case ACTIONS.SHOP_ERROR :
+      const msg = action.payload
+
+      if (msg && msg !== null) {
+        return Object.assign({}, state, {shoperror: msg}) 
+      }
+      
+      return Object.assign({}, state, {shoperror: false}) 
 
     case ACTIONS.SHOP_ORDERS_FETCHED :
 
@@ -28,7 +38,7 @@ export default function shopReducer (state = shopDefault, action) {
 
       hasNew = hasNewOrder(orders)
 
-      return Object.assign({}, { orders:  orders && orders.length ? orders.reverse() : [] }, {hasNew: hasNew}) 
+      return Object.assign({}, { orders:  orders && orders.length ? orders.reverse() : [] }, {hasNew: hasNew, shoperror: false}) 
 
     case ACTIONS.ORDER_STATUS_UPDATED :
       
@@ -40,7 +50,7 @@ export default function shopReducer (state = shopDefault, action) {
 
       hasNew = hasNewOrder(shopOrders) 
 
-      return Object.assign({}, { orders: shopOrders }, {hasNew: hasNew}) 
+      return Object.assign({}, { orders: shopOrders }, {hasNew: hasNew, shoperror: false}) 
 
     case ACTIONS.NEW_ORDERS_POLLED :
 
@@ -63,11 +73,11 @@ export default function shopReducer (state = shopDefault, action) {
 
           hasNew = hasNewOrder(stateOrders)  
 
-          return Object.assign({}, { orders: stateOrders }, {hasNew: hasNew})  
+          return Object.assign({}, { orders: stateOrders }, {hasNew: hasNew, shoperror: false})  
         }
       }
 
-      return Object.assign({}, state, {hasNew: false}) 
+      return Object.assign({}, state, {hasNew: false, shoperror: false}) 
     default :
 
       return state

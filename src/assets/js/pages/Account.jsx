@@ -1,4 +1,4 @@
-import React, { PureComponent }             from 'react'
+import React, { PureComponent, Fragment }   from 'react'
 import { connect }                          from 'react-redux'
 
 import { DFPageContainer, 
@@ -7,10 +7,13 @@ import { DFPageContainer,
          DFInputsField,
          DFButton }                         from '../elements/library'
 import { editUser }                         from '../store/actions/appActions'
+import { startUser }                        from '../store/actions/accountActions'
+
 
 import ShowUserComponent                    from '../components/user/ShowUser.jsx'
 import EditUserComponent                    from '../components/user/EditUser.jsx'
 import RegistrationComponent                from '../components/user/Register.jsx'
+import LogoutComponent                      from '../components/user/Logout.jsx'
 
 import { MAP_MODES }                        from '../components/map/Map.jsx'
 
@@ -20,11 +23,22 @@ class AccountContainer extends PureComponent {
     super(props)
   }
 
-  render () {
+  componentDidMount () {
+    if (this.props.user && this.props.user.waiting) {
+      setTimeout(() => this.props.startUser(), 1000)
+    }
+    
+  }
 
+  render () {
+    
     const showRegistration = !this.props.user || !this.props.user._id
     const editUser         = this.props.app && this.props.app.editUser
     const showUser         = this.props.user && this.props.user._id && !editUser
+
+    if (this.props.user.waiting) {
+      return <div></div>
+    }
 
     return (<DFPageContainer className="account-page">
       { showRegistration  ? 
@@ -35,15 +49,19 @@ class AccountContainer extends PureComponent {
         <EditUserComponent /> : null 
       }
       { showUser          ? 
-        <ShowUserComponent 
-          latlon         = { this.props.user.latlon } 
-          maptext        = "Account Location"
-        /> : null 
+        <Fragment>
+          
+          <ShowUserComponent 
+            latlon         = { this.props.user.latlon } 
+            maptext        = "Account Location"
+          /> 
+        </Fragment> : null 
       }
       { showUser        ?
         <DFBlock className="margin-v-l">
         <DFInputsField>
           <DFButton onClick={ () => this.props.editUser() }>Edit Account</DFButton>
+          <LogoutComponent bare />
         </DFInputsField> 
         </DFBlock> : null
       }
@@ -59,7 +77,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  editUser  : () => dispatch(editUser())
+  editUser  : () => dispatch(editUser()),
+  startUser : () => dispatch(startUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountContainer)

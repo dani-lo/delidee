@@ -130,7 +130,9 @@ class CheckoutContainer extends PureComponent {
 
   renderCurrentOrder () {
     if (this.props.user && this.props.orders.current && this.props.orders.current.items && this.props.orders.current.items.length) {
+      
       const order = []
+
       return <DFContainer>
         <DFSubTitle>Current Order</DFSubTitle>
         <DFBlock className="padding-bottom-xl">

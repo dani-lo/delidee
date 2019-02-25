@@ -25,8 +25,12 @@ const LogoutComponent = (props) => {
     deleteShopToken()
     props.destroyUser()
     props.notify('Bye Bye', 'info')
-    
+
     props.history.push(`/${ currentShop }`)
+  }
+
+  if (props.bare) {
+    return <DFButton className="margin-left-s block-btn" onClick={ () => shopLogout() }>logout</DFButton>  
   }
 
   return  <DFContainer className="logout">

@@ -3,6 +3,10 @@ input {
 }
 button {
   padding: 10px 24px;
+
+  &.block-btn {
+    display: inline-block;
+  }
 }
 
 @media only screen and (max-width: 800px) {

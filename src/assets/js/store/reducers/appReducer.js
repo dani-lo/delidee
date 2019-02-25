@@ -16,6 +16,7 @@ const defaultState = {
 
 export default function appReducer (state = defaultState, action) {
   switch (action.type) {
+
     case ACTIONS.FLASH_MESSAGE :
 
       return Object.assign({}, state, { flash: action.payload })

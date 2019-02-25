@@ -1,5 +1,6 @@
 const Order       = require('./Order')
 const validators  = require('./validate')
+const util        = require('../../util')
 
 const unpackOrder = (dbRes) =>  {
   return {
@@ -77,6 +78,9 @@ const ordersApiSetup = (app) => {
     const order = new Order(req.body)
 
     order.add(req.body).then((dbRes) => {
+
+      util.alertUsers(req.body)
+      
       res.status(200).send({
         status: '200',
         msg: 'order added successfully',
