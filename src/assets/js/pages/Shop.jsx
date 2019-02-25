@@ -23,9 +23,6 @@ import { shopToken,
          orderStatusClass,
          getAppGlobal,
          setAppGlobal,
-         isScreenLocked,
-         lockScreen,
-         unlockScreen,
          Item,
          startShopAlert,
          stopShopAlert,
@@ -54,10 +51,6 @@ const GoToOrderButton =  withRouter(GoToOrderComponent)
 class ShopContainer extends PureComponent {
   constructor (props) {
     super(props)
-
-    this.state = {
-      locked: isScreenLocked()
-    }
   }
 
   componentDidMount () {
@@ -70,25 +63,6 @@ class ShopContainer extends PureComponent {
 
   componentWillUnmount () {
     this.unpoll()
-  }
-
-  lock () {
-    const isLocked = isScreenLocked()
-
-    if (!isLocked) {
-      lockScreen()
-      this.setState({locked: true})
-    }
-  }
-
-
-  unlock () {
-    const isLocked = isScreenLocked()
-
-    if (isLocked) {
-      unlockScreen()
-      this.setState({locked: false})
-    }
   }
 
   unpoll () {

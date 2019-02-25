@@ -1,13 +1,10 @@
 import React, { Fragment }  from 'react'
 
 import ls                   from 'local-storage'
-import NoSleep              from 'nosleep.js'
 
 import { DFItem,
          DFSubTitle }       from './elements/library'
 import ItemOptions          from './components/order/ItemOptions.jsx'
-
-const noSleep = new NoSleep()
 
 const ORDER_STATUS = {
   NEW       : 'NEW', 
@@ -19,22 +16,6 @@ const ORDER_STATUS = {
 
 const _GLOBAL = {
   PUSH_INTERVAL: false
-}
-
-const isScreenLocked = () => {
-  return ls('LOCKED')
-}
-
-const lockScreen = () => {
-  noSleep.enable()
-  
-  ls('LOCKED', true)
-}
-
-const unlockScreen = () => {
-  noSleep.disable()
-
-  ls('LOCKED', false)
 }
 
 
@@ -222,9 +203,6 @@ export {
   getAppGlobal,
   Item,
   User,
-  isScreenLocked,
-  lockScreen,
-  unlockScreen,
   startShopAlert,
   stopShopAlert,
   orderStatusContent,

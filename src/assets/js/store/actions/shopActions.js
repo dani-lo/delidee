@@ -55,10 +55,13 @@ export function shopOrders (token) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
+            console.log(response)
             if (response && response.msg === 'ok') {
                 dispatch(shopOrdersFetched(response))
+            } else {
+                dispatch(shopError('Error Fetching Orders!'))
             }
-            dispatch(shopError('Error Fetching Orders!'))
+            
         })
         .catch((err) => {
             dispatch(shopError('Error Fetching Orders!'))
@@ -81,8 +84,10 @@ export function orderStatus(oid, status, token) {
         .then((response) => {
             if (response && response.msg === 'ok') {
                 dispatch(shopStatusUpdated(response))
+            } else {
+                dispatch(shopError('Error Fetching Orders!'))
             }
-            dispatch(shopError('Error Fetching Orders!'))
+            
         })
         .catch((err) => {
             dispatch(shopError('Error Fetching Orders!'))
@@ -105,9 +110,11 @@ export function pollNewOrders (token) {
         .then((response) => {
             if (response && response.msg === 'ok') {
                 dispatch(shopNewOrdersPolled(response))
+            } else {
+                dispatch(shopError('Error Fetching New Orders!'))
             }
 
-            dispatch(shopError('Error Fetching New Orders!'))
+            
             
         })
         .catch((err) => {
