@@ -81,35 +81,35 @@ const orderTotal = (items) => {
 }
 
 const startShopAlert = () => {
-  let toCheckNew    = getAppGlobal('TO_CHECK_NEW')
+  // let toCheckNew    = getAppGlobal('TO_CHECK_NEW')
 
-  if (!toCheckNew || toCheckNew === null) {
-    toCheckNew = setInterval(function () {
-      const ddPlayer    = getAppGlobal('DD_PLAYER')
+  // if (!toCheckNew || toCheckNew === null) {
+  //   toCheckNew = setInterval(function () {
+  //     const ddPlayer    = getAppGlobal('DD_PLAYER')
 
-      if (ddPlayer) {
-        ddPlayer.play()
-      }
+  //     if (ddPlayer) {
+  //       ddPlayer.play()
+  //     }
       
-    }, 15000)
+  //   }, 15000)
 
-    setAppGlobal('TO_CHECK_NEW', toCheckNew)
-  }
+  //   setAppGlobal('TO_CHECK_NEW', toCheckNew)
+  // }
 }
 
 const stopShopAlert  = () => {
-  let toCheckNew  = getAppGlobal('TO_CHECK_NEW')
+  // let toCheckNew  = getAppGlobal('TO_CHECK_NEW')
 
-  if (toCheckNew) {
-    const ddPlayer    = getAppGlobal('DD_PLAYER')
+  // if (toCheckNew) {
+  //   const ddPlayer    = getAppGlobal('DD_PLAYER')
 
-    if (ddPlayer) {
-      ddPlayer.pause()
-    }
-    clearInterval(toCheckNew)
+  //   if (ddPlayer) {
+  //     ddPlayer.pause()
+  //   }
+  //   clearInterval(toCheckNew)
 
-    setAppGlobal('TO_CHECK_NEW', null)
-  }
+  //   setAppGlobal('TO_CHECK_NEW', null)
+  // }
 }
 
 const Item = ({data}) => {
@@ -191,6 +191,12 @@ const orderStatusContent = (status) => {
   }
 }
 
+const validateEmail = (email) => {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  
+  return re.test(email)
+}
+
 export {
   isFilled,
   ORDER_STATUS,
@@ -207,5 +213,6 @@ export {
   stopShopAlert,
   orderStatusContent,
   orderStatusColor,
-  deleteShopToken
+  deleteShopToken,
+  validateEmail
 }

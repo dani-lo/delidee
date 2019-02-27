@@ -55,7 +55,7 @@
   width: 100%;
   padding: 12px 0;
   background: #fbfafa;
-  z-index: 12;
+  z-index: 123;
   border-bottom: 1px dotted var(--main-border-color);
 
   button {
@@ -64,6 +64,11 @@
     &:first-child {
       float: left;
     }
+  }
+}
+.modal-container {
+  button {
+    font-size: 1.2em;
   }
 }
 

@@ -50,6 +50,13 @@ class ShopOrderContainer extends PureComponent {
     super(props)
   }
 
+  componentDidMount () {
+    if (!this.props.shop.orders || !this.props.shop.orders.length) {
+      const token   = shopToken()
+      this.props.shopOrders(token)
+    }
+  }
+
   renderOrder (orderId) {
     const token   = shopToken()
 
@@ -73,25 +80,21 @@ class ShopOrderContainer extends PureComponent {
     const when            = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
     
     order.items.map(item => {
-      orderItems.push(<DFContainer>
+      orderItems.push(<DFContainer className="view-order-shop-item">
           <div key={`item-order-${ item.pid }`}>
-            <DFItem>{ item.name } x { item.quantity }</DFItem>
-            <p>{ item.price }</p>
+            <DFSectionTitle className="padding-bottom-m">{ item.name } x { item.quantity }</DFSectionTitle>
             { item.options ? <ItemOptions options= {item.options} /> : null }
           </div> 
         </DFContainer>)
     })
     
-    // const confirmation = {
-    //   started: () => this.props.orderStatus(order._id, ORDER_STATUS.STARTED, token),
-    //   delivered: () => this.props.orderStatus(order._id, ORDER_STATUS.DELIVERED, token),
-    //   failed: () => this.props.orderStatus(order._id, ORDER_STATUS.FAILED, token)
-    // }
   
-    return  <DFContainer className={`order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
+    return  <DFContainer className={`order shop-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
       <PlayerComponent />
       <div className="order-status-actions padding-l">
-        { order.status === ORDER_STATUS.NEW ? <DFButton onClick={ () => this.props.confirm(confirmation.started) }>Start</DFButton> : null }
+        { order.status === ORDER_STATUS.NEW ? 
+          <DFButton onClick={ () => this.props.confirm(confirmation.started) }>Start</DFButton> 
+          : null }
         { order.status === ORDER_STATUS.STARTED ? 
           <Fragment>
             <DFButton onClick={ () => this.props.confirm(confirmation.delivered) } className="margin-right-xl">Delivered</DFButton>
@@ -100,12 +103,10 @@ class ShopOrderContainer extends PureComponent {
         : null }
       </div>
       <DFSectionTitle>{ when }</DFSectionTitle>
-      <DFSubTitle>{ displayStatus(status) }</DFSubTitle>
-      <DFSubTitle>Order Items</DFSubTitle>
-      { orderItems }
-      <DFSubTitle>User Comments</DFSubTitle>
+      <div  className="padding-v-l">{ orderItems }</div>
+      <DFSubTitle className="padding-v-l">User Comments</DFSubTitle>
       <p>{ comment && comment.length ? comment : 'None' }</p>
-      <DFSubTitle>Delivery Information</DFSubTitle>
+      <DFSubTitle className="padding-v-l">Delivery Information</DFSubTitle>
       <p>{ firstName }</p>
       <p>{ secondName }</p>
       <p>{ addressLineOne }</p>
@@ -180,7 +181,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  shopOrders    : () => dispatch(shopOrders()),
+  shopOrders    : (token) => dispatch(shopOrders(token)),
   orderStatus   : (oid, status, token) => dispatch(orderStatus(oid, status, token)),
   archiveOrder  : (oid) => dispatch(archiveOrder(oid, status)),
   confirm       : (txt) => dispatch(confirm(txt))

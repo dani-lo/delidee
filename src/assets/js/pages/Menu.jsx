@@ -15,12 +15,19 @@ import { addItem, removeItem }    from '../store/actions/ordersActions'
 import { fetchMenu }              from '../store/actions/menuActions'
 import { notify }                 from '../store/actions/appActions'
 
+import { shopToken }              from '../helper'
+import APP_CONFIG                 from '../config'
+
+const currentShop = APP_CONFIG.SHOP_ID
+
 class MenuContainer extends PureComponent {
   constructor (props) {
     super(props)
   }
 
   componentDidMount () {
+    window.scrollTo(0, 0)
+    
     if (!this.props.menu || !this.props.menu.items) {
       this.props.getMenu()
     }
@@ -97,7 +104,14 @@ class MenuContainer extends PureComponent {
   }
 
   render () {
-    
+    const token = shopToken()
+
+    if (token) {
+      this.props.history.push(`/${ currentShop }/shop`)
+
+      return null
+    }
+
     return  (<DFPageContainer className="menu-page">
       {
         this.props.menu  ?  this.renderMenu() : <p>Loading</p>

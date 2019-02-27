@@ -32,6 +32,7 @@ import ConfirmComponent             from '../components/widgets/Confirm.jsx'
 import { validUser,
          orderTotal,
          Item,
+         shopToken,
          orderStatusClass,
          orderStatusColor,
          orderStatusContent }       from '../helper'
@@ -49,6 +50,8 @@ class CheckoutContainer extends PureComponent {
 
     if (user && user._id) {
       this.props.getOrders(user._id) 
+
+      window.scrollTo(0, 0)
     }
   }
 
@@ -187,6 +190,14 @@ class CheckoutContainer extends PureComponent {
   }
 
   render () {
+    const token = shopToken()
+
+    if (token) {
+      this.props.history.push(`/${ currentShop }/shop`)
+
+      return null
+    }
+    
     const changeMeta      = this.props.orders.current && this.props.orders.current.changeMeta
     
     const changeMetaModal = changeMeta ? <OrderMetaComponent 

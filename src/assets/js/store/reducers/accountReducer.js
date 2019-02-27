@@ -15,6 +15,7 @@ const defaultState = {
 }
 
 export default function accountReducer (state = defaultState, action) {
+
   switch (action.type) {
     case ACTIONS.USER_STARTED :
 

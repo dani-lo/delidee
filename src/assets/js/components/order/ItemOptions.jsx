@@ -12,25 +12,25 @@ const ItemOptions = ({options}) => {
       const option  = []
 
       if (opt.with && opt.with.label) {
-        option.push(<p>with: { opt.with.label }</p>) 
+        option.push(<li>with: <span className="opt-content">{ opt.with.label }</span></li>) 
       }
       if (opt.cook && opt.cook.label) {
-        option.push(<p>cook: { opt.cook.label }</p>) 
+        option.push(<li>cook: <span className="opt-content">{ opt.cook.label }</span></li>) 
       }
       if (opt.side && opt.side.label) {
-        option.push(<p>side: { opt.side.label }</p>) 
+        option.push(<li>side: <span className="opt-content">{ opt.side.label  }</span></li>) 
       }
 
       if (opt.comment) {
-        option.push(<div className="item-option-comment"><h4>your comment</h4><p>{ opt.comment }</p></div>) 
+        option.push(<li><span className="padding-right-l">comment</span><span className="opt-content">{ opt.comment }</span></li>) 
       }
 
       if (option.length) {
         if (multiOption) {
-          return <div><p>Item { parseInt(k) + 1 }</p>{ option }</div>
+          return <div><p>Item { parseInt(k) + 1 }</p><ul className="item-options">{ option }</ul></div>
         }
 
-        return option.length ? option : null 
+        return<ul className="item-options">{ option }</ul>
       }
 
       return null

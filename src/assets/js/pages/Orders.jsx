@@ -21,10 +21,13 @@ import { showOrder,
 import ViewOrderComponent           from '../components/order/ViewOrder.jsx'
 
 import { validUser,
+         shopToken,
          orderStatusClass,
          orderStatusColor,
          orderStatusContent }       from '../helper'
 
+
+const currentShop       = APP_CONFIG.SHOP_ID
 const confirmSubmission = 'Place Order?'
 
 class OrdersContainer extends PureComponent {
@@ -33,15 +36,22 @@ class OrdersContainer extends PureComponent {
   }
 
   componentDidMount() {
-    const user          = this.props.user 
+    const user        = this.props.user 
 
     if (user && user._id) {
       this.props.getOrders(user._id) 
     }
   }
 
-  renderHistoryOrders () {
+  componentWillReceiveProps (newProps) {
+    const user          = this.props.user 
 
+    if ((!user || !user._id) && (newProps.user && newProps.user._id))  {
+      this.props.getOrders(newProps.user._id) 
+    }
+  }
+
+  renderHistoryOrders () {
     if (this.props.orders.history && this.props.orders.history.length)  {
 
       const historical = this.props.orders.history.map((order) => {
@@ -96,6 +106,14 @@ class OrdersContainer extends PureComponent {
   }
 
   render () {
+    const token = shopToken()
+
+    if (token) {
+      this.props.history.push(`/${ currentShop }/shop`)
+
+      return null
+    }
+    
     const viewOrder       = this.props.app.showOrder && this.props.orders.history && this.props.orders.history.length
     
     const viewOrderModal  = viewOrder ? <ViewOrderComponent

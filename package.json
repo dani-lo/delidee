@@ -9,13 +9,15 @@
     "build:prod": "./node_modules/.bin/webpack -p",
     "watch": "./node_modules/.bin/webpack --watch",
     "dev": "./node_modules/.bin/webpack-dev-server",
-    "dev-server": "node_modules/.bin/nodemon ./server/app.js"
+    "dev-server": "node_modules/.bin/nodemon ./server/app.js --env=dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
     "express-session": "^1.15.6",
     "formik": "^1.4.3",
     "jquery-ajax": "^2.1.4",

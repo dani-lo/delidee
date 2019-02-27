@@ -55,7 +55,7 @@ export function shopOrders (token) {
         fetch(endpoint, postOptions)
         .then((response) => response.json())
         .then((response) => {
-            console.log(response)
+
             if (response && response.msg === 'ok') {
                 dispatch(shopOrdersFetched(response))
             } else {

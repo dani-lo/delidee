@@ -27,10 +27,10 @@ class ConfirmComponent extends PureComponent {
           {!this.props.nocancel ? 
           <DFButton cancel onClick={ () => {
             this.props.onCancel()
-          } }>cancel</DFButton> : null }
+          } }><i class="far fa-times-circle margin-right-s"></i> cancel</DFButton> : null }
           <DFButton confirm onClick={ () => {
             this.props.onConfirm()
-           } }>ok</DFButton>
+           } }><i class="far fa-check-circle margin-right-s"></i> ok</DFButton>
         </DFInputsField>
       </DFContainer>
     </ModalComponent>

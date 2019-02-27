@@ -34,4 +34,39 @@
       text-align: center;
     }
   }
+
+  .view-order-shop-item {
+    padding: 20px;
+    margin: 12px 0;
+    background: #eee;
+  }
+  
+  h3 {
+      border-bottom: 1px solid var(--sub-bg-color);
+    }
+
+  .shop-order {
+    
+    h4 {
+      font-size: 1.5em;
+      border: none;
+      color: #000;
+    }
+    p {
+      color: #000;
+    }
+    ul.item-options {
+      li {
+        padding: 6px 0;
+        font-size: 1.1em;
+        color: #000;
+
+        span.opt-content {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
+  
 }

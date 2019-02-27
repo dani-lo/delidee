@@ -103,6 +103,18 @@ const DFSelect = styled.div`
     width: 260px;
   }
 `
+const DFError = styled.p`
+  color: var(--error-color);
+  display: none;
+  ${props => props.active && `
+    display: block;
+  `}
+`
+const DFNote = styled.p`
+  color: var(--warning-color);
+  border: 3px dashed var(--main-border-color);
+  background: var(--highlight-bg-color);
+`
 
 const DFInput = {
   Txt: styled.input`
@@ -124,8 +136,6 @@ const DFInput = {
   `
 }
 
-const DFError = styled.p`
-`
 
 const DFPageTitle = styled.h1`
   text-align: center;
@@ -169,6 +179,7 @@ export {
   DFMenuItem,
   DFLabel,
   DFError,
+  DFNote,
   DFPageTitle,
   DFSectionTitle,
   DFSubTitle,

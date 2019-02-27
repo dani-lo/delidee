@@ -73,6 +73,7 @@ class App extends PureComponent {
 
     if (!token) {
       return <div id="header">
+        
         <FlashMessage />
         <div className="header-login">
           <CurrentuserComponent />
@@ -97,6 +98,7 @@ class App extends PureComponent {
       </div>
     } else {
       return <div id="header">
+        <DFPageTitle>Shop Area</DFPageTitle>
         <FlashMessage />
         <ul>
           <li>
@@ -111,6 +113,7 @@ class App extends PureComponent {
 
   render () {
     
+    // const 
     return <Router>
       <div id="app">
         { this.header() }
@@ -142,15 +145,15 @@ const GoToShopButton =  withRouter(({ history }) => (
   <DFButton onClick={() => history.push(`/${ currentShop }/shop`) }>Start Management</DFButton>
 ))
 
-const Home = () => {
+const Home = (props) => {
   const token = shopToken()
 
   if (token) {
-    return <DFPageContainer>
-      <DFPageTitle>Shop Management Area</DFPageTitle>
-      <GoToShopButton />
-    </DFPageContainer>
+    props.history.push(`/${ currentShop }/shop`)
+
+    return null
   }
+
   return (
     <DFPageContainer>
       <DFPageTitle>Welcome to { APP_CONFIG.SHOP.NAME }</DFPageTitle>

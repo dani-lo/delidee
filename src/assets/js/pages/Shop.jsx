@@ -42,7 +42,7 @@ class GoToOrderComponent extends PureComponent{
   }
 
   render () {
-    return  <DFButton onClick={() => this.props.history.push(`/${ currentShop }/shop-order/${ this.props.oid }`) }>View</DFButton>
+    return  <DFButton onClick={() => this.props.history.push(`/${ currentShop }/shop-order/${ this.props.oid }`) }>View &gt;</DFButton>
   }
 }
 
@@ -56,7 +56,9 @@ class ShopContainer extends PureComponent {
   componentDidMount () {
     const token = shopToken()
 
-    this.props.shopOrders(token)
+    if (!this.props.shop.orders || !this.props.shop.orders.length) {
+      this.props.shopOrders(token)
+    }
 
     this.poll()
   }
@@ -90,15 +92,14 @@ class ShopContainer extends PureComponent {
   }
 
   renderOrder (order) {
-    const created = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
-    const status  = displayStatus(order.status ? order.status : '')
+    const created       = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
+    const status        = displayStatus(order.status ? order.status : '')
     const statusContent = orderStatusContent(order.status)
-
+    const { firstName, secondName, userName } = _.get(order, 'meta.metaData', {})
+    
     return  <DFContainer className={`margin-v-m order client-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
       <DFIcon className={ `order-status ${ statusContent.icon }`} status={ order.status } />
-      <DFSectionTitle>
-            { created }
-          </DFSectionTitle>
+      <DFSubTitle className="padding-bottom-m">{ `${ firstName ? firstName : '' } ${ secondName ? secondName : '' } (${ userName })` }<span className="padding-left-l">{ created }</span></DFSubTitle>
       <DFItem className="low-case">{ status }</DFItem>
 
       <GoToOrderButton oid={ order._id } />
@@ -144,20 +145,20 @@ class ShopContainer extends PureComponent {
 
       return <DFContainer>
         { !newOrders && !startedOrders && !otherOrders ? 
-           <DFSubTitle>No Orders To Show</DFSubTitle> : null}
+           <DFSubTitle className="padding-v-l margin-v-xl">No Orders To Show</DFSubTitle> : null}
         { newOrders ? 
           <Fragment>
-            <DFSubTitle>New Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">New Orders</DFSubTitle>
             { newOrders }
           </Fragment> : null }
           { startedOrders ? 
           <Fragment>
-            <DFSubTitle>Started Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">Started Orders</DFSubTitle>
             { startedOrders }
           </Fragment> : null }
           { otherOrders ? 
           <Fragment>
-            <DFSubTitle>Other Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">Other Orders</DFSubTitle>
             { otherOrders }
           </Fragment> : null }
       </DFContainer>
@@ -176,7 +177,6 @@ class ShopContainer extends PureComponent {
     return (<DFPageContainer className="shop-page">
       { errorDisplay ? <div className="app-error"><p>ERROR</p></div> : null }
       <PlayerComponent />
-      <DFPageTitle>Shop Area</DFPageTitle>
         { this.renderOrders() }
     </DFPageContainer>)
   }

@@ -20,8 +20,8 @@ class PlayerComponent extends PureComponent {
     const playerRef   = getAppGlobal('DD_PLAYER')
 
     if (token && !playerRef) {
-      this.prepareSound()
-      this.props.confirm(confirmStart)
+      // this.prepareSound()
+      // this.props.confirm(confirmStart)
     }
   }
 
@@ -42,7 +42,7 @@ class PlayerComponent extends PureComponent {
   }
 
   aggressivePrepareSound () {
-    this.props.confirm(null)
+    // this.props.confirm(null)
   }
 
   render () {
@@ -52,9 +52,10 @@ class PlayerComponent extends PureComponent {
       nocancel
     /> : null
 
-    return <span>
-      { confirmComponent }
-    </span>
+    return <span></span>
+    // return <span>
+    //   { confirmComponent }
+    // </span>
   }
 }
 

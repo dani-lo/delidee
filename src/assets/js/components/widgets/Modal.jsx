@@ -19,8 +19,8 @@ const ModalComponent = (props) => {
         </div>
         {!props.bare && !props.info ? 
         <div className="modal-footer">
-            <DFButton cancel onClick={props.cancel}>cancel</DFButton>
-            <DFButton confirm onClick={props.confirm} unactive={ props.unactive }>confirm</DFButton>
+            <DFButton cancel onClick={props.cancel}><i class="far fa-times-circle margin-right-s"></i> cancel</DFButton>
+            <DFButton confirm onClick={props.confirm} unactive={ props.unactive }><i class="far fa-check-circle margin-right-s"></i> ok</DFButton>
         </div> : null }
 
         { props.info ? <div className="modal-footer">

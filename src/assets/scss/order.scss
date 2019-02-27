@@ -5,11 +5,21 @@
   position: relative;
   background: var(--highlight-bg-color);
   //&.client-order {
+  ul.item-options {
+    li {
+      padding: 6px 0;
+
+      span.opt-content {
+        font-weight: bold;
+      }
+    }
+  }
+  
   i {
     position: absolute;
     right: 24px;
-    top: 80px;
-    font-size: 4em;
+    bottom: 24px;
+    font-size: 3.5em;
   }
   // }
   &.order-new {
@@ -22,6 +32,7 @@
   }
   
 }
+
 .order-item {
     border: 1px dotted #ddd;
     text-transform: capitalize;

@@ -6,6 +6,15 @@
   top         : 0;
   width       : 100%;
 
+  h1 {
+        margin: 0;
+    padding: 0;
+    line-height: 0;
+    position: relative;
+    top: 40px;
+    color: #fff;
+  }
+
   .header-checkout {
     position: absolute;
     right: 80px;
@@ -60,6 +69,10 @@
 @media only screen and (max-width: 800px) {
   #header  {
     height: 60px;
+
+    h1 {
+      top: 25px;
+    }
     ul {
       margin-top: 60px;
       background: black;

@@ -1,6 +1,9 @@
 .left-align {
   text-align: left;
 }
+.right-align {
+  text-align: right;
+}
 .center-align {
   text-align: center;
 }
@@ -43,6 +46,10 @@
 
 .txt-captalise {
   text-transform: capitalize;
+}
+
+.no-margin {
+  margin: 0;
 }
 .margin-s {
   margin: 8px;

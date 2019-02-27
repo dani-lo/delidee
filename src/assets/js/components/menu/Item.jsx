@@ -46,9 +46,8 @@ class MenuItemComponent extends PureComponent {
   }
 
   itemOrdered () {
-    const pid               = this.props.pid
-    const order             = this.props.order
-
+    const { pid, order } = this.props
+    
     const ordered = order.items.find(i => i.pid === pid)
    
     return ordered
@@ -77,12 +76,8 @@ class MenuItemComponent extends PureComponent {
   }
 
   onConfirm (userOptions) {
-
-    const pid               = this.props.pid
-    const name              = this.props.name
-    const price             = this.props.price
-    const order             = this.props.order
-    const addOrderItem      = this.props.addOrderItem
+    
+    const { pid, name, price, order,  addOrderItem} = this.props
 
     const itemPrice         = parseFloat(price).toFixed(2)
     const selectedQuantity  = this.currentQuantity(order, pid)

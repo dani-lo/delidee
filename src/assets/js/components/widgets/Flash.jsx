@@ -22,6 +22,7 @@ const FlashMessage = (props) => {
   return (
     <div className={`app-flash`}>   
       <div className={`flash-container ${ flash.className }`}>
+        <div className="flash-bg"></div>
         <p>{ flash.message }</p>
       </div>
     </div>

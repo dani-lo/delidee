@@ -1,4 +1,5 @@
 import { ACTIONS }      from '../constants'
+import { history }      from 'react-router-dom'
 import { fetch }        from 'whatwg-fetch'
 import { uneditUser}    from './appActions'
 import { shopToken }    from '../../helper'

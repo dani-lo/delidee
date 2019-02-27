@@ -25,6 +25,39 @@ const usersApiSetup = (app) => {
 
    /* ---------------------- */
   
+  app.get('/api/user/existing/:uname', (req, res) => {
+
+      const uname = req.params.uname
+      const user  = new User({
+        userName: uname
+      })
+
+      user.retrieve().then((dbRes) => {
+
+        if (dbRes && dbRes._id) {
+          res.status(200).send({
+            status: '200',
+            msg: 'user exists',
+            data: null
+          })
+        } else {
+          return res.status(200).send({
+            status: '200',
+            msg: 'ok',
+            data: null
+          })
+        }
+        
+    }).catch((dbErr) => {
+      res.status(400).send({
+        status: 'error',
+        msg: 'Database Error',
+        data: {...dbErr}
+      })
+    })
+  })
+
+  
   app.get('/api/user/current', (req, res) => {
 
     if (req.session.uid) {

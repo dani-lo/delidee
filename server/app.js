@@ -7,16 +7,17 @@ const session     = require('express-session')
 const setupDelifastApi      = require('./api/init.js')
 const { DB_CONNECTION_STR } = require('./config')
 
-const port                  = process.env.PORT || 8080
+require('dotenv').config()
 
+const port = process.env.PORT || 8080
+const conn = DB_CONNECTION_STR(process.env)
 /* MONGOODE CONNECTION */
 
-mongoose.connect(DB_CONNECTION_STR)
+mongoose.connect(DB_CONNECTION_STR(conn))
 
 mongoose.connection.on('connected', function () {  
-  console.log('Mongoose default connection open to ' + DB_CONNECTION_STR);
+  console.log('Mongoose default connection open');
 }); 
-
 
 mongoose.connection.on('error',function (err) {  
   console.log('Mongoose default connection error: ' + err);

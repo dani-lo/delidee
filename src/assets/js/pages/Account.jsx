@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment }   from 'react'
 import { connect }                          from 'react-redux'
 
+import { shopToken }                        from '../helper'
 import { DFPageContainer, 
          DFContainer,
          DFBlock,
@@ -17,6 +18,9 @@ import LogoutComponent                      from '../components/user/Logout.jsx'
 
 import { MAP_MODES }                        from '../components/map/Map.jsx'
 
+import APP_CONFIG                           from '../config'
+
+const currentShop = APP_CONFIG.SHOP_ID
 
 class AccountContainer extends PureComponent {
   constructor (props) {
@@ -24,6 +28,7 @@ class AccountContainer extends PureComponent {
   }
 
   componentDidMount () {
+
     if (this.props.user && this.props.user.waiting) {
       setTimeout(() => this.props.startUser(), 1000)
     }
@@ -32,6 +37,14 @@ class AccountContainer extends PureComponent {
 
   render () {
     
+    const token = shopToken()
+
+    if (token) {
+      this.props.history.push(`/${ currentShop }/shop`)
+
+      return null
+    }
+
     const showRegistration = !this.props.user || !this.props.user._id
     const editUser         = this.props.app && this.props.app.editUser
     const showUser         = this.props.user && this.props.user._id && !editUser

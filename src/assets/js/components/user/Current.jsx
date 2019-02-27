@@ -28,7 +28,6 @@ class CurrentuserComponent extends PureComponent {
   }
 
   render () {
-    
     const { user } = this.props
 
     if (user && user._id) {
