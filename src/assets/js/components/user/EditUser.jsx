@@ -90,6 +90,12 @@ class EditUserComponent extends PureComponent {
           </DFInputsField>
         </DFBlock>
         <DFBlock  className="margin-v-l">
+          <DFInputsField>
+            <DFButton cancel onClick={ () => this.props.uneditUser() }>Cancel</DFButton>
+            <DFButton confirm onClick={ () => this.props.onUserSave(this.state) }>Save Changes</DFButton>
+          </DFInputsField>
+      </DFBlock>
+        <DFBlock  className="margin-v-l">
             <MapComponent 
               mapinst     = "Click to set your account delivery location"
               onSetLatlon = {latlon => this.setState({latlon: latlon}) }
@@ -97,12 +103,7 @@ class EditUserComponent extends PureComponent {
               editable    = { true }
             />
       </DFBlock>
-      <DFBlock  className="margin-v-l">
-          <DFInputsField>
-            <DFButton cancel onClick={ () => this.props.uneditUser() }>Cancel</DFButton>
-            <DFButton confirm onClick={ () => this.props.onUserSave(this.state) }>Save Changes</DFButton>
-          </DFInputsField>
-      </DFBlock>
+      
     </DFContainer>
   }
 }

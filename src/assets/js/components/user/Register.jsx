@@ -165,6 +165,14 @@ class RegistrationComponent extends PureComponent {
               onChange  = { (e) => this.setState({tel: e.target.value})} />
           </DFInputsField>
         </DFBlock>
+        <DFBlock  className="margin-v-xl">
+          <DFInputsField>
+            <DFButton
+              active={ this.userName !== null ? 1 : 0 }
+              onClick={ () => this.submitRegistration() }
+            >Submit Registration</DFButton>
+          </DFInputsField>
+        </DFBlock>
         <DFBlock  className="margin-v-l">
           <MapComponent 
             mapinst     = "Click to set your account delivery location"
@@ -173,14 +181,7 @@ class RegistrationComponent extends PureComponent {
             editable    = { true }
           />   
         </DFBlock>
-        <DFBlock  className="margin-v-l">
-          <DFInputsField>
-            <DFButton
-              active={ this.userName !== null ? 1 : 0 }
-              onClick={ () => this.submitRegistration() }
-            >Submit Registration</DFButton>
-          </DFInputsField>
-        </DFBlock>
+        
     </DFContainer>)
   }
 }

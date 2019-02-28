@@ -9,6 +9,8 @@ import { BrowserRouter as Router,
          withRouter }             from "react-router-dom"
 
 import store                      from "../store/store"
+
+import HomeContainer              from './Home.jsx'
 import OrdersContainer            from './Orders.jsx'
 import AccountContainer           from './Account.jsx'
 import MenuContainer              from './Menu.jsx'
@@ -117,13 +119,14 @@ class App extends PureComponent {
     return <Router>
       <div id="app">
         { this.header() }
-        <Route exact path={`/${ currentShop }`} component={ Home} />
+        <Route exact path={`/${ currentShop }`} component={ HomeContainer } />
         <Route path={`/${ currentShop }/orders`} component={ OrdersContainer } />
         <Route path={`/${ currentShop }/menu`} component={ MenuContainer } />
         <Route path={`/${ currentShop }/account`} component={ AccountContainer } />
         <Route path={`/${ currentShop }/shop`} component={ ShopContainer } />
         <Route path={`/${ currentShop }/shop-order/:orderId`} component={ ShopOrderContainer } />
         <Route path={`/${ currentShop }/checkout`} component={ CheckoutContainer } />
+        <div className="app-footer"></div>
       </div>
   </Router>
   }
@@ -140,26 +143,6 @@ const mapStateToProps = (state) => {
 }
 
 const DelifastApp = connect(mapStateToProps)(App)
-
-const GoToShopButton =  withRouter(({ history }) => (
-  <DFButton onClick={() => history.push(`/${ currentShop }/shop`) }>Start Management</DFButton>
-))
-
-const Home = (props) => {
-  const token = shopToken()
-
-  if (token) {
-    props.history.push(`/${ currentShop }/shop`)
-
-    return null
-  }
-
-  return (
-    <DFPageContainer>
-      <DFPageTitle>Welcome to { APP_CONFIG.SHOP.NAME }</DFPageTitle>
-    </DFPageContainer>
-  );
-}
 
 const wrapper = document.getElementById("app-main")
 
