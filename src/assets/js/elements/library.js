@@ -6,14 +6,12 @@ const DFButton = styled.button`
   cursor: pointer;
   text-transform: lowercase; 
   border-radius: 3px;
-  
-  border: 1px solid var(--main-border-color);
-  background: var(--main-bg-color);
+  background:var(--main-bg-color);  
   color: var(--sub-bg-color);
   &:hover {
+    border: 1px solid var(--main-border-color);
     background: var(--sub-bg-color);
     color: var(--white-txt-color);
-    
   }
   font-size: 1em;
   ${props => props.solid && `
@@ -72,7 +70,6 @@ const DFPageContainer = styled.div`
 `
 
 const DFMenuItem = styled.div`
-  background: var(--highlight-bg-color);
   display: inline-block;
 
   ${props => props.ordered && `

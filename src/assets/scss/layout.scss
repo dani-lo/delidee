@@ -2,8 +2,18 @@ body {
   padding: 100px 0 0;
   margin: 0;
   background: #f5f3f3;
-  //padding-top:  60px;
+  padding-bottom: 50px;
+
 }
 .Select-menu-outer {
   z-index: 1234!important;
+}
+
+.app-footer {
+  height: 50px;
+  width: 100%;
+  background: var(--sub-bg-color);
+      position: fixed;
+    bottom: 0;
+  z-index: 123;
 }

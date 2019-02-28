@@ -1,0 +1,74 @@
+.home-page {
+  position: relative;
+  .shop-header {
+    border-bottom: 1px dashed var(--sub-bg-color);
+    margin-bottom: 44px;
+    margin-top: -20px;
+    padding: 20px;
+
+    h1 {
+    font-size: 1.5em;
+    
+    }
+
+    p {
+      padding: 0 0 12px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .logo {
+      width: 105px;
+      position: absolute;
+      top: 22px;
+      left: 0;
+    }
+  }
+  
+  
+  h3.payoff {
+    font-weight: normal;
+    // background: var(--highlight-bg-color);
+    // color: var(--sub-bg-color);
+    text-align: center;
+    // border: 1px solid var(--main-border-color);
+        font-style: italic;
+    font-size: 2em;
+  }
+  h4 {
+    font-size: 1.8em;
+    padding: 12px;
+    margin: 0;
+  }
+  p {
+    line-height: 1.75em;
+    text-align: left;
+    font-size: 1.2em;
+
+
+    &.funny {
+      text-align: center;
+      font-style: italic;
+    }
+  }
+  .home-bit {
+    text-align: center;
+    background: var(--highlight-bg-color);
+    // border: 1px solid var(--main-border-color);
+    border-radius: 4px;
+
+    a {
+      color: var(--brand-color);
+
+      &:hover {
+        color: var(--highlight-bg-color);
+      }
+    }
+
+    img {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
