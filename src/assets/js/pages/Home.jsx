@@ -37,7 +37,7 @@ class HomeContainer extends PureComponent {
     const currentShop = APP_CONFIG.SHOP_ID
 
     if (token) {
-      props.history.push(`/${ currentShop }/shop`)
+      this.props.history.push(`/${ currentShop }/shop`)
 
       return null
     }

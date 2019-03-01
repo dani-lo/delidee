@@ -18,10 +18,10 @@ body {
   z-index: 123;
 }
 .lang-selector {
-  display: block;
+  display: none;
 }
 
-//.with-shop {
+.with-shop {
   .lang-selector {
     display: block;
     position: absolute;
@@ -35,4 +35,4 @@ body {
       }
     }
   }
-//}
+}
