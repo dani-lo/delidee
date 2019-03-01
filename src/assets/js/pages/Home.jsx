@@ -1,8 +1,5 @@
-import React                      from "react"
-import { BrowserRouter as Router, 
-         Route, 
-         NavLink,
-         withRouter }             from "react-router-dom"
+import React, { PureComponent }   from "react"
+import { withRouter }             from "react-router-dom"
 
 import { shopToken, 
          orderStatusContent,
@@ -29,22 +26,28 @@ const AppLink     =  withRouter(( props ) => {
   >{ text }</a>
 })
 
-const HomeContainer= (props) => {
-  const token       = shopToken()
-  const currentShop = APP_CONFIG.SHOP_ID
+class HomeContainer extends PureComponent {
 
-  if (token) {
-    props.history.push(`/${ currentShop }/shop`)
-
-    return null
+  componentDidMount () {
+    window.scrollTo(0, 0)
   }
+  
+  render () {
+    const token       = shopToken()
+    const currentShop = APP_CONFIG.SHOP_ID
 
-  const newIcon         = orderStatusContent(ORDER_STATUS.NEW)
-  const startedIcon     = orderStatusContent(ORDER_STATUS.STARTED)
-  const newColor        = orderStatusColor(ORDER_STATUS.NEW)
-  const startedColor    = orderStatusColor(ORDER_STATUS.STARTED)
-  return (
-      <DFPageContainer className="home-page ">
+    if (token) {
+      props.history.push(`/${ currentShop }/shop`)
+
+      return null
+    }
+
+    const newIcon         = orderStatusContent(ORDER_STATUS.NEW)
+    const startedIcon     = orderStatusContent(ORDER_STATUS.STARTED)
+    const newColor        = orderStatusColor(ORDER_STATUS.NEW)
+    const startedColor    = orderStatusColor(ORDER_STATUS.STARTED)
+
+    return <DFPageContainer className="home-page ">
         <div className="shop-header">
           <img className="logo" src="/img/app/logo.png" />
           <DFPageTitle>{ APP_CONFIG.SHOP.NAME }</DFPageTitle>
@@ -83,7 +86,7 @@ const HomeContainer= (props) => {
           </DFContainer>
         </DFContainer>
       </DFPageContainer>
-  );
+    }
 }
 
 export default HomeContainer

@@ -1,10 +1,10 @@
 import React, { PureComponent }     from 'react'
 import _                            from 'lodash'
 import moment                       from 'moment'
+import { withRouter }               from "react-router-dom"
 import { connect }                  from 'react-redux'
 
 import APP_CONFIG                   from '../config'
-
 import { DFPageContainer, 
          DFContainer,
          DFButton,
@@ -13,17 +13,14 @@ import { DFPageContainer,
          DFSubTitle,
          DFItem,  
          DFIcon}                  from '../elements/library'
-
 import { placeOrder, 
          userOrders, 
          setOrderMeta,
          changeOrderMeta, 
          undoChangeOrderMeta }      from '../store/actions/ordersActions'
-
 import { showOrder, 
          confirm,
          hideOrder }                from '../store/actions/appActions'
-
 import ShowUserComponent            from '../components/user/ShowUser.jsx'
 import ViewOrderComponent           from '../components/order/ViewOrder.jsx'
 import OrderMetaComponent           from '../components/order/Meta.jsx'
@@ -36,6 +33,15 @@ import { validUser,
          orderStatusClass,
          orderStatusColor,
          orderStatusContent }       from '../helper'
+
+const AppLink     =  withRouter(( props ) => {
+  const {history, text, page } = props
+
+  return <a 
+    href="#" 
+    onClick={() => history.push(`/${ currentShop }/${ page }`) } 
+  >{ text }</a>
+})
 
 const currentShop       = APP_CONFIG.SHOP_ID
 const confirmSubmission = 'Place Order?'
@@ -74,8 +80,12 @@ class CheckoutContainer extends PureComponent {
   }
 
   userDelivery () {
-    if (!this.props.user || (this.props.orders && this.props.orders.current && this.props.orders.current.changeMeta)) {
-      return null
+    if (!this.props.user || !this.props.user._id || (this.props.orders && this.props.orders.current && this.props.orders.current.changeMeta)) {
+      return <DFContainer>
+      <DFSubTitle>No Delivery Information</DFSubTitle>
+      <p>You need to login or register an account to place this order</p>
+      <p><AppLink page="account" text="Got to registration" /></p>
+    </DFContainer>
     }
     let userName, secondName, addressLineOne, addressLineTwo, tel, latlon
 
@@ -132,7 +142,7 @@ class CheckoutContainer extends PureComponent {
   }
 
   renderCurrentOrder () {
-    if (this.props.user && this.props.orders.current && this.props.orders.current.items && this.props.orders.current.items.length) {
+    if (this.props.orders.current && this.props.orders.current.items && this.props.orders.current.items.length) {
       
       const order = []
 
@@ -143,7 +153,7 @@ class CheckoutContainer extends PureComponent {
             this.buildOrder()
           }
           <DFSectionTitle>Order Total { orderTotal(this.props.orders.current.items) } THB</DFSectionTitle>
-          <DFBlock actions>
+          { this.props.user && this.props.user._id ? <DFBlock actions>
             <DFButton
               className="margin-right-m"
               onClick={ () => this.props.confirm(confirmSubmission) }
@@ -155,9 +165,9 @@ class CheckoutContainer extends PureComponent {
             >
               Change Delivery
             </DFButton>
-          </DFBlock>
+          </DFBlock> : null }
           
-        </DFBlock>
+        </DFBlock> 
         <DFBlock  className="padding-top-xl">
         { this.userDelivery() }
         </DFBlock>

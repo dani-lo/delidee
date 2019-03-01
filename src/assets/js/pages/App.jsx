@@ -27,9 +27,11 @@ import { DFIcon,
         DFPageTitle,
         DFButton }                from '../elements/library'
 
-import { shopToken }              from '../helper'
+import { shopToken, Pood }        from '../helper'
 
 import APP_CONFIG                 from '../config'
+
+import SelectLang                 from '../components/app/SelectLang.jsx'
 
 const currentShop = APP_CONFIG.SHOP_ID
 
@@ -42,6 +44,13 @@ const GoToCheckoutButton =  withRouter(({ history }) => (
 ))
 
 class App extends PureComponent {
+
+  constructor (props) {
+    super(props)
+
+    this.pood = new Pood()
+  }
+
   componentWillReceiveProps(p) {
 
   }
@@ -49,7 +58,8 @@ class App extends PureComponent {
 
     const token             = shopToken()
     const showRegistration  = !this.props.user._id
-    const showCheckout      = this.props.user._id && _.get(this.props, 'orders.current.items.length', 0) > 0
+    const showCheckout      = _.get(this.props, 'orders.current.items.length', 0) > 0
+    const isLoggedIn        = this.props.user && this.props.user._id
     const active            = (path, invert) => {
       
       const docLoc            = document.location.href
@@ -74,7 +84,7 @@ class App extends PureComponent {
     }
 
     if (!token) {
-      return <div id="header">
+      return <div id="header" className={`${isLoggedIn ? 'logged-in' : ''}`}>
         
         <FlashMessage />
         <div className="header-login">
@@ -100,13 +110,9 @@ class App extends PureComponent {
       </div>
     } else {
       return <div id="header">
-        <DFPageTitle>Shop Area</DFPageTitle>
+        <DFPageTitle>{ this.pood.say('shop', 'shop_area') }</DFPageTitle>
         <FlashMessage />
-        <ul>
-          <li>
-            <LogoutComponent />
-          </li>
-        </ul>
+        <LogoutComponent />
         </div>
     }
     
@@ -114,10 +120,16 @@ class App extends PureComponent {
   }
 
   render () {
-    
+    const token = shopToken()
+
+    let cname = 'no-shop'
+
+    if (token) {
+      cname="with-shop"
+    }
     // const 
     return <Router>
-      <div id="app">
+      <div id="app" className={ cname }>
         { this.header() }
         <Route exact path={`/${ currentShop }`} component={ HomeContainer } />
         <Route path={`/${ currentShop }/orders`} component={ OrdersContainer } />
@@ -126,7 +138,12 @@ class App extends PureComponent {
         <Route path={`/${ currentShop }/shop`} component={ ShopContainer } />
         <Route path={`/${ currentShop }/shop-order/:orderId`} component={ ShopOrderContainer } />
         <Route path={`/${ currentShop }/checkout`} component={ CheckoutContainer } />
-        <div className="app-footer"></div>
+        <div className="app-footer">
+          <div className="lang-selector padding-l right-align">
+            <SelectLang lang="th" text="Thai"  className="padding-right-m" img="/img/app/th.png" />
+            <SelectLang lang="en" text="English" img="/img/app/en.png"  />
+          </div>
+        </div>
       </div>
   </Router>
   }

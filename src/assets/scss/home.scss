@@ -43,7 +43,7 @@
   p {
     line-height: 1.75em;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1em;
 
 
     &.funny {
@@ -57,14 +57,6 @@
     // border: 1px solid var(--main-border-color);
     border-radius: 4px;
 
-    a {
-      color: var(--brand-color);
-
-      &:hover {
-        color: var(--highlight-bg-color);
-      }
-    }
-
     img {
       width: 100%;
       margin: 0;
@@ -72,3 +64,36 @@
   }
 }
 
+@media only screen and (max-width: 800px) {
+  body {
+    .home-page {
+      width: 95%;
+      margin: 0 auto;
+
+      .flex-parent {
+        display: block;
+      }
+      .home-bit.flex-cild {
+        display: block;
+        padding: 8px;
+        margin: 0 0 8px;
+      }
+      h3.payoff {
+            padding: 0 0 18px;
+        font-size: 1.4em;
+      }
+      .home-header {
+        padding-bottom: 0;
+      }
+      img.logo {
+        display: none;
+      }
+      h4 {
+          font-size: 1.3em;
+          padding: 8px;
+          margin: 0;
+      }
+    }
+  }
+  
+}

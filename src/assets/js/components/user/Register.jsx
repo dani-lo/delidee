@@ -115,7 +115,7 @@ class RegistrationComponent extends PureComponent {
                 onBlur    = { (e) => this.validateUsername(e.target.value) }
               />
             </DFInputsField>
-            <DFNote className="padding-m margin-bottom-xl">We will only use your email to identify your account</DFNote>
+            <DFNote className="padding-m margin-bottom-xl no-dis">We will only use your email to identify your account</DFNote>
           </div>
           <DFInputsField txtfield  className="flex-parent margin-v-l">
             <DFLabel 

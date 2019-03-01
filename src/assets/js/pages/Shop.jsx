@@ -26,6 +26,7 @@ import { shopToken,
          Item,
          startShopAlert,
          stopShopAlert,
+         Pood,
          orderTotal }                       from '../helper'
 
 import APP_CONFIG                           from '../config'
@@ -33,16 +34,17 @@ import APP_CONFIG                           from '../config'
 import { shopOrders, 
          pollNewOrders }                    from '../store/actions/shopActions'
 
-
 const currentShop = APP_CONFIG.SHOP_ID
 
 class GoToOrderComponent extends PureComponent{
   constructor (props) {
     super(props)
+
+    this.pood = new Pood()
   }
 
   render () {
-    return  <DFButton onClick={() => this.props.history.push(`/${ currentShop }/shop-order/${ this.props.oid }`) }>View &gt;</DFButton>
+    return  <DFButton onClick={() => this.props.history.push(`/${ currentShop }/shop-order/${ this.props.oid }`) }>{ this.pood.say('shop', 'view_order') } &gt;</DFButton>
   }
 }
 
@@ -51,6 +53,8 @@ const GoToOrderButton =  withRouter(GoToOrderComponent)
 class ShopContainer extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.pood = new Pood()
   }
 
   componentDidMount () {
@@ -93,14 +97,14 @@ class ShopContainer extends PureComponent {
 
   renderOrder (order) {
     const created       = moment(order.createdAt).format(APP_CONFIG.DATE_FORMAT)
-    const status        = displayStatus(order.status ? order.status : '')
-    const statusContent = orderStatusContent(order.status)
+    const status        = displayStatus(order.status, this.pood)
+    const statusContent = orderStatusContent(order.status, this.pood)
     const { firstName, secondName, userName } = _.get(order, 'meta.metaData', {})
     
     return  <DFContainer className={`margin-v-m order client-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
       <DFIcon className={ `order-status ${ statusContent.icon }`} status={ order.status } />
-      <DFSubTitle className="padding-bottom-m">{ `${ firstName ? firstName : '' } ${ secondName ? secondName : '' } (${ userName })` }<span className="padding-left-l">{ created }</span></DFSubTitle>
-      <DFItem className="low-case">{ status }</DFItem>
+      <DFSubTitle className="padding-bottom-m">{ this.pood.say('shop', 'user')}: { `${ firstName ? firstName : '' } ${ secondName ? secondName : '' } (${ userName })` }<span className="padding-left-l">{ created }</span></DFSubTitle>
+      <DFItem className="low-case">{ this.pood.say('order', status) }</DFItem>
 
       <GoToOrderButton oid={ order._id } />
     </DFContainer>
@@ -145,20 +149,20 @@ class ShopContainer extends PureComponent {
 
       return <DFContainer>
         { !newOrders && !startedOrders && !otherOrders ? 
-           <DFSubTitle className="padding-v-l margin-v-xl">No Orders To Show</DFSubTitle> : null}
+           <DFSubTitle className="padding-v-l margin-v-xl">{ this.pood.say('shop', 'no_orders') }</DFSubTitle> : null}
         { newOrders ? 
           <Fragment>
-            <DFSubTitle className="padding-v-l margin-v-xl">New Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">{ this.pood.say('shop', 'new_orders') }</DFSubTitle>
             { newOrders }
           </Fragment> : null }
           { startedOrders ? 
           <Fragment>
-            <DFSubTitle className="padding-v-l margin-v-xl">Started Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">{ this.pood.say('shop', 'started_orders') }</DFSubTitle>
             { startedOrders }
           </Fragment> : null }
           { otherOrders ? 
           <Fragment>
-            <DFSubTitle className="padding-v-l margin-v-xl">Other Orders</DFSubTitle>
+            <DFSubTitle className="padding-v-l margin-v-xl">{ this.pood.say('shop', 'other_orders') }</DFSubTitle>
             { otherOrders }
           </Fragment> : null }
       </DFContainer>

@@ -18,6 +18,7 @@ import { shopToken,
          ORDER_STATUS,
          orderStatusClass,
          orderStatusColor,
+         Pood,
          orderTotal }                         from '../helper'
 
 import APP_CONFIG                             from '../config'
@@ -48,6 +49,8 @@ const GoToShopButton =  withRouter(({ history }) => (
 class ShopOrderContainer extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.pood = new Pood()
   }
 
   componentDidMount () {
@@ -90,33 +93,35 @@ class ShopOrderContainer extends PureComponent {
     
   
     return  <DFContainer className={`order shop-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
-      <PlayerComponent />
       <div className="order-status-actions padding-l">
         { order.status === ORDER_STATUS.NEW ? 
-          <DFButton onClick={ () => this.props.confirm(confirmation.started) }>Start</DFButton> 
+          <DFButton onClick={ () => this.props.confirm(confirmation.started) }>{ this.pood.say('shop', 'start') }</DFButton> 
           : null }
         { order.status === ORDER_STATUS.STARTED ? 
           <Fragment>
-            <DFButton onClick={ () => this.props.confirm(confirmation.delivered) } className="margin-right-xl">Delivered</DFButton>
-            <DFButton onClick={ () => this.props.confirm(confirmation.failed) }>Failed</DFButton>
+            <DFButton onClick={ () => this.props.confirm(confirmation.delivered) } className="margin-right-xl">{ this.pood.say('shop', 'delivered') }</DFButton>
+            <DFButton onClick={ () => this.props.confirm(confirmation.failed) }>{ this.pood.say('shop', 'failed') }</DFButton>
           </Fragment>
         : null }
       </div>
       <DFSectionTitle>{ when }</DFSectionTitle>
       <div  className="padding-v-l">{ orderItems }</div>
-      <DFSubTitle className="padding-v-l">User Comments</DFSubTitle>
+      <DFSubTitle className="padding-v-l">{this.pood.say('shop', 'user_comments')}</DFSubTitle>
       <p>{ comment && comment.length ? comment : 'None' }</p>
-      <DFSubTitle className="padding-v-l">Delivery Information</DFSubTitle>
+      <DFSubTitle className="padding-v-l">{this.pood.say('shop', 'delivery_info')}</DFSubTitle>
+      <h2>{this.pood.say('shop', 'name')}</h2>
       <p>{ firstName }</p>
       <p>{ secondName }</p>
+      <h2>{this.pood.say('shop', 'address')}</h2>
       <p>{ addressLineOne }</p>
       <p>{ addressLineTwo }</p>
+      <h2>{this.pood.say('shop', 'tel')}</h2>
       <p>{ tel }</p>
       <MapComponent 
         latlon          = { latlon }
         maptext         = { "Delivery Location" }
         editable        = { false }
-        mapinst         = "Order Location"
+        mapinst         = { this.pood.say('shop', 'order_location')}
       />
     </DFContainer>
   }
@@ -137,7 +142,8 @@ class ShopOrderContainer extends PureComponent {
 
           return <ConfirmComponent  
             onCancel  = { () => this.props.confirm(null) }
-            onConfirm = { () => this.onConfirm(orderId, ORDER_STATUS.STARTED, token) }
+            onConfirm = { () => this.onConfirm(orderId,
+             ORDER_STATUS.STARTED, token) }
             text      = { confirmation.started}
           />
         case confirmation.delivered :

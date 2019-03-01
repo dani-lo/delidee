@@ -54,6 +54,9 @@
     }
     p {
       color: #000;
+      &.chart-instructions {
+        color: #fff;
+      }
     }
     ul.item-options {
       li {

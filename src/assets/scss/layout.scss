@@ -17,3 +17,22 @@ body {
     bottom: 0;
   z-index: 123;
 }
+.lang-selector {
+  display: block;
+}
+
+//.with-shop {
+  .lang-selector {
+    display: block;
+    position: absolute;
+    right: 20px;
+
+    img {
+      width: 20px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+//}
