@@ -5,6 +5,7 @@ import ls                   from 'local-storage'
 import { DFItem,
          DFSubTitle }       from './elements/library'
 import ItemOptions          from './components/order/ItemOptions.jsx'
+import APP_TRANS            from './trans.js'
 
 const ORDER_STATUS = {
   NEW       : 'NEW', 
@@ -14,10 +15,24 @@ const ORDER_STATUS = {
   FAILED    :  'FAILED'
 }
 
+const APP_LANGS = {
+  TH: 'th',
+  EN: 'en'
+}
+
 const _GLOBAL = {
   PUSH_INTERVAL: false
 }
 
+class Pood  {
+  constructor () {
+    this.lang = ls('LANG') || APP_LANGS.EN 
+  }
+
+  say (section, key) {
+    return APP_TRANS[section] ? (APP_TRANS[section][this.lang] ? (APP_TRANS[section][this.lang][key] ? APP_TRANS[section][this.lang][key] : '') : '') : ''
+  }
+}
 
 const setAppGlobal = (key, val) => {
   _GLOBAL[key] = val
@@ -52,19 +67,21 @@ const orderStatusClass = (o) => {
   return o.status ? o.status.toLowerCase() : ''
 }
 
-const displayStatus = (status) => {
+const displayStatus = (status, pood) => {
   switch (status) {
     case ORDER_STATUS.NEW: 
-      return 'This order has been submitted and is waiting for restaurant staff to accept it'
+      return pood ? pood.say('order', 'status_new') : 'This order has been submitted and is waiting for restaurant staff to accept it'
     case ORDER_STATUS.STARTED: 
-      return 'This order has been accepted by staff and is being prepared'
+      return pood ? pood.say('order', 'status_started') : 'This order has been accepted by staff and is being prepared'
     case ORDER_STATUS.OUT: 
-      return 'This order has been prepared and is on its way to your location'
+      return pood ? pood.say('order', 'status_out') : 'This order has been prepared and is on its way'
     case ORDER_STATUS.DELIVERED: 
-      return 'This order has been delivered'
+      return pood ? pood.say('order', 'status_delivered') : 'This order has been delivered'
     case ORDER_STATUS.FAILED: 
-      return 'This order has been prepared and shipped but we could not deliver it to you'
+      return pood ? pood.say('order', 'status_failed') : 'This order has been prepared and shipped but we could not deliver it to you'
   }
+
+  return pood ? pood.say('app', 'unknown') : 'unknown'
 }
 
 const validUser = (user) => {
@@ -155,37 +172,37 @@ const orderStatusColor = status => {
   }
 }
 
-const orderStatusContent = (status) => {
+const orderStatusContent = (status, pood) => {
   switch (status) {
     case ORDER_STATUS.NEW :
 
     return {
       icon: 'fas fa-arrow-circle-up',
-      txt: 'Your order was submitted and we will start it soon'
+      txt: displayStatus(status, pood)
     }
     case ORDER_STATUS.STARTED :
 
     return {
       icon: 'far fa-clock',
-      txt: 'We have received your order, it will be with you soon'
+      txt: displayStatus(status, pood)
     }
     case ORDER_STATUS.DELIVERED :
 
     return {
       icon: 'far fa-check-circle',
-      txt: 'This order was delivered, thank you'
+      txt: displayStatus(status, pood)
     }
     case ORDER_STATUS.FAILED :
 
     return {
       icon: 'far fa-times-circle' ,
-      txt: 'This order was not delivered, please contact us'
+      txt: displayStatus(status, pood)
     }
     case ORDER_STATUS.REJECTED :
 
     return {
       icon: 'fas fa-ban',
-      txt: 'Sorry we had to reject this order, please contact us'
+      txt: displayStatus(status, pood)
     }
       
   }
@@ -214,5 +231,6 @@ export {
   orderStatusContent,
   orderStatusColor,
   deleteShopToken,
-  validateEmail
+  validateEmail,
+  Pood
 }

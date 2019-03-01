@@ -2,7 +2,8 @@ import React                  from 'react'
 import { withRouter }         from "react-router-dom"
 import { connect }            from 'react-redux'
 
-import { deleteShopToken }    from '../../helper'
+import { deleteShopToken,
+         Pood }               from '../../helper'
 
 import { DFSubTitle,
          DFInput,
@@ -21,6 +22,8 @@ const currentShop = APP_CONFIG.SHOP_ID
 
 const LogoutComponent = (props) => {
 
+  const pood = new Pood()
+
   const shopLogout = () => {
     deleteShopToken()
     props.destroyUser()
@@ -30,11 +33,11 @@ const LogoutComponent = (props) => {
   }
 
   if (props.bare) {
-    return <DFButton className="margin-left-s block-btn" onClick={ () => shopLogout() }>logout</DFButton>  
+    return <DFButton className="margin-left-s block-btn" onClick={ () => shopLogout() }>{ pood.say('logout', 'app') }</DFButton>  
   }
 
   return  <DFContainer className="logout">
-    <DFButton onClick={ () => shopLogout() }>logout</DFButton>    
+    <DFButton onClick={ () => shopLogout() }>{ pood.say('app', 'logout') }</DFButton>    
     </DFContainer>
 }
 

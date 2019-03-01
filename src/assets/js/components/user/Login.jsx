@@ -27,7 +27,7 @@ class LoginComponent extends PureComponent {
     return (<DFContainer>
       <DFInputsField className="flex-parent">
         <DFInput.Txt 
-          placeholder = "Username or Email" 
+          placeholder = "Email" 
           value       = { this.state.userName } 
           onChange    = { (e) => this.setState({userName: e.target.value})} 
         />

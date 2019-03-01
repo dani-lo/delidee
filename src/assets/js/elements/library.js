@@ -14,6 +14,7 @@ const DFButton = styled.button`
     color: var(--white-txt-color);
   }
   font-size: 1em;
+  border: 1px solid var(--main-border-color);
   ${props => props.solid && `
     background: var(--brand-color );
   `}

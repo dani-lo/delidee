@@ -6,6 +6,9 @@
   top         : 0;
   width       : 100%;
 
+  div.logout {
+    margin: 24px;
+  }
   h1 {
         margin: 0;
     padding: 0;
@@ -17,7 +20,7 @@
 
   .header-checkout {
     position: absolute;
-    right: 80px;
+    right: 462px;
     top: 12px;
     i {
       top: 6px;
@@ -25,16 +28,23 @@
       margin: 0;
     }
   }
+  
    .header-login {
     position: absolute;
     right: 24px;
-    top: 12px;
+    top: 14px;
     i {
       top: 6px;
       position: relative;
       margin: 0;
     } 
   }
+  &.logged-in {
+    .header-checkout {
+      right: 80px;
+    }
+  }
+
   ul {
     padding: 4px 0 4px 24px;
     li {

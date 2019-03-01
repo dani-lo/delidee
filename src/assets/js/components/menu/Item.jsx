@@ -164,7 +164,7 @@ class MenuItemComponent extends PureComponent {
       </div>
       <img src={`/img/menu/${ img }`} />
       <div className="menu-item-order">
-        { loggedin ?  this.renderItemSelection(selectedQuantity) : null }
+        {  this.renderItemSelection(selectedQuantity)  }
       </div>
     </DFMenuItem>
   }

@@ -3,6 +3,21 @@ body {
   color: var(--main-txt-color);
 }
 
+a {
+  color: var(--brand-color);
+  font-weight: bold;
+  
+  &:hover {
+    color: var(--sub-bg-color);
+  }
+}
+
+.app-footer {
+  a:hover {
+    color: var(--highlight-bg-color);
+  }
+}
+
 @media only screen and (max-width: 800px) {
   h1 {
     font-size: 20px;

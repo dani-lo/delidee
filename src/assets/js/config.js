@@ -8,7 +8,7 @@ const APP_CONFIG = {
   PIN               : '/img/app/cross.png',
   SHOP              : {
     NAME    : 'Siam Cafe Rawai',
-    OPENING_TIME: '24/7, 365 dasys a year',
+    OPENING_TIME: '24/7 365 dasys a year',
     LATLON  : { LAT: 7.783661, LON: 98.329159 },
     LOGO    : '/img/app/logo.png'
   }
