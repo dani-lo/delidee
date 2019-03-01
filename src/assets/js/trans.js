@@ -108,7 +108,8 @@ const APP_TRANS = {
          confirm_deliver: "Confirm Order Delivered",
          confirm_fail: "Confirm Order Failed",
          tel: "Telephone",
-         order_location: "order location"
+         order_location: "order location",
+         back: "back"
       },
       th: {
          shop_area:"พื้นที่ร้านค้า",
@@ -132,7 +133,8 @@ const APP_TRANS = {
          confirm_deliver: "ยืนยันคำสั่งซื้อที่ส่งมอบแล้ว",
          confirm_fail: "ยืนยันคำสั่งซื้อล้มเหลว",
          tel: "โทรศัพท์",
-         order_location: "สถานที่สั่งซื้อ"
+         order_location: "สถานที่สั่งซื้อ",
+         back: "ย้อนกลับ"
       }
    }
 }

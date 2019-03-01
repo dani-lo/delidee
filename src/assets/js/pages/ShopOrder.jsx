@@ -42,8 +42,8 @@ const confirmation = {
   failed    : 'Confirm Failed Order'
 }
 
-const GoToShopButton =  withRouter(({ history }) => (
-  <DFButton onClick={() => history.push(`/${ currentShop }/shop`) }>&lt; Back</DFButton>
+const GoToShopButton =  withRouter(({ history, txt }) => (
+  <DFButton onClick={() => history.push(`/${ currentShop }/shop`) }>&lt; { txt }</DFButton>
 ))
 
 class ShopOrderContainer extends PureComponent {
@@ -169,7 +169,7 @@ class ShopOrderContainer extends PureComponent {
 
     return (<DFPageContainer className="shop-page">
       <DFContainer className="margin-v-xl">
-      <GoToShopButton />
+      <GoToShopButton txt={ this.pood.say('shop', 'back')} />
       { confirmModal }
       </DFContainer>
       <DFContainer>
