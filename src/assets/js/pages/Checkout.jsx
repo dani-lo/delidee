@@ -17,6 +17,7 @@ import { placeOrder,
          userOrders, 
          setOrderMeta,
          changeOrderMeta, 
+         removeItem,
          undoChangeOrderMeta }      from '../store/actions/ordersActions'
 import { showOrder, 
          confirm,
@@ -120,7 +121,7 @@ class CheckoutContainer extends PureComponent {
   buildOrder () {
     const order = []
 
-    this.props.orders.current.items.map(item => {
+    this.props.orders.current.items.map((item) => {
 
       if (item.quantity > 1) {
         for (let i = 0; i < item.quantity; i++) {
@@ -130,11 +131,25 @@ class CheckoutContainer extends PureComponent {
             price: item.price,
             options: item.options && item.options[i] ? [item.options[i]] : null
           }
-          order.push(<Item data={ itemData } />)
+          order.push(
+            <div className="checkout-order-item margin-bottom-l">
+              <Item data={ itemData } />
+              <DFButton 
+                cancel
+                onClick = { () => this.props.removeOrderItem(item.pid, i) }
+              >Delete from order</DFButton>
+            </div>)
         }
       } else {
-        order.push(<Item data={ item } />)
+        order.push(  <div className="checkout-order-item margin-bottom-l">
+              <Item data={ item } />
+              <DFButton 
+                cancel
+                onClick = { () => this.props.removeOrderItem(item.pid) }
+              >Delete from order</DFButton>
+            </div>)
       }
+      //this.props.removeOrderItem(pid, i)
       
     })
 
@@ -247,7 +262,8 @@ const mapDispatchToProps = dispatch => ({
   changeOrderMeta     : () => dispatch(changeOrderMeta()),
   undoChangeOrderMeta : () => dispatch(undoChangeOrderMeta()),
   hideOrder           : () => dispatch(hideOrder()),
-  confirm             : (txt) => dispatch(confirm(txt))
+  confirm             : (txt) => dispatch(confirm(txt)),
+  removeOrderItem     : (pid, i) => dispatch(removeItem(pid, i))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer)

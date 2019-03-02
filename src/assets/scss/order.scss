@@ -33,10 +33,13 @@
   
 }
 
-.order-item {
-    border: 1px dotted #ddd;
+.checkout-order-item {
+  border: 1px dotted #ddd;
     text-transform: capitalize;
     background: var(--disabled-bg-color);
+    position: relative;
+  .order-item {
+    
 
     p.item-name {
       font-weight: bold;
@@ -46,7 +49,14 @@
       font-weight: bold;
       font-size: 1.1em;
     }
+  } 
+  button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+  }
 }
+
 
 body .orders-page {
   width: 900px;

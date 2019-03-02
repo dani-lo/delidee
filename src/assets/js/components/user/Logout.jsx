@@ -33,7 +33,7 @@ const LogoutComponent = (props) => {
   }
 
   if (props.bare) {
-    return <DFButton className="margin-left-s block-btn" onClick={ () => shopLogout() }>{ pood.say('logout', 'app') }</DFButton>  
+    return <DFButton className="margin-left-s block-btn" onClick={ () => shopLogout() }>{ pood.say('app', 'logout') }</DFButton>  
   }
 
   return  <DFContainer className="logout">

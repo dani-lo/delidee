@@ -103,7 +103,8 @@ class ShopContainer extends PureComponent {
     
     return  <DFContainer className={`margin-v-m order client-order order-${ orderStatusClass(order) }`} style={{'border-color': `${orderStatusColor(order.status)}`}}>
       <DFIcon className={ `order-status ${ statusContent.icon }`} status={ order.status } />
-      <DFSubTitle className="padding-bottom-m">{ this.pood.say('shop', 'user')}: { `${ firstName ? firstName : '' } ${ secondName ? secondName : '' } (${ userName })` }<span className="padding-left-l">{ created }</span></DFSubTitle>
+      <DFSubTitle className="padding-bottom-m">{ this.pood.say('shop', 'user')} { `${ firstName ? firstName : '' } ${ secondName ? secondName : '' } (${ userName })` }</DFSubTitle>
+      <DFSectionTitle>{ created }</DFSectionTitle>
       <DFItem className="low-case">{ this.pood.say('order', status) }</DFItem>
 
       <GoToOrderButton oid={ order._id } />

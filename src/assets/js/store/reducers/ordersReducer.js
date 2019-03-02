@@ -31,11 +31,39 @@ export default function ordersReducer (state = { current: orderDefault, history:
     case ACTIONS.ITEM_REMOVED:
       curr = Object.assign({}, state.current, {items: []})
 
-      const pid     = action.payload
+      const { pid, index } = action.payload
 
       for (let item of state.current.items) {
+
         if (item.pid !== pid) {
           curr.items.push(item)
+        } else {
+
+          if (index || index !== null) {
+
+            if (item.quantity === 1) {
+              continue
+            }
+            
+            let itemCopy = Object.assign({}, item)
+
+            itemCopy.quantity = item.quantity - 1
+            itemCopy.subtotal = parseFloat(item.price) * item.quantity
+
+            itemCopy.options = {}
+
+            let added = 0
+
+            Object.keys(item.options).map((i) => {
+              if (parseInt(i) !== parseInt(index)) {
+          
+                itemCopy.options[added] = item.options[i]
+                added++
+              }
+            })
+ 
+            curr.items.push(itemCopy)
+          }
         }
       }
 

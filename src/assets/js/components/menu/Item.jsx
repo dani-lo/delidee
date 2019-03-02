@@ -109,7 +109,7 @@ class MenuItemComponent extends PureComponent {
         <div className="menu-item-quantity">
           <DFButton 
             cancel
-            onClick = { () => this.props.removeOrderItem(pid) }
+            onClick = { () => this.props.removeOrderItem(pid, null) }
           >Delete from order</DFButton>
         </div>
         
