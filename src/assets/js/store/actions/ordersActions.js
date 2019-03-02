@@ -51,11 +51,11 @@ export function addItem(item) {
     }
 }
 
-export function removeItem(itemPid) {
+export function removeItem(itemPid, itemIndex) {
 
     return {
         type    : ACTIONS.ITEM_REMOVED,
-        payload : itemPid
+        payload : { pid: itemPid, index: itemIndex }
     }
 }
 

@@ -132,7 +132,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   getMenu         : () => dispatch(fetchMenu()),
   addOrderItem    : (item) => dispatch(addItem(item)),
-  removeOrderItem : (pid) => dispatch(removeItem(pid)),
+  removeOrderItem : (pid, index) => dispatch(removeItem(pid, index)),
   notify          : (txt, className) => dispatch(notify(txt, className))
 })
 

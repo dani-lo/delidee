@@ -106,6 +106,7 @@ class ShopOrderContainer extends PureComponent {
       </div>
       <DFSectionTitle>{ when }</DFSectionTitle>
       <div  className="padding-v-l">{ orderItems }</div>
+      <DFPageTitle>{ `${ this.pood.say('shop', 'total') } ${orderTotal(order.items)} thb`  }</DFPageTitle>
       <DFSubTitle className="padding-v-l">{this.pood.say('shop', 'user_comments')}</DFSubTitle>
       <p>{ comment && comment.length ? comment : 'None' }</p>
       <DFSubTitle className="padding-v-l">{this.pood.say('shop', 'delivery_info')}</DFSubTitle>
