@@ -13,7 +13,6 @@ const SelectLang = (props) => {
       }
     }} 
   />
-  // return <a href="#" className={ props.className || ''} onClick={ () => ls('LANG', props.lang) }>{ props.text }</a> 
 }
 
 export default SelectLang

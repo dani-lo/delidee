@@ -10,10 +10,10 @@ const { DB_CONNECTION_STR } = require('./config')
 require('dotenv').config()
 
 const port = process.env.PORT || 8080
-const conn = DB_CONNECTION_STR(process.env)
+const conn = DB_CONNECTION_STR(process.env.MODE)
 /* MONGOODE CONNECTION */
 
-mongoose.connect(DB_CONNECTION_STR(conn))
+mongoose.connect(conn)
 
 mongoose.connection.on('connected', function () {  
   console.log('Mongoose default connection open');
