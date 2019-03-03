@@ -18,7 +18,7 @@ const alertUsers = (newOrder) => {
     message : "New Order",
     title   : "New Order From User " + orderUser,
     sound   : 'persistent',
-    device  : 'daniphone,siam01',
+    device  : 'daniphone,siam01,siam7947',
     priority: 2,
     retry   : 30,
     expire  : 120
