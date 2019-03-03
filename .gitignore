@@ -2,3 +2,6 @@
 .eslintrc
 #dist
 node_modules
+.env
+.util
+backup
