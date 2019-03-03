@@ -13,3 +13,10 @@ exports.DB_CONNECTION_STR = (mode) => {
 
   return `mongodb://${ uName }:${ uPass }@${ sName }/${ dbName }`
 }
+
+exports.SHOPS = {
+  siamcafe: {
+    menu: 'siam.js',
+    sid: 1001
+  }
+}

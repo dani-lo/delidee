@@ -11,6 +11,14 @@ const APP_CONFIG = {
     OPENING_TIME: '24/7 365 dasys a year',
     LATLON  : { LAT: 7.783661, LON: 98.329159 },
     LOGO    : '/img/app/logo.png'
+  },
+  SHOPS: {
+    siamcafe: {
+      NAME    : 'Siam Cafe Rawai',
+      OPENING_TIME: '24/7 365 dasys a year',
+      LATLON  : { LAT: 7.783661, LON: 98.329159 },
+      LOGO    : '/img/app/logo.png'
+    }
   }
 }
 

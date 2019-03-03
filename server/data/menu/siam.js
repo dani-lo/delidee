@@ -48,6 +48,98 @@ const SIAM = {
          }
       ]
    },
+   "SNACK":{
+      "title":{
+         "en":"Snacks and Appetizers"
+      },
+      "items":[
+         {
+            "pid":100,
+            "name":"french fries",
+            "img":"French-Fries-300x300.png",
+            "price":100
+         },
+         {
+            "pid":101,
+            "name":"wedge fries with garlic and parsley",
+            "img":"Wedge-Fries-with-Garlic-Parsley-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":102,
+            "name":"fish finger and fries",
+            "img":"Fish-Finger-Fries-300x300.jpg",
+            "price":150
+         },
+         {
+            "pid":103,
+            "name":"chicken wings",
+            "img":"Chicken-Wings-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":104,
+            "name":"cheese fries",
+            "img":"Cheese-Fries-300x300.jpg",
+            "price":150
+         },
+         {
+            "pid":105,
+            "name":"onion rings",
+            "img":"Onion-Rings-300x300.jpg",
+            "price":100
+         },
+         {
+            "pid":106,
+            "name":"garlic bread",
+            "img":"Garlic-Bread-300x300.jpeg",
+            "price":90
+         },
+         {
+            "pid":99,
+            "name":"cheese balls",
+            "img":"Cheese-Balls-300x300.jpg",
+            "price":180
+         }
+      ]
+   },
+   "THAISTARTERS":{
+      "title":{
+         "en":"Thai Starters"
+      },
+      "items":[
+         {
+            "pid":116,
+            "name":"spring rolls",
+            "img":"Spring-Rolls-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":117,
+            "name":"deep fried shrimps",
+            "img":"Shrimp-Deep-Fried-300x300.jpg",
+            "price":150
+         },
+         {
+            "pid":118,
+            "name":"gyoza",
+            "img":"Gyoza-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":119,
+            "name":"thai fish cakes",
+            "img":"Fish-Cake-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":120,
+            "name":"papaya salad with shrimps",
+            "img":"Papaya-Salad-with-Shrimp-300x300.jpg",
+            "price":150
+         }
+      ]
+   },
    "BURGER":{
       "title":{
          "en":"Burgers"
@@ -114,189 +206,6 @@ const SIAM = {
          }
       ]
    },
-   "MAIN":{
-      "title":{
-         "en":"Main Courses"
-      },
-      "items":[
-         {
-            "pid":146,
-            "name":"chicken breast served with vegetable garnish & home made tomato sauce",
-            "img":"Chicken-Breast-served-with-vegetable-garnish-Home-made-tomato-Sauce-300x300.jpg",
-            "price":280
-         },
-         {
-            "pid":147,
-            "name":"pan fried sea bass , green salad ,lime & garlic sauce",
-            "img":"Pan-Fried-Sea-bass-Green-Salad-Lime-Garlic-Sauce-300x300.jpg",
-            "price":280
-         },
-         {
-            "pid":148,
-            "name":"fish & chips with mushy peas & coleslaw",
-            "img":"Fish-chips-with-Mashy-Peas-colslaw-300x300.jpg",
-            "price":280
-         },
-         {
-            "pid":149,
-            "name":"caramel apple pork loin , mash potaotes",
-            "img":"Caramel-Apple-Pork-Loin-Mash-Potaotes-300x300.jpg",
-            "price":280
-         },
-         {
-            "pid":150,
-            "name":"grilled marinated shrimp with garlic rice and lemon sauce",
-            "img":"Grilled-Marinated-Shrimp-Garlic-Rice-Lemon-Sauce-300x300.jpg",
-            "price":280
-         }
-      ]
-   },
-   "NOODLES":{
-      "title":{
-         "en":"Noodles"
-      },
-      "items":[
-         {
-            "pid":137,
-            "name":"rad na: noodle with sauce",
-            "img":"Rad-na-300x300.jpg",
-            "price":90,
-            "options":{
-               "with":[
-                  "shrimp",
-                  "chicken",
-                  "tofu"
-               ]
-            }
-         },
-         {
-            "pid":138,
-            "name":"pad se' ew: fried noodle with soya sauce",
-            "img":"Pad-se-ew-300x300.jpg",
-            "price":90,
-            "options":{
-               "with":[
-                  "shrimp",
-                  "chicken",
-                  "tofu"
-               ]
-            }
-         },
-         {
-            "pid":139,
-            "name":"pad kee maow: fried noodle with roasted dried chilli",
-            "img":"Pad-Kee-Maow-300x300.jpg",
-            "price":90,
-            "options":{
-               "with":[
-                  "shrimp",
-                  "chicken",
-                  "tofu"
-               ]
-            }
-         },
-         {
-            "pid":140,
-            "name":" noodle soup with chicken",
-            "img":"Noodle-Soup-with-Chicken-300x300.jpg",
-            "price":90,
-            "options":{
-               "with":[
-                  "shrimp",
-                  "chicken",
-                  "tofu"
-               ]
-            }
-         },
-         {
-            "pid":141,
-            "name":"pad thai with shrimp",
-            "img":"Pad-Thai-with-Shrimp-300x300.jpg",
-            "price":90,
-            "options":{
-               "with":[
-                  "shrimp",
-                  "chicken",
-                  "tofu"
-               ]
-            }
-         }
-      ]
-   },
-   "PIZZA":{
-      "title":{
-         "en":"Pizza"
-      },
-      "items":[
-         {
-            "pid":94,
-            "name":"tuna, wurstel and black olive pizza",
-            "img":"Tuna-Hotdog-Black-Olive-Pizza-300x300.jpg",
-            "price":199
-         },
-         {
-            "pid":95,
-            "name":"ham, bacon and pineapple pizza",
-            "img":"Ham-Bacon-Pineapple-Pizza-300x300.jpg",
-            "price":199
-         },
-         {
-            "pid":96,
-            "name":"onion, mushroom and bolognaisese pizza",
-            "img":"Tomato-Basil-and-Cheese-Pizza-300x300.jpg",
-            "price":159
-         },
-         {
-            "pid":97,
-            "name":"onion, mushroom and bolognese pizza",
-            "img":"Onion-Mushroom-Bolonaise-Pizza-300x300.jpeg",
-            "price":159
-         },
-         {
-            "pid":98,
-            "name":"mixed cheese  pizza",
-            "img":"Mixed-Cheese-Pizza-300x300.jpg",
-            "price":220
-         }
-      ]
-   },
-   "SALAD":{
-      "title":{
-         "en":"Salads"
-      },
-      "items":[
-         {
-            "pid":107,
-            "name":"chicken, bacon and parmesan",
-            "img":"Chicken-Bacon-Parmesan-Salad-300x300.jpg",
-            "price":180
-         },
-         {
-            "pid":108,
-            "name":"smoked salmon, avocado and feta cheese",
-            "img":"Smoked-SalmonAvocado-Feta-Cheese-Salad-e1547263687653-300x300.jpg",
-            "price":220
-         },
-         {
-            "pid":109,
-            "name":"mixed green salad",
-            "img":"Mixed-Green-Salad-300x300.jpg",
-            "price":110
-         },
-         {
-            "pid":110,
-            "name":"fish salad",
-            "img":"Fish-Salad-300x300.jpg",
-            "price":220
-         },
-         {
-            "pid":111,
-            "name":"nicoise salas",
-            "img":"Salad-Nicois-300x300.jpg",
-            "price":190
-         }
-      ]
-   },
    "SANDWICHES":{
       "title":{
          "en":"Sandwiches"
@@ -322,58 +231,95 @@ const SIAM = {
          }
       ]
    },
-   "SNACK":{
+   "WRAPS":{
       "title":{
-         "en":"Snacks and Appetizers"
+         "en":"Wraps"
       },
       "items":[
          {
-            "pid":100,
-            "name":"french fries",
-            "img":"French-Fries-300x300.png",
-            "price":100
-         },
-         {
-            "pid":101,
-            "name":"wedge fries with garlic and parsley",
-            "img":"Wedge-Fries-with-Garlic-Parsley-300x300.jpg",
-            "price":120
-         },
-         {
-            "pid":102,
-            "name":"fish finger and fries",
-            "img":"Fish-Finger-Fries-300x300.jpg",
+            "pid":89,
+            "name":"chicken jalapenoes & cheese",
+            "img":"Chicken-Jalapenos-and-Cheese-300x300.jpg",
             "price":150
          },
          {
-            "pid":103,
-            "name":"chicken wings",
-            "img":"Chicken-Wings-300x300.jpg",
-            "price":120
-         },
-         {
-            "pid":104,
-            "name":"cheese fries",
-            "img":"Cheese-Fries-300x300.jpg",
-            "price":150
-         },
-         {
-            "pid":105,
-            "name":"onion rings",
-            "img":"Onion-Rings-300x300.jpg",
-            "price":100
-         },
-         {
-            "pid":106,
-            "name":"garlic bread",
-            "img":"Garlic-Bread-300x300.jpeg",
-            "price":90
-         },
-         {
-            "pid":99,
-            "name":"cheese balls",
-            "img":"Cheese-Balls-300x300.jpg",
+            "pid":92,
+            "name":"deep fried fish",
+            "img":"Deep-Fried-Fish-300x300.jpg",
             "price":180
+         },
+         {
+            "pid":93,
+            "name":"mixed meat",
+            "img":"Mixed-Meat-Wraps-300x300.jpg",
+            "price":150
+         }
+      ]
+   },
+   "NOODLES":{
+      "title":{
+         "en":"Noodles"
+      },
+      "items":[
+         {
+            "pid":137,
+            "name":"rad na: noodle with sauce",
+            "img":"Rad-na-300x300.jpg",
+            "price":90,
+            "options":{
+               "with":[
+                  "shrimp",
+                  "chicken"
+               ]
+            }
+         },
+         {
+            "pid":138,
+            "name":"pad se' ew: fried noodle with soya sauce",
+            "img":"Pad-se-ew-300x300.jpg",
+            "price":90,
+            "options":{
+               "with":[
+                  "shrimp",
+                  "chicken"
+               ]
+            }
+         },
+         {
+            "pid":139,
+            "name":"pad kee maow: fried noodle with roasted dried chilli",
+            "img":"Pad-Kee-Maow-300x300.jpg",
+            "price":90,
+            "options":{
+               "with":[
+                  "shrimp",
+                  "chicken"
+               ]
+            }
+         },
+         {
+            "pid":140,
+            "name":" noodle soup",
+            "img":"Noodle-Soup-with-Chicken-300x300.jpg",
+            "price":90,
+            "options":{
+               "with":[
+                  "shrimp",
+                  "chicken"
+               ]
+            }
+         },
+         {
+            "pid":141,
+            "name":"pad thai",
+            "img":"Pad-Thai-with-Shrimp-300x300.jpg",
+            "price":90,
+            "options":{
+               "with":[
+                  "shrimp",
+                  "chicken"
+               ]
+            }
          }
       ]
    },
@@ -397,35 +343,13 @@ const SIAM = {
             "pid":143,
             "name":"shrimp with chilli paste",
             "img":"Side-Rice-Shrimp-with-chilli-Paste-300x300.jpg",
-            "price":120,
-            "options":{
-               "with":[
-
-               ],
-               "cook":[
-
-               ],
-               "side":[
-
-               ]
-            }
+            "price":120
          },
          {
             "pid":144,
             "name":"chicken with bell peppers",
             "img":"Side-Rice-Chicken-with-Bell-Peppers-300x300.jpg",
-            "price":120,
-            "options":{
-               "with":[
-
-               ],
-               "cook":[
-
-               ],
-               "side":[
-
-               ]
-            }
+            "price":120
          },
          {
             "pid":145,
@@ -434,8 +358,9 @@ const SIAM = {
             "price":120,
             "options":{
                "with":[
-                  "CHICKEN",
-                  "PORK"
+                  "chicken",
+                  "pork",
+                  "shrimps"
                ]
             }
          }
@@ -456,8 +381,7 @@ const SIAM = {
                   "CHICKEN",
                   "PORK",
                   "BEEF",
-                  "SHRIMP",
-                  "TOFU"
+                  "SHRIMP"
                ]
             }
          },
@@ -471,8 +395,7 @@ const SIAM = {
                   "CHICKEN",
                   "PORK",
                   "BEEF",
-                  "SHRIMP",
-                  "TOFU"
+                  "SHRIMP"
                ]
             }
          },
@@ -486,8 +409,7 @@ const SIAM = {
                   "CHICKEN",
                   "PORK",
                   "BEEF",
-                  "SHRIMP",
-                  "TOFU"
+                  "SHRIMP"
                ]
             }
          },
@@ -501,8 +423,7 @@ const SIAM = {
                   "CHICKEN",
                   "PORK",
                   "BEEF",
-                  "SHRIMP",
-                  "TOFU"
+                  "SHRIMP"
                ]
             }
          },
@@ -516,8 +437,7 @@ const SIAM = {
                   "CHICKEN",
                   "PORK",
                   "BEEF",
-                  "SHRIMP",
-                  "TOFU"
+                  "SHRIMP"
                ]
             }
          }
@@ -572,64 +492,201 @@ const SIAM = {
          }
       ]
    },
-   "THAISTARTERS":{
+   "MAIN":{
       "title":{
-         "en":"Thai Starters"
+         "en":"Main Courses"
       },
       "items":[
          {
-            "pid":116,
-            "name":"spring rolls",
-            "img":"Spring-Rolls-300x300.jpg",
-            "price":120
+            "pid":146,
+            "name":"chicken breast served with vegetable garnish & home made tomato sauce",
+            "img":"Chicken-Breast-served-with-vegetable-garnish-Home-made-tomato-Sauce-300x300.jpg",
+            "price":280
          },
          {
-            "pid":117,
-            "name":"deep fried shrimps",
-            "img":"Shrimp-Deep-Fried-300x300.jpg",
-            "price":150
+            "pid":147,
+            "name":"pan fried sea bass , green salad ,lime & garlic sauce",
+            "img":"Pan-Fried-Sea-bass-Green-Salad-Lime-Garlic-Sauce-300x300.jpg",
+            "price":280
          },
          {
-            "pid":118,
-            "name":"gyoza",
-            "img":"Gyoza-300x300.jpg",
-            "price":120
+            "pid":148,
+            "name":"fish & chips with mushy peas & coleslaw",
+            "img":"Fish-chips-with-Mashy-Peas-colslaw-300x300.jpg",
+            "price":280
          },
          {
-            "pid":119,
-            "name":"thai fish cakes",
-            "img":"Fish-Cake-300x300.jpg",
-            "price":120
+            "pid":149,
+            "name":"caramel apple pork loin , mash potaotes",
+            "img":"Caramel-Apple-Pork-Loin-Mash-Potaotes-300x300.jpg",
+            "price":280
          },
          {
-            "pid":120,
-            "name":"papaya salad with shrimps",
-            "img":"Papaya-Salad-with-Shrimp-300x300.jpg",
-            "price":150
+            "pid":150,
+            "name":"grilled marinated shrimp with garlic rice and lemon sauce",
+            "img":"Grilled-Marinated-Shrimp-Garlic-Rice-Lemon-Sauce-300x300.jpg",
+            "price":280
          }
       ]
    },
-   "WRAPS":{
+   
+   "SALAD":{
       "title":{
-         "en":"Wraps"
+         "en":"Salads"
       },
       "items":[
          {
-            "pid":89,
-            "name":"chicken jalapenoes & cheese",
-            "img":"Chicken-Jalapenos-and-Cheese-300x300.jpg",
-            "price":150
-         },
-         {
-            "pid":92,
-            "name":"deep fried fish",
-            "img":"Deep-Fried-Fish-300x300.jpg",
+            "pid":107,
+            "name":"chicken, bacon and parmesan",
+            "img":"Chicken-Bacon-Parmesan-Salad-300x300.jpg",
             "price":180
          },
          {
-            "pid":93,
-            "name":"mixed meat",
-            "img":"Mixed-Meat-Wraps-300x300.jpg",
+            "pid":108,
+            "name":"smoked salmon, avocado and feta cheese",
+            "img":"Smoked-SalmonAvocado-Feta-Cheese-Salad-e1547263687653-300x300.jpg",
+            "price":220
+         },
+         {
+            "pid":109,
+            "name":"mixed green salad",
+            "img":"Mixed-Green-Salad-300x300.jpg",
+            "price":110
+         },
+         {
+            "pid":110,
+            "name":"fish salad",
+            "img":"Fish-Salad-300x300.jpg",
+            "price":220
+         },
+         {
+            "pid":111,
+            "name":"nicoise salas",
+            "img":"Salad-Nicois-300x300.jpg",
+            "price":190
+         }
+      ]
+   },
+   "PIZZA":{
+      "title":{
+         "en":"Pizza"
+      },
+      "items":[
+         {
+            "pid":94,
+            "name":"tuna, wurstel and black olive pizza",
+            "img":"Tuna-Hotdog-Black-Olive-Pizza-300x300.jpg",
+            "price":199
+         },
+         {
+            "pid":95,
+            "name":"ham, bacon and pineapple pizza",
+            "img":"Ham-Bacon-Pineapple-Pizza-300x300.jpg",
+            "price":199
+         },
+         {
+            "pid":96,
+            "name":"onion, mushroom and bolognaisese pizza",
+            "img":"Tomato-Basil-and-Cheese-Pizza-300x300.jpg",
+            "price":159
+         },
+         {
+            "pid":97,
+            "name":"onion, mushroom and bolognese pizza",
+            "img":"Onion-Mushroom-Bolonaise-Pizza-300x300.jpeg",
+            "price":159
+         },
+         {
+            "pid":98,
+            "name":"mixed cheese  pizza",
+            "img":"Mixed-Cheese-Pizza-300x300.jpg",
+            "price":220
+         }
+      ]
+   },
+    "SPAGHETTI":{
+      "title":{
+         "en":"Spaghetti"
+      },
+      "items":[
+         {
+            "pid":151,
+            "name":"spaghetti bolognese",
+            "img":"Spaghetti-Bolognese-300x300.jpg",
+            "price":220
+         },
+         {
+            "pid":152,
+            "name":"spaghetti carbonara",
+            "img":"Spaghetti-Carbonara-300x300.jpeg",
+            "price":220
+         },
+         {
+            "pid":153,
+            "name":"spaghetti al pesto",
+            "img":"Spaghetti-Pesto-Sauce-300x300.jpg",
+            "price":220
+         },
+         {
+            "pid":154,
+            "name":"spaghetti tuna, garlic and chilli",
+            "img":"Spaghetti-Tuna-with-Garlic-Chilli-300x300.jpg",
+            "price":190
+         }
+      ]
+   },
+   "SOUP":{
+      "title":{
+         "en":"Soups"
+      },
+      "items":[
+         {
+            "pid":112,
+            "name":"chicken cream soup",
+            "img":"Chicken-Cream-Soup-300x300.jpeg",
+            "price":90
+         },
+         {
+            "pid":113,
+            "name":"mushroom chicken cream soup",
+            "img":"Mushroom-Chicken-Cream-Soup-e1547387018585-300x300.jpg",
+            "price":90
+         },
+         {
+            "pid":114,
+            "name":"clear soup with vegetable",
+            "img":"Clear-Soup-with-vegetable-300x300.jpg",
+            "price":90
+         },
+         {
+            "pid":115,
+            "name":"potatoes cream soup",
+            "img":"Potatoes-Cream-Soup-300x300.jpg",
+            "price":90
+         }
+      ]
+   },
+   "DESSERTS":{
+      "title":{
+         "en":"Desserts"
+      },
+      "items":[
+         {
+            "pid":155,
+            "name":"banana fritter and ice cream",
+            "img":"Banana-Friter-Ice-Cream-300x300.jpg",
+            "price":150
+         },
+         {
+            "pid":156,
+            "name":"mango sticky rice",
+            "img":"Mango-sticky-Rice-300x300.jpg",
+            "price":120
+         },
+         {
+            "pid":157,
+            "name":"honey toast with ice cream",
+            "img":"Honey-Toast-with-Ice-Cream-300x300.jpg",
             "price":150
          }
       ]
@@ -711,6 +768,58 @@ const SIAM = {
             "name":"gin tonic",
             "img":"Gin-Tonic-300x300.jpg",
             "price":190
+         }
+      ]
+   },
+   
+   
+   "DETOX":{
+      "title":{
+         "en":"Detox"
+      },
+      "items":[
+         {
+            "pid":61,
+            "name":"cowboy",
+            "img":"Cowboy-300x300.jpg",
+            "price":150
+         },
+         {
+            "pid":63,
+            "name":"green freedom",
+            "img":"Green-Freedom-300x300.jpg",
+            "price":150
+         }
+      ]
+   },
+   "MILKSHAKE":{
+      "title":{
+         "en":"Milk Shakes"
+      },
+      "items":[
+         {
+            "pid":27,
+            "name":"banana & vanilla",
+            "img":"Banana-Vanilla-Milk-Shake-300x300.jpg",
+            "price":90
+         },
+         {
+            "pid":28,
+            "name":"strawberry",
+            "img":"Strawberry-Milkshake-300x300.jpg",
+            "price":90
+         },
+         {
+            "pid":29,
+            "name":"chocolate",
+            "img":"Chocolate-Milk-Shake-300x300.jpg",
+            "price":90
+         },
+         {
+            "pid":30,
+            "name":"coconut",
+            "img":"Coconut-Milk-Shake-300x300.jpg",
+            "price":90
          }
       ]
    },
@@ -823,47 +932,22 @@ const SIAM = {
          }
       ]
    },
-   "DESSERTS":{
+   "SMOOTHIES":{
       "title":{
-         "en":"Desserts"
+         "en":"Smoothies"
       },
       "items":[
          {
-            "pid":155,
-            "name":"banana fritter and ice cream",
-            "img":"Banana-Friter-Ice-Cream-300x300.jpg",
-            "price":150
+            "pid":33,
+            "name":"mixed berry",
+            "img":"Mixed-Berry-Smoothies-e1547560220862-300x300.jpg",
+            "price":90
          },
          {
-            "pid":156,
-            "name":"mango sticky rice",
-            "img":"Mango-sticky-Rice-300x300.jpg",
-            "price":120
-         },
-         {
-            "pid":157,
-            "name":"honey toast with ice cream",
-            "img":"Honey-Toast-with-Ice-Cream-300x300.jpg",
-            "price":150
-         }
-      ]
-   },
-   "DETOX":{
-      "title":{
-         "en":"Detox"
-      },
-      "items":[
-         {
-            "pid":61,
-            "name":"cowboy",
-            "img":"Cowboy-300x300.jpg",
-            "price":150
-         },
-         {
-            "pid":63,
-            "name":"green freedom",
-            "img":"Green-Freedom-300x300.jpg",
-            "price":150
+            "pid":34,
+            "name":"banana honey",
+            "img":"Banana-Honey-Smoothies-300x300.jpg",
+            "price":90
          }
       ]
    },
@@ -1013,38 +1097,7 @@ const SIAM = {
             "price":80
          }
       ]
-   },
-   "MILKSHAKE":{
-      "title":{
-         "en":"Milk Shakes"
-      },
-      "items":[
-         {
-            "pid":27,
-            "name":"banana & vanilla",
-            "img":"Banana-Vanilla-Milk-Shake-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":28,
-            "name":"strawberry",
-            "img":"Strawberry-Milkshake-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":29,
-            "name":"chocolate",
-            "img":"Chocolate-Milk-Shake-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":30,
-            "name":"coconut",
-            "img":"Coconut-Milk-Shake-300x300.jpg",
-            "price":90
-         }
-      ]
-   },
+   }, 
    "SOFTDRINK":{
       "title":{
          "en":"Soft Drinks"
@@ -1109,87 +1162,6 @@ const SIAM = {
             "name":"red bull",
             "img":"Red-Bull-300x300.jpg",
             "price":40
-         }
-      ]
-   },
-   "SPAGHETTI":{
-      "title":{
-         "en":"Spaghetti"
-      },
-      "items":[
-         {
-            "pid":151,
-            "name":"spaghetti bolognese",
-            "img":"Spaghetti-Bolognese-300x300.jpg",
-            "price":220
-         },
-         {
-            "pid":152,
-            "name":"spaghetti carbonara",
-            "img":"Spaghetti-Carbonara-300x300.jpeg",
-            "price":220
-         },
-         {
-            "pid":153,
-            "name":"spaghetti al pesto",
-            "img":"Spaghetti-Pesto-Sauce-300x300.jpg",
-            "price":220
-         },
-         {
-            "pid":154,
-            "name":"spaghetti tuna, garlic and chilli",
-            "img":"Spaghetti-Tuna-with-Garlic-Chilli-300x300.jpg",
-            "price":190
-         }
-      ]
-   },
-   "SOUP":{
-      "title":{
-         "en":"Soups"
-      },
-      "items":[
-         {
-            "pid":112,
-            "name":"chicken cream soup",
-            "img":"Chicken-Cream-Soup-300x300.jpeg",
-            "price":90
-         },
-         {
-            "pid":113,
-            "name":"mushroom chicken cream soup",
-            "img":"Mushroom-Chicken-Cream-Soup-e1547387018585-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":114,
-            "name":"clear soup with vegetable",
-            "img":"Clear-Soup-with-vegetable-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":115,
-            "name":"potatoes cream soup",
-            "img":"Potatoes-Cream-Soup-300x300.jpg",
-            "price":90
-         }
-      ]
-   },
-   "SMOOTHIES":{
-      "title":{
-         "en":"Smoothies"
-      },
-      "items":[
-         {
-            "pid":33,
-            "name":"mixed berry",
-            "img":"Mixed-Berry-Smoothies-e1547560220862-300x300.jpg",
-            "price":90
-         },
-         {
-            "pid":34,
-            "name":"banana honey",
-            "img":"Banana-Honey-Smoothies-300x300.jpg",
-            "price":90
          }
       ]
    }
