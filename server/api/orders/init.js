@@ -14,8 +14,8 @@ const unpackOrder = (dbRes) =>  {
   }
 }
 
-const ordersApiSetup = (app) => {
-  
+const ordersApiSetup = (app, silent) => {
+
   /* ---------------------- */
 
   app.get('/api/orders/:uid', (req, res) => {
@@ -78,8 +78,10 @@ const ordersApiSetup = (app) => {
     const order = new Order(req.body)
 
     order.add(req.body).then((dbRes) => {
-
-      util.alertUsers(req.body)
+      
+      if (silent && silent === 'no') {
+        util.alertUsers(req.body)
+      }
       
       res.status(200).send({
         status: '200',

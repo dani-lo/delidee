@@ -3,7 +3,7 @@ const APP_CONFIG = {
   GMAP_KEY          : 'AIzaSyCnTE5d8aISzSPhOm2bnQNZjexDwGGtKQA',
   LEAFLET_MBOX_TOKEN: 'pk.eyJ1IjoiYmFkYW5pIiwiYSI6ImNqa2F6anJnYzM4OWYzcWxlejF1M3VhZGEifQ.NFMJ9wHOPPheX8DAGHLlFA',
   LANG              : 'EN',
-  DATE_FORMAT       : 'MMMM Do YYYY, h:mm:ss a',
+  DATE_FORMAT       : 'MMMM Do YYYY, h:mm',
   SHOP_ID           : 'siamcafe',
   PIN               : '/img/app/cross.png',
   SHOP              : {

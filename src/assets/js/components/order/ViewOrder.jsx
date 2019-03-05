@@ -16,9 +16,10 @@ import { displayStatus,
          User,
          orderTotal}                        from '../../helper'
 
-const DATE_FORMAT = 'MMMM Do YYYY, h:mm:ss a'
+const DATE_FORMAT = 'MMMM Do YYYY, h:mm'
 
 const ViewOrderComponent = (props) => {
+
   let latlon, comment, status, when
 
   const meta = props.order.meta && props.order.meta.metaData ? props.order.meta.metaData : {}
@@ -34,8 +35,6 @@ const ViewOrderComponent = (props) => {
   props.order.items.map(item => {
     orderItems.push(<Item data={item} />)
   })
-
-  
 
   return <ModalComponent
           className = "modal"

@@ -11,8 +11,9 @@ import { DFPageContainer,
          DFBlock,
          DFSectionTitle,
          DFSubTitle,
-         DFItem,  
-         DFIcon}                  from '../elements/library'
+         DFLabel,
+         DFInputsField,
+         DFInput}                  from '../elements/library'
 import { placeOrder, 
          userOrders, 
          setOrderMeta,
@@ -50,6 +51,10 @@ const confirmSubmission = 'Place Order?'
 class CheckoutContainer extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.state = {
+      comment: ''
+    }
   }
 
   componentDidMount() {
@@ -65,13 +70,14 @@ class CheckoutContainer extends PureComponent {
   submitOrder () {
     const user          = this.props.user 
     const currentOrder  = this.props.orders.current
+    const comment       = this.state.comment || ''
 
     const order = {
         uid       : user._id,
         meta      : currentOrder.meta ? currentOrder.meta : {metaData: Object.assign({}, user)},
         total     : orderTotal(this.props.orders.current.items),
         items     : currentOrder.items,
-        comment   : currentOrder.comment
+        comment   : comment
       }
 
     this.props.finaliseOrder(order)
@@ -163,12 +169,23 @@ class CheckoutContainer extends PureComponent {
 
       return <DFContainer>
         <DFSubTitle>Current Order</DFSubTitle>
-        <DFBlock className="padding-bottom-xl">
+        <DFContainer className="padding-bottom-xl">
           {
             this.buildOrder()
           }
           <DFSectionTitle>Order Total { orderTotal(this.props.orders.current.items) } THB</DFSectionTitle>
-          { this.props.user && this.props.user._id ? <DFBlock actions>
+          { this.props.user && this.props.user._id ? 
+          <DFContainer>
+            <DFInputsField>
+              <DFLabel className="padding-v-l">Comments</DFLabel>
+              <DFInput.TxtArea 
+                rows="4"
+                value={ this.state.comment }
+                onChange={(e) => this.setState({comment: e.target.value})}
+                placeholder="order comments"
+              />
+            </DFInputsField>
+          <DFBlock actions  className="padding-top-xl">
             <DFButton
               className="margin-right-m"
               onClick={ () => this.props.confirm(confirmSubmission) }
@@ -180,10 +197,11 @@ class CheckoutContainer extends PureComponent {
             >
               Change Delivery
             </DFButton>
-          </DFBlock> : null }
+          </DFBlock>
+          </DFContainer> : null }
           
-        </DFBlock> 
-        <DFBlock  className="padding-top-xl">
+        </DFContainer> 
+        <DFBlock  className="padding-top-l">
         { this.userDelivery() }
         </DFBlock>
       </DFContainer>

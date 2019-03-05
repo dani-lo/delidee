@@ -115,6 +115,24 @@ const DFNote = styled.p`
 `
 
 const DFInput = {
+  TxtArea: styled.textarea`
+    padding: 12px;
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-border-color);
+    min-width: 320px;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: var(--main-txt-color);
+    @media only screen and (max-width: 800px) {
+      min-width: 240px;
+    }
+    ${props => props.required && `
+      background: var(--required-bg);
+    `}
+    ${props => props.filled && `
+      background: var(--white-bg-color);
+    `}
+  `,
   Txt: styled.input`
     background: var(--main-bg-color);
     border: 1px solid var(--main-border-color);

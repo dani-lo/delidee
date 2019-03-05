@@ -136,13 +136,8 @@ class MenuItemComponent extends PureComponent {
   }
 
   render () {
-    const pid               = this.props.pid
-    const name              = this.props.name
-    const price             = this.props.price
-    const order             = this.props.order
-    const loggedin          = this.props.loggedin
-    const options           = this.props.options
-    const img               = this.props.img
+    const { pid, name, price, order, options, img } = this.props
+    
     const ordered           = this.itemOrdered()
     const itemPrice         = parseFloat(price).toFixed(2)
     const selectedQuantity  = this.currentQuantity(order, pid)

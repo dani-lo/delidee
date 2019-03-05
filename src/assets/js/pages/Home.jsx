@@ -30,6 +30,18 @@ class HomeContainer extends PureComponent {
 
   componentDidMount () {
     window.scrollTo(0, 0)
+    const currClass = document.body.getAttribute('class')
+
+    document.body.setAttribute('class', currClass + ' home')
+  }
+
+  componentWillUnmount () {
+    const currClass = document.body.getAttribute('class')
+
+    if (currClass && currClass.replace) {
+      document.body.setAttribute('class', currClass.replace(' home', ''))
+    }
+    
   }
   
   render () {

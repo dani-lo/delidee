@@ -4,7 +4,9 @@
     border-bottom: 1px dashed var(--sub-bg-color);
     margin-bottom: 44px;
     margin-top: -20px;
-    padding: 20px;
+    padding: 20px;    
+    color: #fff;
+    background: #54545487;
 
     h1 {
     font-size: 1.5em;
@@ -21,19 +23,18 @@
       width: 105px;
       position: absolute;
       top: 22px;
-      left: 0;
+      left: 12px;
     }
   }
   
   
   h3.payoff {
     font-weight: normal;
-    // background: var(--highlight-bg-color);
-    // color: var(--sub-bg-color);
     text-align: center;
-    // border: 1px solid var(--main-border-color);
-        font-style: italic;
+    font-style: italic;
     font-size: 2em;
+    color: #fff;
+    background: #333333b3;
   }
   h4 {
     font-size: 1.8em;

@@ -62,8 +62,7 @@ app.get(routes, (req, res) => {
 })
 
 /* API SETUP */
-
-setupDelifastApi(app)
+setupDelifastApi(app, process.env)
 
 /* APP START */
 

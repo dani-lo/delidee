@@ -95,7 +95,7 @@ class RegistrationComponent extends PureComponent {
 
     return (<DFContainer>
       <DFSubTitle>Create Account</DFSubTitle>
-      <DFBlock  className="margin-v-l">
+      <DFBlock  className="margin-v-l padding-l registration-form">
           <div className="margin-v-l padded-border">
             <DFError active={ this.state.existing } className="padding-v-s no-margin right-align">This username is no available</DFError>
             <DFError active={ !this.state.validUname } className="padding-v-s no-margin right-align">Please enter a valid email</DFError>

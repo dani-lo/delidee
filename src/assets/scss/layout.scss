@@ -4,6 +4,12 @@ body {
   background: #f5f3f3;
   padding-bottom: 50px;
 
+  &.home {
+    background-image: url(/img/app/foods.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 }
 .Select-menu-outer {
   z-index: 1234!important;
@@ -13,8 +19,8 @@ body {
   height: 50px;
   width: 100%;
   background: var(--sub-bg-color);
-      position: fixed;
-    bottom: 0;
+  position: fixed;
+  bottom: 0;
   z-index: 123;
 }
 .lang-selector {
@@ -36,3 +42,4 @@ body {
     }
   }
 }
+

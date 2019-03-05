@@ -76,3 +76,13 @@ body .orders-page {
     }
   }
 }
+
+.modal-body .order-item {
+  background: var(--solid-bg-color);
+}
+
+.orders-page {
+  textarea {
+    min-width: 400px;
+  }
+}

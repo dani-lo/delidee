@@ -78,7 +78,7 @@ class ItemDetailComponent extends PureComponent {
 
       if (options && options.with) {
         const ingredients = options.with.map((ing) => { 
-          return {value: ing, label: ing} 
+          return {value: ing.toLowerCase(), label: ing.toLowerCase()} 
         })
 
         ingredients.unshift({ label: 'Please Select', value: 0 })
@@ -98,7 +98,7 @@ class ItemDetailComponent extends PureComponent {
 
       if (options && options.cook) {
         const cookStyles = options.cook.map((c) => { 
-          return {value: c, label: c} 
+          return {value: c.toLowerCase(), label: c.toLowerCase()} 
         })
 
         cookStyles.unshift({ label: 'Please Select', value: 0 })
@@ -118,7 +118,7 @@ class ItemDetailComponent extends PureComponent {
 
       if (options && options.side) {
         const sides = options.side.map((s) => { 
-          return {value: s, label: s} 
+          return {value: s.toLowerCase(), label: s.toLowerCase()} 
         })
 
         sides.unshift({ label: 'Please Select', value: 0 })

@@ -14,34 +14,25 @@ import { isFilled }                         from '../../helper'
 class OrderMetaComponent extends PureComponent {
   constructor (props) {
     super(props)
-    let userName, firstName, secondName, addressLineOne, addressLineTwo, latlon, tel
+  
+    let userDataSource 
 
     if (props.orders && props.orders.current && props.orders.current.meta && props.orders.current.meta.metaData) {
-      userName          = props.orders.current.meta.metaData.userName
-      firstName         = props.orders.current.meta.metaData.firstName
-      secondName        = props.orders.current.meta.metaData.secondName
-      addressLineOne    = props.orders.current.meta.metaData.addressLineOne
-      addressLineTwo    = props.orders.current.meta.metaData.addressLineTwo
-      latlon            = props.orders.current.meta.metaData.latlon
-      tel               = props.orders.current.meta.metaData.tel
+      userDataSource = props.orders.current.meta.metaData
     } else if (props.user) {
-      userName          = props.user.userName
-      firstName         = props.user.firstName
-      secondName        = props.user.secondName
-      addressLineOne    = props.user.addressLineOne
-      addressLineTwo    = props.user.addressLineTwo
-      latlon            = props.user.latlon
-      tel               = props.user.tel
+      serDataSource = props.user
     }
 
+    const { userName, firstName, secondName, addressLineOne, addressLineTwo, latlon, tel } = userDataSource
+
     this.state = {
-      userName        : userName || null,
-      firstName       : firstName || null,
-      secondName      : secondName || null,
-      addressLineOne  : addressLineOne || null,
-      addressLineTwo  : addressLineTwo || null,
-      latlon          : latlon || null,
-      tel             : tel || null
+      userName        : userName        || null,
+      firstName       : firstName       || null,
+      secondName      : secondName      || null,
+      addressLineOne  : addressLineOne  || null,
+      addressLineTwo  : addressLineTwo  || null,
+      latlon          : latlon          || null,
+      tel             : tel             || null
     }
   }
 
