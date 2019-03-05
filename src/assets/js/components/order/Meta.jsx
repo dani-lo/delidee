@@ -20,7 +20,7 @@ class OrderMetaComponent extends PureComponent {
     if (props.orders && props.orders.current && props.orders.current.meta && props.orders.current.meta.metaData) {
       userDataSource = props.orders.current.meta.metaData
     } else if (props.user) {
-      serDataSource = props.user
+      userDataSource = props.user
     }
 
     const { userName, firstName, secondName, addressLineOne, addressLineTwo, latlon, tel } = userDataSource
