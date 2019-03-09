@@ -88,7 +88,11 @@ const DFInputsField = styled.div`
 `
 
 const DFSelect = styled.div`
-
+    background: var(--required-bg);
+    position: relative;
+    z-index: 123;
+    border-radius: 6px;
+    padding: 3px;
   ${props => props.required && `
     background: var(--required-bg);
   `}
@@ -124,7 +128,7 @@ const DFInput = {
     font-size: 1rem;
     color: var(--main-txt-color);
     @media only screen and (max-width: 800px) {
-      min-width: 240px;
+      min-width: 190px;
     }
     ${props => props.required && `
       background: var(--required-bg);
@@ -141,7 +145,7 @@ const DFInput = {
     font-size: 1rem;
     color: var(--main-txt-color);
     @media only screen and (max-width: 800px) {
-      min-width: 240px;
+      min-width: 190px!important;
     }
     ${props => props.required && `
       background: var(--required-bg);

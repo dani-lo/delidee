@@ -41,7 +41,7 @@ class MenuContainer extends PureComponent {
     
     /*
     const csvRows = [
-      'product,price,choose ingredient, choose cooking, choose side'
+      'product,price,choose ingredient, choose cooking, choose side, choose spicy, choose bread'
     ]
     const newMenu = Object.assign({}, this.props.menu)
     */
@@ -62,6 +62,16 @@ class MenuContainer extends PureComponent {
         }
         if (item.options && item.options.cook) {
           row.push(item.options.cook.join(' - '))
+        } else {
+          row.push('')
+        }
+        if (item.options && item.options.spicy) {
+          row.push(item.options.spicy.join(' - '))
+        } else {
+          row.push('')
+        }
+        if (item.options && item.options.bread) {
+          row.push(item.options.bread.join(' - '))
         } else {
           row.push('')
         }

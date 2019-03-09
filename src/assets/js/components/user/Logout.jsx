@@ -26,6 +26,7 @@ const LogoutComponent = (props) => {
 
   const shopLogout = () => {
     deleteShopToken()
+    
     props.destroyUser()
     props.notify('Bye Bye', 'info')
 
@@ -49,8 +50,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  destroyUser: () => dispatch(destroyUser()),
-  notify : (txt, className) => dispatch(notify(txt, className))
+  destroyUser : () => dispatch(destroyUser()),
+  notify      : (txt, className) => dispatch(notify(txt, className))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LogoutComponent))

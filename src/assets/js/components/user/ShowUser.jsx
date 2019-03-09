@@ -2,12 +2,7 @@ import React, { Fragment }          from 'react'
 import _                            from 'lodash'
 import { connect }                  from "react-redux"
 
-import { DFContainer,
-         DFSubTitle,
-         DFButton,
-         DFInputsField,
-         DFItem, 
-         DFBlock}                   from '../../elements/library'
+import { DFBlock}                   from '../../elements/library'
 
 import MapComponent                 from '../map/Map.jsx'
 
@@ -27,14 +22,9 @@ const ShowUserComponent = (props) => {
       userSource = user
     }
 
-    const userName        = userSource.userName
-    const firstName       = userSource.firstName
-    const secondName      = userSource.secondName
-    const addressLineOne  = userSource.addressLineOne
-    const addressLineTwo  = userSource.addressLineTwo
-    const tel             = userSource.tel
+    const { userName, firstName, secondName, addressLineOne, addressLineTwo, tel } = userSource
 
-    const latlon          = props.latlon || userSource.latlon
+    const latlon = props.latlon || userSource.latlon
 
     return <Fragment>
         <DFBlock className="margin-v-l">

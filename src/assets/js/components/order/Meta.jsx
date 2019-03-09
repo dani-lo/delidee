@@ -72,7 +72,7 @@ class OrderMetaComponent extends PureComponent {
               className="padding-v-s"
               small
               required={ 1 } 
-              filled={ this.isFilled('addressLineOne') ? 1 : 0 }>Address Line 1</DFLabel>
+              filled={ this.isFilled('addressLineOne') ? 1 : 0 }>Address 1</DFLabel>
             <DFInput.Txt 
               required={ 1 } 
               filled={ this.isFilled('addressLineOne') ? 1 : 0 }
@@ -80,7 +80,7 @@ class OrderMetaComponent extends PureComponent {
               onChange={ (e) => this.setState({addressLineOne: e.target.value})} />
           </DFInputsField>
           <DFInputsField  className="padding-v-s">
-            <DFLabel   className="padding-v-s" small>Address Line 2</DFLabel>
+            <DFLabel   className="padding-v-s" small>Address 2</DFLabel>
             <DFInput.Txt value={ this.state.addressLineTwo } onChange={ (e) => this.setState({addressLineTwo: e.target.value})} />
           </DFInputsField>
           <DFInputsField  className="padding-v-s">

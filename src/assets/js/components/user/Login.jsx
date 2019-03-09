@@ -48,6 +48,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = dispatch => ({login: (username) => dispatch(postLogin(username))})
+const mapDispatchToProps = dispatch => ({
+  login: (username) => dispatch(postLogin(username))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent)

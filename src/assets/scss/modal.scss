@@ -45,14 +45,14 @@
 
 
 .modal-body {
-  padding: 12px 24px 100px;
+  padding: 12px 24px 180px;
 
 }
 
 .modal-footer {
-  position: absolute;
+  position: fixed;
   top: 0;
-  width: 100%;
+  width: 700px;
   padding: 12px 0;
   background: #fbfafa;
   z-index: 123;
@@ -86,12 +86,13 @@
     }
   }
   .modal-body {
-    padding: 12px 0 100px;
+    padding: 12px 0 300px;
     width: 95%;
     margin: 0 auto;
   }
   .modal-footer {
     position: fixed;
+    width: 100%;
     button {
       float: none;
     }

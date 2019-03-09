@@ -91,7 +91,7 @@ class CheckoutContainer extends PureComponent {
       return <DFContainer>
       <DFSubTitle>No Delivery Information</DFSubTitle>
       <p>You need to login or register an account to place this order</p>
-      <p><AppLink page="account" text="Got to registration" /></p>
+      <p><AppLink page="account" text="Add your details" /></p>
     </DFContainer>
     }
     let userName, secondName, addressLineOne, addressLineTwo, tel, latlon
@@ -127,7 +127,7 @@ class CheckoutContainer extends PureComponent {
   buildOrder () {
     const order = []
 
-    this.props.orders.current.items.map((item) => {
+    this.props.orders.current.items.map((item, ix) => {
 
       if (item.quantity > 1) {
         for (let i = 0; i < item.quantity; i++) {
@@ -138,7 +138,7 @@ class CheckoutContainer extends PureComponent {
             options: item.options && item.options[i] ? [item.options[i]] : null
           }
           order.push(
-            <div className="checkout-order-item margin-bottom-l">
+            <div key={'checkout-order-item-' + ix + '-' + i} className="checkout-order-item margin-bottom-l">
               <Item data={ itemData } />
               <DFButton 
                 cancel
@@ -147,16 +147,14 @@ class CheckoutContainer extends PureComponent {
             </div>)
         }
       } else {
-        order.push(  <div className="checkout-order-item margin-bottom-l">
+        order.push(  <div key={'checkout-order-item'} className="checkout-order-item margin-bottom-l">
               <Item data={ item } />
               <DFButton 
                 cancel
                 onClick = { () => this.props.removeOrderItem(item.pid) }
               >Delete from order</DFButton>
             </div>)
-      }
-      //this.props.removeOrderItem(pid, i)
-      
+      }      
     })
 
     return order

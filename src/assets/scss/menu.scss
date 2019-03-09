@@ -6,6 +6,13 @@ h4.menu-section {
   background: #31303a;
   font-size: 1.5em;
   text-align: right;
+  /* color: #31303a; */
+  padding: 12px;
+  /* margin: 38px 0 12px; */
+  /* background: #f5f3f3; */
+  /* font-size: 1.5em; */
+  text-align: center;
+  /* border-bottom: 1px dotted #31303a; */
 }
 
 .menu-item {
@@ -24,6 +31,7 @@ h4.menu-section {
   }
   img {
     width: 100%;
+    min-height: 200px;
   }
   p {
     padding: 2px 12px;
@@ -123,6 +131,7 @@ h4.menu-section {
         top: 7px;
         right: 0;
         width: 81px;
+        min-height: auto;
       }
       .product-detail {
         padding-right: 100px;

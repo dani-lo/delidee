@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react'
-import Select                   from 'react-select'
-
+//import Select                   from 'react-select'
 import ModalComponent           from '../../components/widgets/Modal.jsx'
-
+import Select from "react-virtualized-select"
 import { DFSubTitle,
          DFInput,
          DFContainer,
@@ -346,18 +345,11 @@ class ItemDetailComponent extends PureComponent {
   }
 
   selectClassname (i, t) {
-    //console.log('===>>>et lass namwe!!!!!', i, t, this.state.focus)
-    // console.log(this.state.focus.i === i, this.state.focus.t !== t)
-    if (this.state.focus.t === null) {
-    return 'nh padding-s'
+    if (this.state.focus.i === i && this.state.focus.t !== t) {
+      return 'h padding-s'
     }
 
-    if (this.state.focus.i === i && ('' + this.state.focus.t) === (t + '')) {
-      // console.log('HIDE')
-      return 'nh padding-s'
-    }
-    // console.log('SHOW')
-    return 'h padding-s'
+    return 'nh padding-s'
   }
 
   render () {

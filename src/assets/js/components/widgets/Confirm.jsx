@@ -2,13 +2,9 @@ import React, { PureComponent } from 'react'
 
 import ModalComponent           from '../../components/widgets/Modal.jsx'
 
-import { DFSubTitle,
-         DFInput,
-         DFContainer,
-         DFSelect,
+import { DFContainer,
          DFButton,
-         DFInputsField,
-         DFLabel}                from '../../elements/library'
+         DFInputsField}         from '../../elements/library'
 
 class ConfirmComponent extends PureComponent {
 

@@ -8,7 +8,7 @@ const unpackOrder = (dbRes) =>  {
     createdAt: dbRes.createdAt,
     status: dbRes.status,
     meta: dbRes.meta,
-    comments: dbRes.comments,
+    comment: dbRes.comment,
     items: dbRes.items,
     uid: dbRes.uid
   }

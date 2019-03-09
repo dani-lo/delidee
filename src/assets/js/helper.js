@@ -92,12 +92,38 @@ const validUser = (user) => {
 }
 
 const orderTotal = (items) => {
-  const total =  items.reduce((prev, cur) => prev + parseInt(cur.price * cur.quantity), 0)
+  
+  function getextras (item) {
+
+    let totExtras = 0
+    console.log(item.options, Object.values(item.options))
+    for (let option of Object.values(item.options)) {
+      console.log(option)
+      if (option.extra_shot && option.extra_shot.value) {
+        console.log(option.extra_shot.value * 30)
+        totExtras += option.extra_shot.value * 30
+      }
+      if (option.extra_scoop && option.extra_scoop.value) {
+        console.log(option.extra_scoop.value * 30)
+        totExtras += option.extra_scoop.value * 50
+      }
+    }
+    console.log(totExtras)
+    return totExtras
+  }
+
+  const total =  items.reduce((prev, cur) => {
+    const tot = parseInt(cur.price * cur.quantity) + getextras(cur)
+
+    return  prev + tot
+  }, 0)
 
   return total.toFixed(2)
 }
 
+// Deprecated
 const startShopAlert = () => {
+  return
   // let toCheckNew    = getAppGlobal('TO_CHECK_NEW')
 
   // if (!toCheckNew || toCheckNew === null) {
@@ -114,7 +140,9 @@ const startShopAlert = () => {
   // }
 }
 
+// Deprecated
 const stopShopAlert  = () => {
+  return
   // let toCheckNew  = getAppGlobal('TO_CHECK_NEW')
 
   // if (toCheckNew) {
@@ -143,11 +171,23 @@ const User = ({data} ) => {
     data = {}
   }
   return (<div className="user-item">
-      <DFItem className="padding-v-s"><span>First Name</span><span className="udata">{ data.firstName }</span></DFItem>
+      <DFItem className="padding-v-s">
+        <span>First Name</span>
+        <span className="udata">{ data.firstName }</span>
+      </DFItem>
       { data.secondName ? <DFItem className="padding-v-s"><span>Second Name</span><span className="udata">{ data.secondName }</span></DFItem> : null }
-      <DFItem className="padding-v-s"><span>Address Line 1</span><span className="udata">{ data.addressLineOne }</span></DFItem>
-      { data.addressLineTwo ? <DFItem className="padding-v-s"><span>Address Line 2</span><span className="udata">{ data.addressLineTwo }</span></DFItem> : null }
-      <DFItem className="padding-v-s"><span>Phone</span><span className="udata">{ data.tel }</span></DFItem>
+      <DFItem className="padding-v-s">
+        <span>Address  1</span>
+        <span className="udata">{ data.addressLineOne }</span>
+      </DFItem>
+      { data.addressLineTwo ? <DFItem className="padding-v-s">
+        <span>Address 2</span>
+        <span className="udata">{ data.addressLineTwo }</span>
+      </DFItem> : null }
+      <DFItem className="padding-v-s">
+        <span>Phone</span>
+        <span className="udata">{ data.tel }</span>
+      </DFItem>
     </div>)
 }
 

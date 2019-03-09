@@ -1,7 +1,7 @@
 body {
   padding: 100px 0 0;
   margin: 0;
-  background: #f5f3f3;
+  background: #f3f3f3;
   padding-bottom: 50px;
 
   &.home {
@@ -16,12 +16,24 @@ body {
 }
 
 .app-footer {
-  height: 50px;
+  height: 70px;
   width: 100%;
   background: var(--sub-bg-color);
   position: fixed;
   bottom: 0;
   z-index: 123;
+  .contact-footer-info {
+    position: absolute;
+    left: 0;
+    top: 0;
+    p {
+      color: var(--white-txt-color);
+      font-size: 12px;
+      /* display: inline-block; */
+      padding: 0 12px;
+      margin: 11px 0 0 0;
+    }
+  }
 }
 .lang-selector {
   display: none;

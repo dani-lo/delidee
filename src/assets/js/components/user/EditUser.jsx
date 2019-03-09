@@ -66,7 +66,7 @@ class EditUserComponent extends PureComponent {
             <DFLabel
               className = "flex-child  padding-top-m"
               required  = { 1 } 
-              filled    = { this.isFilled('addressLineOne') ? 1 : 0 }>Address Line 1</DFLabel>
+              filled    = { this.isFilled('addressLineOne') ? 1 : 0 }>Address 1</DFLabel>
             <DFInput.Txt 
               className = "flex-child"
               required  = { 1 } 
@@ -75,7 +75,7 @@ class EditUserComponent extends PureComponent {
               onChange  = { (e) => this.setState({addressLineOne: e.target.value})} />
           </DFInputsField>
           <DFInputsField txtfield className="flex-parent margin-v-m">
-            <DFLabel className="flex-child  padding-top-m">Address Line 2</DFLabel>
+            <DFLabel className="flex-child  padding-top-m">Address 2</DFLabel>
             <DFInput.Txt 
               className = "flex-child"
               value     = { this.state.addressLineTwo } 

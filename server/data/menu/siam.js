@@ -215,19 +215,49 @@ const SIAM = {
             "pid":78,
             "name":"triple decker beef sandwich",
             "img":"Triple-decker-steak-sandwich-300x300.jpg",
-            "price":250
+            "price":250,
+            "options": {
+               "bread": [ 
+                  "Ciabatta",
+                  "Baguette",
+                  "Bun",
+                  "Pita",
+                  "Wrap",
+                  "Croissant"
+               ]
+            }
          },
          {
             "pid":81,
             "name":"smoked salmon, avocado and capers with horseradish sauce",
             "img":"Smoked-Salmon-300x300.jpeg",
-            "price":240
+            "price":240,
+            "options": {
+               "bread": [ 
+                  "Ciabatta",
+                  "Baguette",
+                  "Bun",
+                  "Pita",
+                  "Wrap",
+                  "Croissant"
+               ]
+            }
          },
          {
             "pid":82,
             "name":"chicken schnitzel sandwich",
             "img":"Chicken-Schnitzel-Sandwich-1-300x300.jpeg",
-            "price":180
+            "price":180,
+            "options": {
+               "bread": [ 
+                  "Ciabatta",
+                  "Baguette",
+                  "Bun",
+                  "Pita",
+                  "Wrap",
+                  "Croissant"
+               ]
+            }
          }
       ]
    },
@@ -269,6 +299,7 @@ const SIAM = {
             "options":{
                "with":[
                   "shrimp",
+                  "pork",
                   "chicken"
                ]
             }
@@ -281,6 +312,7 @@ const SIAM = {
             "options":{
                "with":[
                   "shrimp",
+                  "pork",
                   "chicken"
                ]
             }
@@ -293,6 +325,7 @@ const SIAM = {
             "options":{
                "with":[
                   "shrimp",
+                  "pork",
                   "chicken"
                ]
             }
@@ -305,6 +338,7 @@ const SIAM = {
             "options":{
                "with":[
                   "shrimp",
+                  "pork",
                   "chicken"
                ]
             }
@@ -317,6 +351,7 @@ const SIAM = {
             "options":{
                "with":[
                   "shrimp",
+                  "pork",
                   "chicken"
                ]
             }
@@ -376,12 +411,16 @@ const SIAM = {
             "name":"green curry",
             "img":"Green-Curry-300x300.jpg",
             "price":150,
-            "options":{
-               "with":[
-                  "CHICKEN",
-                  "PORK",
-                  "BEEF",
-                  "SHRIMP"
+            "options": {
+                "with": [
+                  "chicken",
+                  "pork",
+                  "shrimps"
+               ],
+               "spicy": [
+                  "normal",
+                  "not spicy",
+                  "very spicy"
                ]
             }
          },
@@ -391,11 +430,15 @@ const SIAM = {
             "img":"Yellow-Curry-300x300.jpg",
             "price":150,
             "options":{
-               "with":[
-                  "CHICKEN",
-                  "PORK",
-                  "BEEF",
-                  "SHRIMP"
+                "with": [
+                  "chicken",
+                  "pork",
+                  "shrimps"
+               ],
+               "spicy": [
+                  "normal",
+                  "not spicy",
+                  "very spicy"
                ]
             }
          },
@@ -404,12 +447,16 @@ const SIAM = {
             "name":"dry & red curry",
             "img":"Dry-Red-Curry-300x300.jpg",
             "price":150,
-            "options":{
-               "with":[
-                  "CHICKEN",
-                  "PORK",
-                  "BEEF",
-                  "SHRIMP"
+            "options": {
+                "with": [
+                  "chicken",
+                  "pork",
+                  "shrimps"
+               ],
+               "spicy": [
+                  "normal",
+                  "not spicy",
+                  "very spicy"
                ]
             }
          },
@@ -418,12 +465,16 @@ const SIAM = {
             "name":"massaman curry",
             "img":"Massaman-Curry-300x300.jpg",
             "price":150,
-            "options":{
-               "with":[
-                  "CHICKEN",
-                  "PORK",
-                  "BEEF",
-                  "SHRIMP"
+            "options": {
+                "with": [
+                  "chicken",
+                  "pork",
+                  "shrimps"
+               ],
+               "spicy": [
+                  "normal",
+                  "not spicy",
+                  "very spicy"
                ]
             }
          },
@@ -432,12 +483,16 @@ const SIAM = {
             "name":"panang curry",
             "img":"Panang-Curry-300x300.jpg",
             "price":150,
-            "options":{
-               "with":[
-                  "CHICKEN",
-                  "PORK",
-                  "BEEF",
-                  "SHRIMP"
+            "options": {
+                "with": [
+                  "chicken",
+                  "pork",
+                  "shrimps"
+               ],
+               "spicy": [
+                  "normal",
+                  "not spicy",
+                  "very spicy"
                ]
             }
          }
@@ -462,7 +517,7 @@ const SIAM = {
          },
          {
             "pid":132,
-            "name":"stire fried shrimps with asparagus",
+            "name":"stir fried shrimps with asparagus",
             "img":"Stire-fried-Shrimp-with-asparagus-300x300.jpg",
             "price":180
          },
@@ -488,7 +543,7 @@ const SIAM = {
             "pid":136,
             "name":"steamed rice",
             "img":"Steam-Rice-300x300.jpg",
-            "price":80
+            "price":30
          }
       ]
    },
@@ -594,13 +649,13 @@ const SIAM = {
             "pid":97,
             "name":"onion, mushroom and bolognese pizza",
             "img":"Onion-Mushroom-Bolonaise-Pizza-300x300.jpeg",
-            "price":159
+            "price":220
          },
          {
             "pid":98,
             "name":"mixed cheese  pizza",
             "img":"Mixed-Cheese-Pizza-300x300.jpg",
-            "price":220
+            "price":199
          }
       ]
    },
@@ -631,7 +686,7 @@ const SIAM = {
             "pid":154,
             "name":"spaghetti tuna, garlic and chilli",
             "img":"Spaghetti-Tuna-with-Garlic-Chilli-300x300.jpg",
-            "price":190
+            "price":199
          }
       ]
    },
@@ -675,19 +730,35 @@ const SIAM = {
             "pid":155,
             "name":"banana fritter and ice cream",
             "img":"Banana-Friter-Ice-Cream-300x300.jpg",
-            "price":150
+            "price":120,
+            "options" : {
+               "extra_scoop" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":156,
             "name":"mango sticky rice",
             "img":"Mango-sticky-Rice-300x300.jpg",
-            "price":120
+            "price":150
          },
          {
             "pid":157,
             "name":"honey toast with ice cream",
             "img":"Honey-Toast-with-Ice-Cream-300x300.jpg",
-            "price":150
+            "price":150,
+            "options" : {
+               "extra_scoop" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          }
       ]
    },
@@ -832,55 +903,127 @@ const SIAM = {
             "pid":1001,
             "name":"espresso hot",
             "img":"placeholder.png",
-            "price":50
+            "price":50,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1002,
             "name":"double espresso",
             "img":"placeholder.png",
-            "price":60
+            "price":60,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1003,
             "name":"espresso ice",
             "img":"placeholder.png",
-            "price":70
+            "price":70,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1004,
             "name":"americano hot",
             "img":"placeholder.png",
-            "price":60
+            "price":60,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1005,
             "name":"americano ice",
             "img":"placeholder.png",
-            "price":70
+            "price":70,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1006,
             "name":"cafe latte",
             "img":"placeholder.png",
-            "price":70
+            "price":70,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1007,
-            "name":"cafe latte’ ice",
+            "name":"cafe latte ice",
             "img":"placeholder.png",
-            "price":80
+            "price":80,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1008,
-            "name":"latte’ macchiato caramel hot",
+            "name":"latte macchiato caramel hot",
             "img":"placeholder.png",
-            "price":80
+            "price":80,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1009,
-            "name":"latte’ macchiato caramel ice",
+            "name":"latte macchiato caramel ice",
             "img":"placeholder.png",
-            "price":90
+            "price":90,
+            "options" : {
+               "extra_shot" : [
+                  1,
+                  2,
+                  3,
+                  4
+               ]
+            }
          },
          {
             "pid":1010,
@@ -1039,7 +1182,7 @@ const SIAM = {
             "pid":19,
             "name":"orange lime & lemon juice",
             "img":"placeholder.png",
-            "price":80
+            "price":60
          },
          {
             "pid":31,
@@ -1082,7 +1225,7 @@ const SIAM = {
             "pid":24,
             "name":"mango",
             "img":"placeholder.png",
-            "price":60
+            "price":80
          },
          {
             "pid":25,

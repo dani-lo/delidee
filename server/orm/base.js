@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema(
     },
     meta: Object,
     latlon:   {lat: Number, lon: Number }, 
-    comment: Object,
+    comment: String,
     archived: {
       type: Boolean,
       default: false

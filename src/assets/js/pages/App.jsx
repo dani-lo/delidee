@@ -104,7 +104,7 @@ class App extends PureComponent {
             <NavLink activeClassName="selected" to={`/${ currentShop }/menu`}>menu</NavLink>
           </li>
           {showRegistration ? <li>
-            <NavLink activeClassName="selected" to={`/${ currentShop }/account`}>register</NavLink>
+            <NavLink activeClassName="selected" to={`/${ currentShop }/account`}>delivery info</NavLink>
           </li> : null}
         </ul>
       </div>
@@ -113,7 +113,7 @@ class App extends PureComponent {
         <DFPageTitle>{ this.pood.say('shop', 'shop_area') }</DFPageTitle>
         <FlashMessage />
         <LogoutComponent />
-        </div>
+      </div>
     }
     
     return null
@@ -127,7 +127,7 @@ class App extends PureComponent {
     if (token) {
       cname="with-shop"
     }
-    // const 
+
     return <Router>
       <div id="app" className={ cname }>
         { this.header() }
@@ -139,6 +139,11 @@ class App extends PureComponent {
         <Route path={`/${ currentShop }/shop-order/:orderId`} component={ ShopOrderContainer } />
         <Route path={`/${ currentShop }/checkout`} component={ CheckoutContainer } />
         <div className="app-footer">
+          <div class="contact-footer-info">
+            <p>12/34 M.2 Viset Rd, Rawai</p>
+            <p>076-602851, 082-5205513</p>
+            <p>&nbsp;</p>
+          </div>
           <div className="lang-selector padding-l right-align">
             <SelectLang lang="th" text="Thai"  className="padding-right-m" img="/img/app/th.png" />
             <SelectLang lang="en" text="English" img="/img/app/en.png"  />

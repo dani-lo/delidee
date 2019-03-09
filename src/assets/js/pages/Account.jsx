@@ -73,7 +73,7 @@ class AccountContainer extends PureComponent {
       { showUser        ?
         <DFBlock className="margin-v-l">
         <DFInputsField>
-          <DFButton onClick={ () => this.props.editUser() }>Edit Account</DFButton>
+          <DFButton onClick={ () => this.props.editUser() }>Edit Your Info</DFButton>
           <LogoutComponent bare />
         </DFInputsField> 
         </DFBlock> : null

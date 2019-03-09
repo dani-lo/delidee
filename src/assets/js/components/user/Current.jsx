@@ -1,6 +1,5 @@
 import React, { PureComponent }     from 'react'
 import { withRouter }               from 'react-router-dom'
-
 import { connect }                  from 'react-redux'
 
 import APP_CONFIG                   from '../../config'
@@ -13,6 +12,7 @@ import { fetchCurrentUser }         from '../../store/actions/accountActions'
 import LoginComponent               from './Login.jsx'
 
 const currentShop       = APP_CONFIG.SHOP_ID
+
 const GoToAccountButton =  withRouter(({ history }) => (
   <DFIcon 
     clickable 
@@ -43,9 +43,11 @@ class CurrentuserComponent extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         user: state.user
-    };
+    }
 }
 
-const mapDispatchToProps = dispatch => ({getUser: () => dispatch(fetchCurrentUser())})
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(fetchCurrentUser())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentuserComponent)

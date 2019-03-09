@@ -1,8 +1,7 @@
 import React    from 'react'
 import ReactDOM from 'react-dom'
 
-import { DFContainer, DFButton, DFSubTitle,
-         DFInput, DFLabel }                 from '../../elements/library'
+import { DFButton, DFSubTitle } from '../../elements/library'
          
 const ModalComponent = (props) => {
   return ReactDOM.createPortal(
@@ -19,8 +18,8 @@ const ModalComponent = (props) => {
         </div>
         {!props.bare && !props.info ? 
         <div className="modal-footer">
-            <DFButton cancel onClick={props.cancel}><i class="far fa-times-circle margin-right-s"></i> cancel</DFButton>
-            <DFButton confirm onClick={props.confirm} unactive={ props.unactive }><i class="far fa-check-circle margin-right-s"></i> ok</DFButton>
+            <DFButton cancel onClick={props.cancel}><i className="far fa-times-circle margin-right-s"></i> cancel</DFButton>
+            <DFButton confirm onClick={props.confirm} unactive={ props.unactive }><i className="far fa-check-circle margin-right-s"></i> ok</DFButton>
         </div> : null }
 
         { props.info ? <div className="modal-footer">

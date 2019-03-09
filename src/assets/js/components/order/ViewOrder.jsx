@@ -32,8 +32,8 @@ const ViewOrderComponent = (props) => {
   const orderItems    = []
   const statusContent = orderStatusContent(status)
 
-  props.order.items.map(item => {
-    orderItems.push(<Item data={item} />)
+  props.order.items.map((item, i) => {
+    orderItems.push(<Item key={'item-' + i} data={item} />)
   })
 
   return <ModalComponent
@@ -48,6 +48,7 @@ const ViewOrderComponent = (props) => {
         <DFBlock>
           <DFSectionTitle>Order Items</DFSectionTitle>
           { orderItems }
+          <DFSectionTitle>Order Total { orderTotal(props.order.items) } THB</DFSectionTitle>
           <DFSectionTitle>Your Comments</DFSectionTitle>
           <p>{ comment && comment.length ? comment : 'None' }</p>    
         </DFBlock>

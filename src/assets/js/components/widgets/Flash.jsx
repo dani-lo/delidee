@@ -35,6 +35,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = dispatch => ({unNotify: () => dispatch(unNotify())})
+const mapDispatchToProps = dispatch => ({
+  unNotify: () => dispatch(unNotify())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlashMessage);  

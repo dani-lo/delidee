@@ -10,6 +10,8 @@ const APP_TRANS = {
          order_delivery_details        :"order delivery details",
          choose_ingredient             :"choose ingredient",
          choose_cooking_style          :"choose cooking style",
+         choose_spicy                  :"choose how spicy",
+         choose_bread                  :"choose bread",
          choose                        :"choose",
          choose_side                   :"choose side",
          comments_or_special_requests  :" comments or special requests",
