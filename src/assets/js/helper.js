@@ -96,19 +96,17 @@ const orderTotal = (items) => {
   function getextras (item) {
 
     let totExtras = 0
-    console.log(item.options, Object.values(item.options))
+
     for (let option of Object.values(item.options)) {
-      console.log(option)
+      
       if (option.extra_shot && option.extra_shot.value) {
-        console.log(option.extra_shot.value * 30)
+
         totExtras += option.extra_shot.value * 30
       }
       if (option.extra_scoop && option.extra_scoop.value) {
-        console.log(option.extra_scoop.value * 30)
         totExtras += option.extra_scoop.value * 50
       }
     }
-    console.log(totExtras)
     return totExtras
   }
 
